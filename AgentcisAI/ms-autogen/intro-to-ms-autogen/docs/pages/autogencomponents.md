@@ -88,8 +88,17 @@ Great—your environment is all set up and you've got a solid grasp of Microsoft
 
 <table width="100%">
   <tr>
-    <td align="left"><a href="autogenintro.md">← Previous Page</a></td>
-    <td align="right"><a href="DirectHumanInteraction.md">Next → Page</a></td>
+    <td align="left">
+      <a href="autogenintro.md" style="text-decoration: none; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;">
+        ← Previous Page
+      </a>
+    </td>
+    <td align="right">
+      <a href="DirectHumanInteraction.md" style="text-decoration: none; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;">
+        Next → Page
+      </a>
+    </td>
   </tr>
 </table>
+
 
