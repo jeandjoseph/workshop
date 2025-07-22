@@ -62,13 +62,13 @@ pip show openai
 
 <table width="100%">
   <tr>
-    <td align="left" width="33%">
+    <td align="left" width="100%">
       <a href="autogenintro.md" style="white-space: nowrap; display: inline-block; text-decoration: none;">
         ← Previous Page
       </a>
     </td>
-    <td width="34%"></td> <!-- Blank middle column -->
-    <td align="right" width="33%">
+    <td width="80%"></td> <!-- Blank middle column -->
+    <td align="right" width="100%">
       <a href="DirectHumanInteraction.md" style="white-space: nowrap; display: inline-block; text-decoration: none;">
         Next → Page
       </a>
