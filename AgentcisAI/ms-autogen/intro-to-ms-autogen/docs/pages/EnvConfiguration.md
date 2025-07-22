@@ -62,9 +62,15 @@ pip show openai
 
 <table width="100%">
   <tr>
-    <td align="left"><a href="autogenintro.md">← Previous Page</a></td>
-    <td align="right"><a href="DirectHumanInteraction.md">Next → Page</a></td>
+    <td align="left" width="33%">
+      <a href="autogenintro.md">← Previous Page</a>
+    </td>
+    <td width="34%"></td> <!-- Blank middle column -->
+    <td align="right" width="33%">
+      <a href="DirectHumanInteraction.md">Next → Page</a>
+    </td>
   </tr>
 </table>
+
 
 
