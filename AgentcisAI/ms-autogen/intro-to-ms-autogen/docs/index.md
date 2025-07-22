@@ -12,4 +12,4 @@ I'm [Jean Joseph](https://datadrivencommunity.com/About-Jean-Joseph.html), indep
 
 Let’s get started! 🌟 Click through to the **Next page** to dive into the workshop and begin exploring the world of Agentic AI.
 
-- [Next → Page](../docs\pages\EnvConfiguration.md)
+- [Next → Page](../docs/pages/EnvConfiguration.md)
