@@ -62,19 +62,16 @@ pip show openai
 
 <table width="100%">
   <tr>
-    <td align="left" width="100%">
-      <a href="autogenintro.md" style="white-space: nowrap; display: inline-block; text-decoration: none;">
-        ← Previous Page
-      </a>
+    <td align="left" style="white-space: nowrap;">
+      <a href="autogenintro.md">← Previous Page</a>
     </td>
-    <td width="80%"></td> <!-- Blank middle column -->
-    <td align="right" width="100%">
-      <a href="DirectHumanInteraction.md" style="white-space: nowrap; display: inline-block; text-decoration: none;">
-        Next → Page
-      </a>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="DirectHumanInteraction.md">Next → Page</a>
     </td>
   </tr>
 </table>
+
 
 
 
