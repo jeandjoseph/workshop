@@ -60,8 +60,11 @@ pip show openai
 🌟 Proceed to the **Next Page** to dive into the core concepts of [Microsoft Autogen](https://microsoft.github.io/autogen/stable/index.html)
 
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="autogenintro.md">← Previous Page</a>
-  <a href="DirectHumanInteraction.md">Next → Page</a>
-</div>
+<table width="100%">
+  <tr>
+    <td align="left"><a href="autogenintro.md">← Previous Page</a></td>
+    <td align="right"><a href="DirectHumanInteraction.md">Next → Page</a></td>
+  </tr>
+</table>
+
 
