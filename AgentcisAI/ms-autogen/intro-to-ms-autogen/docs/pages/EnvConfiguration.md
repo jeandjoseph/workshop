@@ -61,6 +61,7 @@ pip show openai
 
 
 <div style="display: flex; justify-content: space-between;">
-  <a href="../index.md">← Previous Page</a>
-  <a href="../pages/autogenintro.md">Next → Page</a>
+  <a href="autogenintro.md">← Previous Page</a>
+  <a href="DirectHumanInteraction.md">Next → Page</a>
 </div>
+
