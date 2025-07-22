@@ -86,19 +86,33 @@ Great—your environment is all set up and you've got a solid grasp of Microsoft
 
 🚀 Head over to the **Next Page** and jump right into the hands-on demo to bring everything to life.
 
-<table width="100%">
-  <tr>
-    <td align="left">
-      <a href="autogenintro.md" style="text-decoration: none; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;">
-        ← Previous Page
-      </a>
-    </td>
-    <td align="right">
-      <a href="DirectHumanInteraction.md" style="text-decoration: none; padding: 6px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;">
-        Next → Page
-      </a>
-    </td>
-  </tr>
-</table>
+<!-- Navigation Bar with Hover Highlighting -->
+<style>
+  .nav-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-top: 30px;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    background-color: yellow;
+  }
+</style>
+
+<div class="nav-links">
+  <a href="autogenintro.md">← Previous Page</a>
+  <a href="DirectHumanInteraction.md">Next → Page</a>
+</div>
 
 
