@@ -34,7 +34,7 @@ Let’s get started! 🌟 Click through to the **Next page** to dive into the wo
 <table width="100%">
   <tr>
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/EnvConfiguration.md">Next → Page</a>
+        <a href="../docs/pages/EnvConfiguration.md">Next → Page</a>
     </td>
   </tr>
 </table>
