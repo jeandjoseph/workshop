@@ -94,74 +94,38 @@ A callable function or service (Python, REST, etc.) exposed to agents to enhance
 
 ---
 ## 👥 Team
-A structured collection of agents working collaboratively (parallel or hierarchical) to solve complex tasks or simulate workflow roles. Managed via `AgentTeam`.
+A **Team** is a group of agents that collaborate to solve a task. Each team defines:
+- A **coordination strategy** (e.g. round-robin, selector-based, swarm)
+- A **termination condition** (e.g. keyword match, external signal)
+- A **shared context** for message exchange
+- Notes: AutoGen 0.4+ gives you powerful tools to coordinate multiple agents, but choosing the right `GroupChat` strategy depends on how your agents need to interact.
+#### 👥 AgentChat supports several team presets in AutoGen 0.4+
+In AutoGen v0.4+, AgentChat Team Presets are preconfigured multi-agent collaboration patterns that simplify how agents interact to solve tasks. Each preset defines how agents take turns, share context, and terminate. Key presets include:
+| Team Type               | Description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| `RoundRobinGroupChat`   | Agents take turns responding in a fixed order. Simple and effective.        |
+| `SelectorGroupChat`     | Uses an LLM to select the next speaker after each message. Flexible and adaptive. |
+| `MagenticOneGroupChat`  | Generalist multi-agent system for open-ended tasks across web, code, and files. |
+| `Swarm`                 | Agents hand off control using `HandoffMessage`. Decentralized coordination. |
 
-#### 👥 Team Types
-| Team Type                    | Description                                                             |
-|-----------------------------|-------------------------------------------------------------------------|
-| `RoundRobinGroupChat`       | Agents take turns in fixed order                                        |
-| `SelectorGroupChat`         | Dynamically selects agent based on context                              |
-| `MagneticOneGroupChat`      | Agents self-select based on confidence in handling the task             |
-| `SwarmChat`                 | Parallel agent execution                                                |
+The core version also support GroupChat
 
+### 💬 What Is GroupChat in AutoGen Core?
 
+In AutoGen v0.4+, **GroupChat** is a design pattern where multiple agents collaborate by publishing and subscribing to a shared message topic. It enables sequential, role-based coordination across agents—ideal for decomposing complex tasks into manageable steps.
 
+In summary In AutoGen v0.4+, GroupChat is the foundational class for orchestrating multi-agent conversations. It defines how agents exchange messages, maintain shared context, and terminate the chat.
+Think of GroupChat as the low-level engine, while Team Presets are plug-and-play configurations built on top.
 
-Teams enable collaborative workflows-e.g.,:
-## 🧠 When to Use Each GroupChat Strategy in AutoGen 0.4+
-
-AutoGen 0.4+ gives you powerful tools to coordinate multiple agents, but choosing the right `GroupChat` strategy depends on how your agents need to interact. Here's a guide to help you pick the best fit based on your workflow:
-
----
-
-Lest say you're building a multi-agent system with distinct roles:
-- **SQL Creator Agent**: Generates SQL scripts
-- **Saver Agent**: Saves the scripts
-- **Executor Agent**: Runs the scripts
-- **Reporter Agent**: Reports execution status
-
-Let’s break down each `GroupChat` option and see which fits best:
-
----
-
-### 🌀 RoundRobinGroupChat
-**How it works**: Agents take turns in a fixed sequence.
-
-- ✅ **Pros**: Simple and predictable rotation.
-- ❌ **Cons**: Doesn’t adapt to context or agent specialization.
-- ⚠️ **Fit**: **Not ideal** for role-specific workflows. It cycles through agents regardless of task relevance.
-
----
-
-### 🎯 SelectorGroupChat
-**How it works**: A selector agent chooses which agent should respond next based on context.
-
-- ✅ **Pros**: Flexible, context-aware, supports role-based delegation.
-- ❌ **Cons**: Requires a well-designed selector agent.
-- ✅ **Fit**: **Excellent choice** for workflows with clearly defined agent responsibilities.
-
----
-
-### 🧲 MagneticOneGroupChat
-**How it works**: Agents respond based on their confidence in handling the task.
-
-- ✅ **Pros**: Dynamic and self-organizing; agents “pull” tasks they’re best suited for.
-- ❌ **Cons**: Requires agents to assess their confidence accurately.
-- ✅ **Fit**: **Good option** if agents are autonomous and well-trained to recognize their roles.
-
----
-
-### 🐝 Swarm
-**How it works**: All agents can respond simultaneously; the system aggregates their responses.
-
-- ✅ **Pros**: Parallelism and diversity of input.
-- ❌ **Cons**: Can be noisy or redundant; not ideal for sequential workflows.
-- ⚠️ **Fit**: **Not suitable** for sequential, role-specific tasks.
-
----
 
 ### ✅ Recommendation Summary
 
+| Concept     | Role in Teams                         | Available Presets | Where It's Defined              |
+|-------------|----------------------------------------|-------------------|----------------------------------|
+| `GroupChat` | Mechanism for agent turn coordination  | None (used internally) | `autogen_agentchat.groups`     |
+| `AgentChat` | High-level team abstraction            | ✅ Multiple team presets | `autogen_agentchat.teams`     |
+
+### other Summary
 | GroupChat Type        | Suitability | Why                                                                 |
 |-----------------------|-------------|----------------------------------------------------------------------|
 | RoundRobinGroupChat   | ❌ Poor      | Doesn’t respect agent roles or task relevance                        |
