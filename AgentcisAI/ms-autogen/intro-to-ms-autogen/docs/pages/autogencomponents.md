@@ -56,10 +56,75 @@ A structured collection of agents working collaboratively (parallel or hierarchi
 |-----------------------------|-------------------------------------------------------------------------|
 | `RoundRobinGroupChat`       | Agents take turns in fixed order                                        |
 | `SelectorGroupChat`         | Dynamically selects agent based on context                              |
-| `NestedChat`                | Hierarchical agent interactions                                         |
+| `MagneticOneGroupChat`      | Agents self-select based on confidence in handling the task             |
 | `SwarmChat`                 | Parallel agent execution                                                |
 
-**Business Use Case**: Teams enable collaborative workflows-e.g., SelectorGroupChat for dynamic task routing, SwarmChat for parallel data processing.
+
+
+
+Teams enable collaborative workflows-e.g.,:
+## 🧠 When to Use Each GroupChat Strategy in AutoGen 0.4+
+
+AutoGen 0.4+ gives you powerful tools to coordinate multiple agents, but choosing the right `GroupChat` strategy depends on how your agents need to interact. Here's a guide to help you pick the best fit based on your workflow:
+
+---
+
+Lest say you're building a multi-agent system with distinct roles:
+- **SQL Creator Agent**: Generates SQL scripts
+- **Saver Agent**: Saves the scripts
+- **Executor Agent**: Runs the scripts
+- **Reporter Agent**: Reports execution status
+
+Let’s break down each `GroupChat` option and see which fits best:
+
+---
+
+### 🌀 RoundRobinGroupChat
+**How it works**: Agents take turns in a fixed sequence.
+
+- ✅ **Pros**: Simple and predictable rotation.
+- ❌ **Cons**: Doesn’t adapt to context or agent specialization.
+- ⚠️ **Fit**: **Not ideal** for role-specific workflows. It cycles through agents regardless of task relevance.
+
+---
+
+### 🎯 SelectorGroupChat
+**How it works**: A selector agent chooses which agent should respond next based on context.
+
+- ✅ **Pros**: Flexible, context-aware, supports role-based delegation.
+- ❌ **Cons**: Requires a well-designed selector agent.
+- ✅ **Fit**: **Excellent choice** for workflows with clearly defined agent responsibilities.
+
+---
+
+### 🧲 MagneticOneGroupChat
+**How it works**: Agents respond based on their confidence in handling the task.
+
+- ✅ **Pros**: Dynamic and self-organizing; agents “pull” tasks they’re best suited for.
+- ❌ **Cons**: Requires agents to assess their confidence accurately.
+- ✅ **Fit**: **Good option** if agents are autonomous and well-trained to recognize their roles.
+
+---
+
+### 🐝 Swarm
+**How it works**: All agents can respond simultaneously; the system aggregates their responses.
+
+- ✅ **Pros**: Parallelism and diversity of input.
+- ❌ **Cons**: Can be noisy or redundant; not ideal for sequential workflows.
+- ⚠️ **Fit**: **Not suitable** for sequential, role-specific tasks.
+
+---
+
+### ✅ Recommendation Summary
+
+| GroupChat Type        | Suitability | Why                                                                 |
+|-----------------------|-------------|----------------------------------------------------------------------|
+| RoundRobinGroupChat   | ❌ Poor      | Doesn’t respect agent roles or task relevance                        |
+| SelectorGroupChat     | ✅ Best      | Allows intelligent routing based on task and agent specialization    |
+| MagneticOneGroupChat  | ✅ Good      | Decentralized, agents self-select based on confidence                |
+| Swarm                 | ❌ Poor      | Too parallel and noisy for a sequential, role-based workflow         |
+
+Now that we are done with the `Team` concepts, let's focus on the `Termination Condition`.
 
 ---
 ## 🛑 Termination Condition
@@ -86,33 +151,7 @@ Great—your environment is all set up and you've got a solid grasp of Microsoft
 
 🚀 Head over to the **Next Page** and jump right into the hands-on demo to bring everything to life.
 
-<!-- Navigation Bar with Hover Highlighting -->
-<style>
-  .nav-links {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    margin-top: 30px;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    color: #333;
-    transition: background-color 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    background-color: yellow;
-  }
-</style>
-
-<div class="nav-links">
+<div style="display: flex; justify-content: space-between;">
   <a href="autogenintro.md">← Previous Page</a>
   <a href="DirectHumanInteraction.md">Next → Page</a>
 </div>
-
-

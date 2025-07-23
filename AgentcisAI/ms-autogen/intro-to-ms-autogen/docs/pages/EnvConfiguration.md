@@ -6,7 +6,7 @@
 1. Make sure you have [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) or any similar IDE and [Python](https://www.python.org/downloads/) installed before proceeding with the virtual environment setup.
     * If the link doesn’t work, you can download VS Code here: https://code.visualstudio.com/download and https://www.python.org/downloads/
 
-2. You need an Azure or OpenAI subscription to deploy one or more types of generative AI models. Alternatively, you’re free to download a model locally if you prefer managing it yourself.
+2. You need an Azure OpenAI or OpenAI subscription to deploy one or more types of generative AI models. Alternatively, you’re free to download a model locally if you prefer managing it yourself.
 
     - For the Microsoft Azure platform, please follow these instructions:
         1. Sign up for a [free subscription](https://azure.microsoft.com/en-us/) or use your existing Azure subscription.
@@ -63,15 +63,11 @@ pip show openai
 <table width="100%">
   <tr>
     <td align="left" style="white-space: nowrap;">
-      <a href="autogenintro.md">← Previous Page</a>
+      <a href="../index.md">← Previous Page</a>
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="DirectHumanInteraction.md">Next → Page</a>
+      <a href="../pages/autogenintro.md">Next → Page</a>
     </td>
   </tr>
 </table>
-
-
-
-
