@@ -47,7 +47,23 @@ Conversational, LLM-powered agents designed for prototyping and multi-agent coll
 
 > 🔁 These agents are modular — you can mix `Core` and `AgentChat` agents in hybrid workflows, and build orchestration pipelines like `Magentic-One`.
 
-Let me know if you'd like this notebook scaffolded with live code examples or wrapped into a teaching repo with collapsible headings and links to documentation. I can even set up visual diagrams or DAG-style orchestration flows to complement your training materials.
+### 🧲 Why Magentic-One Matters
+
+When introducing agent types, it's essential to showcase **Magentic-One** as a working example of agent orchestration in AutoGen v0.4. It demonstrates how AgentChat agents can be composed into a **generalist multi-agent system** that solves open-ended tasks across domains like web automation, file navigation, and code execution.
+
+Magentic-One includes:
+
+| Agent Role         | Description                                                              |
+|--------------------|--------------------------------------------------------------------------|
+| `Orchestrator`     | Plans tasks, assigns subtasks, tracks progress, and replans as needed. |
+| `WebSurfer`        | Operates a Chromium-based browser to interact with web pages. |
+| `FileSurfer`       | Reads and navigates local files and directories. |
+| `Coder`            | Writes and analyzes code based on team input. |
+| `ComputerTerminal` | Executes code and installs dependencies via shell. |
+
+> Magentic-One is implemented using `autogen_agentchat`, and its agents are available for use in any AgentChat workflow. It serves as a blueprint for building robust, modular pipelines using AutoGen’s layered architecture.
+
+---
 
 
 
