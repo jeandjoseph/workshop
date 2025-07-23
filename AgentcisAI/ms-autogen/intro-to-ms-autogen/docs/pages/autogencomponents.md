@@ -63,11 +63,6 @@ Magentic-One includes:
 
 > Magentic-One is implemented using `autogen_agentchat`, and its agents are available for use in any AgentChat workflow. It serves as a blueprint for building robust, modular pipelines using AutoGen’s layered architecture.
 
----
-
-
-
-
 **Few Business Use Case**: AssistantAgent for customer support, CodeExecutorAgent for CI/CD workflows.
 
 ---
