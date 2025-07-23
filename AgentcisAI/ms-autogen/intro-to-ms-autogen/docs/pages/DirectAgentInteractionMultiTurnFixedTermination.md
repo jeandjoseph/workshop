@@ -263,7 +263,14 @@ Notice that during execution with `run_stream()`, we can observe the conversatio
 We hope this demo helped you understand how Microsoft AutoGen 0.4 enables structured, realistic conversations between AI agents. If you found this experience insightful or enjoyable, feel free to leave a comment and share your thoughts—your feedback helps us improve and shape future workshops!
 
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="DirectHumanInteraction.md">← Previous Page</a>
-  <a href="DirectAgentInteractionMultiTurnDynamicTermination.md">Next → Page</a>
-</div>
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/DirectHumanInteraction.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentInteractionMultiTurnDynamicTermination.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
