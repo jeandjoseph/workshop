@@ -2,25 +2,59 @@
 The Five Must-Know AutoGen Building Blocks
 </h2>
 
-Here are the most critical components beginners should be aware of to set yourself up for success with Microsoft AutoGen—and they form your launchpad: Agent, Model, Tools, Team, and Termination. Think of the Agent as your persona with purpose, powered by a Model that generates its language and logic. Tools give your agent superpowers, allowing it to interact with code, APIs, or external systems. Team lets multiple agents collaborate with specific roles or coordination strategies. And Termination keeps your system smart-not endless-with clear rules for when conversations should gracefully end.
+Here are the most critical components beginners should be aware of to set yourself up for success with Microsoft AutoGen, and they form your launchpad: **Agent**, **Model**, **Tools**, **Team**, and **Termination**. Think of the Agent as your persona with purpose, powered by a Model that generates its language and logic. Tools give your agent superpowers, allowing it to interact with code, APIs, or external systems. Team lets multiple agents collaborate with specific roles or coordination strategies. And Termination keeps your system smart-not endless-with clear rules for when conversations should gracefully end.
 
 These five are the essentials-not just for prototyping, but for building teachable, scalable systems. Once you master them, you're equipped to layer in more advanced orchestration like custom protocols, memory, and cost control. It's like learning the chords before composing symphonies: these concepts set the rhythm for every successful AutoGen deployment.
+
+Let us explore them one by one
 
 ## 🤖 Agent
 A conversational entity powered by a language model that performs tasks, executes code, uses tools, or routes requests based on its configuration.
 
 #### 👤 Agent Types
-| Agent Type                     | Purpose                                                                 |
-|-------------------------------|-------------------------------------------------------------------------|
-| `AssistantAgent`              | LLM-powered assistant with system prompt                                |
-| `UserProxyAgent`              | Represents human input or feedback                                      |
-| `ConversableAgent`            | Generic agent with flexible messaging                                   |
-| `CodeExecutorAgent`           | Executes code locally or in Docker                                      |
-| `RAGAgent`                    | Retrieval-augmented generation agent                                   |
-| `MultiModalAgent`             | Handles text + image inputs if model supports vision                    |
+AutoGen v0.4 introduces a layered architecture. To me below are the two primary families of agents—**Core Agents** and **AgentChat Agents**. Each serving a different purpose in building flexible, scalable multi-agent systems.
 
-**Business Use Case**: Modular agents enable task-specific automation-e.g., AssistantAgent for customer support, CodeExecutorAgent for CI/CD workflows.
+---
 
+### ⚙️ [Core Agents](https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/index.html) (`autogen_core`)
+Low-level, event-driven agents ideal for distributed, scalable, and customizable workflows.
+
+| Agent Type         | Purpose                                                                 |
+|--------------------|-------------------------------------------------------------------------|
+| `Agent`            | Base class for all agents. Handles messaging, event scheduling, and runtime control. |
+| `ClosureAgent`     | Wraps a simple function or closure as an agent. Useful for embedding business logic or microservices. |
+| `ToolAgent`        | Executes external tools or functions. Ideal for invoking code, scripts, or search modules. |
+| `RoutedAgent`      | Routes messages dynamically to other agents based on rules or context. Powerful for orchestrating workflows. |
+
+---
+
+### 💬 [AgentChat Agents](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/index.html) (`autogen_agentchat`)
+Conversational, LLM-powered agents designed for prototyping and multi-agent collaboration.
+
+| Agent Type             | Purpose                                                                 |
+|------------------------|-------------------------------------------------------------------------|
+| `AssistantAgent`       | LLM-powered agent with system prompt and tool-calling capabilities. General-purpose and highly flexible. |
+| `UserProxyAgent`       | Represents a human user or simulated input. Captures feedback or decisions in the workflow. |
+| `ConversableAgent`     | Messaging-enabled agent backbone. Can send/receive messages; ideal for building customized agents. |
+| `CodeExecutorAgent`    | Executes Python code locally or in Docker. Supports runtime logic, testing, and task automation. |
+| `RAGAgent`             | Combines LLMs with external document retrieval for more grounded generation. |
+| `MultimodalWebSurfer`  | Accepts text and image input; controls a headless browser to navigate and scrape websites. |
+| `GroupChatAgent`       | Coordinates multiple agents. Enables turn-based, selector-based, or parallel communication styles. |
+| `FunctionToolAgent`    | Converts native Python functions into structured tools callable by LLMs. |
+| `CustomAgent`          | User-defined subclass of `ConversableAgent`. Lets you embed business rules, prompts, and interaction logic. |
+
+---
+
+> 🔁 These agents are modular — you can mix `Core` and `AgentChat` agents in hybrid workflows, and build orchestration pipelines like `Magentic-One`.
+
+Let me know if you'd like this notebook scaffolded with live code examples or wrapped into a teaching repo with collapsible headings and links to documentation. I can even set up visual diagrams or DAG-style orchestration flows to complement your training materials.
+
+
+
+
+**Few Business Use Case**: AssistantAgent for customer support, CodeExecutorAgent for CI/CD workflows.
+
+---
 ## 🧠 Model
 The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agent intelligence and response generation. Choice of model impacts cost, latency, and reasoning depth.
 
