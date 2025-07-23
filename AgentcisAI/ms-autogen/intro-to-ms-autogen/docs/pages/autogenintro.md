@@ -1,9 +1,10 @@
 <h2 style="color:white; text-align:center;">
 What is Microsoft Autogen Framework?
 </h2>
-🧠 Microsoft AutoGen 0.4+ Core Concept It’s a framework for building multi-agent systems using large language models (LLMs). Think of it as a way to make multiple AIs collaborate intelligently, each agent has its own role, tools, and communication rules. They can plan tasks together, share results, and adapt dynamically, without micromanagement from the user.
+<a href="https://microsoft.github.io/autogen/stable/" target="_blank">Microsoft AutoGen</a> 0.4+ Core Concept It’s a framework for building multi-agent systems using large language models (LLMs). Think of it as a way to make multiple AIs collaborate intelligently, each agent has its own role, tools, and communication rules. They can plan tasks together, share results, and adapt dynamically, without micromanagement from the user.
 
-🔧 Key ideas:
+
+### 🔧 Key ideas:
 
 - **Agent Autonomy:** Agents make decisions, ask each other questions, and solve problems cooperatively.
 
@@ -16,7 +17,7 @@ What is Microsoft Autogen Framework?
 It's like giving AI agents personalities and letting them talk to each other to get stuff done efficiently.
 
 ## AutoGen v0.4+ Architecture Overview
-![Check if Python Virtual Environment is Active](../docs/images/AutoGeArchitecture.png)
+![](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/AutoGeArchitecture.png)
 
 # 🚀 Microsoft AutoGen v0.4+ Overview
 
