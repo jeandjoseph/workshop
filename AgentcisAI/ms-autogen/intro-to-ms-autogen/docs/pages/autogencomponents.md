@@ -151,7 +151,14 @@ Great—your environment is all set up and you've got a solid grasp of Microsoft
 
 🚀 Head over to the **Next Page** and jump right into the hands-on demo to bring everything to life.
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="autogenintro.md">← Previous Page</a>
-  <a href="DirectHumanInteraction.md">Next → Page</a>
-</div>
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/autogenintro.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DirectHumanInteraction.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
