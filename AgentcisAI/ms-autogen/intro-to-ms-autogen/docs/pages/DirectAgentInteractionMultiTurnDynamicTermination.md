@@ -248,7 +248,15 @@ This demo walked you through the two core conversation strategies in Microsoft A
 
 Having explored the capabilities of `RoundRobinGroupChat`, let's build a simple chatbot app using `Streamlit`. click **Next Page** to continue the journey.
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="DirectAgentInteractionMultiTurnFixedTermination.md">← Previous Page</a>
-  <a href="DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">Next → Page</a>
-</div>
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentInteractionMultiTurnFixedTermination.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
