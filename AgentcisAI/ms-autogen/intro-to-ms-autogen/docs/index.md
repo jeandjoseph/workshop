@@ -18,19 +18,23 @@ You're absolutely encouraged to:
 - ✍️ Modify system instructions to suit your use case  
 - 🚀 Optimize and adapt prompts throughout the workshop
 
-The goal is to empower you to shape and refine agent workflows to best fit your needs. Flexibility and exploration are part of the learning process—so feel free to make it your own!
+The goal is to empower you to shape and refine agent workflows to best fit your needs. Flexibility and exploration are part of the learning process, so feel free to make it your own!
 
-👋 Why don’t I introduce myself?
-Hi! I'm <a href="https://datadrivencommunity.com/About-Jean-Joseph.html" target="_blank">Jean Joseph</a>, the person behind this workshop. I created it as a welcoming space for anyone curious about Agentic AI—whether you're diving in for the first time or looking to build smarter data workflows.
+#### 👋 Why don’t I introduce myself?
 
-I’m passionate about how tools like Microsoft Autogen can transform the way we work with data, and I’ve designed this session to be hands-on, inclusive, and beginner-friendly. There’s no need to be an expert—just bring your curiosity and a willingness to explore.
+Hi! I'm <a href="https://datadrivencommunity.com/About-Jean-Joseph.html" target="_blank">Jean Joseph</a>, the person behind this workshop. I created it as a welcoming space for anyone curious about Agentic AI, whether you're diving in for the first time or looking to build smarter data workflows.
 
-If you’re interested in connecting, sharing ideas, or collaborating on future projects, feel free to reach out on <a href="https://www.linkedin.com/in/jeandjoseph/" target="_blank">LinkedIn</a>. I’d love to keep the conversation going.
+I’m passionate about how tools like Microsoft Autogen can transform the way we work with data, and I’ve designed this session to be hands-on, inclusive, and beginner-friendly. There’s no need to be an expert, just bring your curiosity and a willingness to explore.
 
-Let’s get started! 🌟
+If you’re interested in connecting, sharing ideas, or collaborating on future projects, feel free to reach out to me on <a href="https://www.linkedin.com/in/jeandjoseph/" target="_blank">LinkedIn</a>. I’d love to keep the conversation going.
 
-I'm [Jean Joseph](https://datadrivencommunity.com/About-Jean-Joseph.html), independently developing this workshop with the goal of creating an inclusive, supportive space for exploring Agentic AI. As someone passionate about its potential to transform how we work with data, I’m excited to share what I’ve learned, and even more eager to welcome ideas and contributions from others who want to shape this journey with me. Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/jeandjoseph/) if you're interested in collaborating or continuing the conversation.
 
 Let’s get started! 🌟 Click through to the **Next page** to dive into the workshop and begin exploring the world of Agentic AI.
 
-- [Next → Page](../docs/pages/EnvConfiguration.md)
+<table width="100%">
+  <tr>
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/EnvConfiguration">Next → Page</a>
+    </td>
+  </tr>
+</table>
