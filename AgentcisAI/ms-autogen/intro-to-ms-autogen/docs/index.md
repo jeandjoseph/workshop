@@ -29,12 +29,12 @@ I’m passionate about how tools like Microsoft Autogen can transform the way we
 If you’re interested in connecting, sharing ideas, or collaborating on future projects, feel free to reach out to me on <a href="https://www.linkedin.com/in/jeandjoseph/" target="_blank">LinkedIn</a>. I’d love to keep the conversation going.
 
 
-Let’s get started! 🌟 Click through to the **Next page** to dive into the workshop and begin exploring the world of Agentic AI.
+Let’s get started! 👉 Click through to the **Next page** to define and unpack the need for Agentic AI-where intelligence meets autonomy..
 
 <table width="100%">
   <tr>
     <td align="right" style="white-space: nowrap;">
-        <a href="../docs/pages/EnvConfiguration.md">Next → Page</a>
+        <a href="../docs/pages/whatisagenticai.md">Next → Page</a>
     </td>
   </tr>
 </table>
