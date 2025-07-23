@@ -128,7 +128,15 @@ if __name__ == "__main__":
         asyncio.run(run_ai_agent_debate(user_message))
 ```
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">← Previous Page</a>
-  <a href="DataAnalystAgentCsvFile.md">Next → Page</a>
-</div>
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DataAnalystAgentCsvFile.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
