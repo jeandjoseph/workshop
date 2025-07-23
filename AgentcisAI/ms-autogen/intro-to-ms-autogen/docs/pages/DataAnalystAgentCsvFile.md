@@ -246,12 +246,6 @@ if user_input:
 3. **go to** your vitual python activated environment
 4. **Run** `streamlit <<run your directory>>\ChatbotApp.py`
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="DirectAgentDynamicInteractionSelect.md">← Previous Page</a>
-  <a href="DataAnalystAgentCsvFile.md">Next → Page</a>
-</div>
-
-
 
 <table width="100%">
   <tr>
@@ -260,7 +254,7 @@ if user_input:
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../../index.md">Next → Page</a>
+      <a href="../index.md">Next → Page</a>
     </td>
   </tr>
 </table>
