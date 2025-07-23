@@ -63,7 +63,7 @@ pip show openai
 <table width="100%">
   <tr>
     <td align="left" style="white-space: nowrap;">
-      <a href="../pages/whatisagenticai.md">← Previous Page</a>
+      <a href="../pages/autogencomponents.md">← Previous Page</a>
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
