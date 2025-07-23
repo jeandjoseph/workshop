@@ -250,3 +250,17 @@ if user_input:
   <a href="DirectAgentDynamicInteractionSelect.md">← Previous Page</a>
   <a href="DataAnalystAgentCsvFile.md">Next → Page</a>
 </div>
+
+
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentDynamicInteractionSelect.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../../index.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
