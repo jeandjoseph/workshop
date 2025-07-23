@@ -54,7 +54,14 @@ Run production-grade agent apps.
 
 🌟 Proceed to the **Next Page** to dive into the core components of Microsoft Autogen
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="EnvConfiguration.md">← Previous Page</a>
-  <a href="autogencomponents.md">Next → Page</a>
-</div>
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="EnvConfiguration.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/autogencomponents.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
