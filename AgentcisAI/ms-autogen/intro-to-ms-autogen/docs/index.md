@@ -1,8 +1,6 @@
-#
-<h2 style="color:white; text-align:center;">
-Welcome to the Microsoft Autogen Workshop: <br>
-A Beginner’s Guide to Agentic AI
-</h2>
+<div align="center" style="color:#00acee">
+  <h2>Welcome to the Microsoft Autogen Workshop:<br>A Beginner’s Guide to Agentic AI</h2>
+</div>
 
 This beginner-level, 8-hour workshop is designed for anyone curious about getting started with Agentic AI in the world of data. Whether you're a data engineer, analyst, or simply exploring how AI can support smarter decisions, this session will guide you through the basics. 
 
