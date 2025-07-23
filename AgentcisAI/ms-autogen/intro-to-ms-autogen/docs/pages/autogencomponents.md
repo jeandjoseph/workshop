@@ -12,7 +12,7 @@ Let us explore them one by one
 A conversational entity powered by a language model that performs tasks, executes code, uses tools, or routes requests based on its configuration.
 
 #### 👤 Agent Types
-AutoGen v0.4 introduces a layered architecture. To me below are the two primary families of agents—**Core Agents** and **AgentChat Agents**. Each serving a different purpose in building flexible, scalable multi-agent systems.
+AutoGen v0.4+ introduces a layered architecture. To me below are the two primary families of agents—**Core Agents** and **AgentChat Agents**. Each serving a different purpose in building flexible, scalable multi-agent systems.
 
 ---
 
@@ -156,7 +156,8 @@ AutoGen v0.4 introduces a **layered, event-driven architecture** with modular ag
 
 For migration details and examples, see the [official migration guide](https://microsoft.github.io/autogen/dev/user-guide/agentchat-user-guide/migration-guide.html).
 
-Great—your environment is all set up and you've got a solid grasp of Microsoft Autogen and its key building blocks. Now it’s time to shift gears from setup to action. Let’s dive into hands-on work, starting with one of the most important components: Human-Sourced Messages. This is where your direct input becomes the driving force behind your agent's intelligence.
+"Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core concepts, let’s shift from theory to practice by setting up your environment for hands-on exploration. It’s ideal to use a brand-new environment—this way, you can safely discard it later if it’s no longer needed. All demos are tested on versions 0.4 to 0.6.4 of AutoGen; using other versions may lead to unexpected failures.
+
 
 🚀 Head over to the **Next Page** and jump right into the hands-on demo to bring everything to life.
 
@@ -167,7 +168,7 @@ Great—your environment is all set up and you've got a solid grasp of Microsoft
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectHumanInteraction.md">Next → Page</a>
+      <a href="../pages/EnvConfiguration.md">Next → Page</a>
     </td>
   </tr>
 </table>
