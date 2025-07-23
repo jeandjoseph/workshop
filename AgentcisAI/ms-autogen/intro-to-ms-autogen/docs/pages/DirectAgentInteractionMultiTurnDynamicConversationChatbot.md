@@ -157,7 +157,14 @@ for msg in st.session_state.messages:
 To explore a different chat strategy, click on **Next Page**. This will change the context from `RoundRobinGroupChat` to `SelectOneGroupChat`, allowing a single agent to lead the response while others observe-perfect for spotlight-style interactions.
 
 
-<div style="display: flex; justify-content: space-between;">
-  <a href="DirectAgentInteractionMultiTurnDynamicTermination.md">← Previous Page</a>
-  <a href="DirectAgentDynamicInteractionSelect.md">Next → Page</a>
-</div>
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentInteractionMultiTurnDynamicTermination.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentDynamicInteractionSelect.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
