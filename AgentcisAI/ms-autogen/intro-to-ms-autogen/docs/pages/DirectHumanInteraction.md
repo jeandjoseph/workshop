@@ -130,8 +130,14 @@ In Microsoft AutoGen 0.4, the core difference between asynchronous and synchrono
 - When you use await model_client.create(...), you're leveraging asynchronous messaging, which is crucial for building responsive, real-time agentic systems.
 - This allows human agents, LLMs, and tools to collaborate fluidly without blocking each other—especially important in complex workflows.
 
-
-<div style="display: flex; justify-content: space-between;">
-  <a href="autogencomponents.md">← Previous Page</a>
-  <a href="DirectAgentInteractionMultiTurnFixedTermination.md">Next → Page</a>
-</div>
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/autogencomponents.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DirectAgentInteractionMultiTurnFixedTermination.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
