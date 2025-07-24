@@ -24,6 +24,22 @@ This beginner-friendly, 8-hour workshop introduces you to the foundations of Age
 > - Implement modular agents that communicate, delegate, and log execution paths
 > - Build intelligent workflows that extend across data, prompt optimization, and diagnostics
 
+#### This workshop centers specifically:
+- ⚙️ [AgentChat SDK](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/index.html) – for programmatic agent orchestration and automation
+- 🧪 [AutoGen Studio](https://microsoft.github.io/autogen/stable/user-guide/autogenstudio-user-guide/index.html) – a no-code, browser-based UI for designing and testing workflows
+- 🔍 Reference: [AutoGen Documentation](https://microsoft.github.io/autogen/stable/index.html)
+
+#### 🤔 When to install Microsoft Autogen AgentChat and Studio
+Install **AgentChat** when:
+- You want full control over agent logic, workflows, and debugging
+- You're building reproducible, scriptable systems with Python
+
+Install **AutoGen Studio** when:
+- You prefer a visual environment for rapid prototyping or onboarding
+- You're exploring Agentic AI concepts without writing code
+
+Both tools complement each other and can be installed side by side for hybrid development.
+
 #### 🔗 Looking Ahead
 In Part 2, we’ll expand your agentic toolkit:
 - Integrate with [Semantic Kernel](https://github.com/microsoft/semantic-kernel) for advanced memory and skill-based reasoning
