@@ -69,7 +69,7 @@ Magentic-One includes:
 ## 🧠 Model
 The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agent intelligence and response generation. Choice of model impacts cost, latency, and reasoning depth.
 
-#### 🧩 Model Clients
+### 🧩 Model Clients
 | Model Type                        | Description                                      |
 |----------------------------------|--------------------------------------------------|
 | `OpenAIChatCompletionClient`     | Connects to OpenAI models like GPT-4o            |
@@ -82,7 +82,7 @@ The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agen
 ---
 ## 🔧 Tool
 A callable function or service (Python, REST, etc.) exposed to agents to enhance their capabilities beyond natural language—like accessing APIs, running code, or querying data.
-#### 🛠️ Tool Types
+### 🛠️ Tool Types
 | Tool Type                     | Functionality                                                           |
 |------------------------------|-------------------------------------------------------------------------|
 | `CodeExecutionTool`          | Executes Python or shell code                                           |
@@ -99,7 +99,7 @@ A **Team** is a group of agents that collaborate to solve a task. Each team defi
 - A **termination condition** (e.g. keyword match, external signal)
 - A **shared context** for message exchange
 - Notes: AutoGen 0.4+ gives you powerful tools to coordinate multiple agents, but choosing the right `GroupChat` strategy depends on how your agents need to interact.
-#### 👥 AgentChat supports several team presets in AutoGen 0.4+
+### 👥 AgentChat supports several team presets in AutoGen 0.4+
 In AutoGen v0.4+, AgentChat Team Presets are preconfigured multi-agent collaboration patterns that simplify how agents interact to solve tasks. Each preset defines how agents take turns, share context, and terminate. Key presets include:
 | Team Type               | Description                                                                 |
 |-------------------------|-----------------------------------------------------------------------------|
@@ -125,7 +125,7 @@ Think of GroupChat as the low-level engine, while Team Presets are plug-and-play
 | `GroupChat` | Mechanism for agent turn coordination  | None (used internally) | `autogen_agentchat.groups`     |
 | `AgentChat` | High-level team abstraction            | ✅ Multiple team presets | `autogen_agentchat.teams`     |
 
-### other Summary
+### Other Summary
 | GroupChat Type        | Suitability | Why                                                                 |
 |-----------------------|-------------|----------------------------------------------------------------------|
 | RoundRobinGroupChat   | ❌ Poor      | Doesn’t respect agent roles or task relevance                        |
@@ -139,7 +139,7 @@ Now that we are done with the `Team` concepts, let's focus on the `Termination C
 ## 🛑 Termination Condition
 Predefined rules that control when a conversation or agent loop should end-based on success, round count, or manual logic (e.g., `max_rounds`, `conclude_on_success`, `early_stop`).
 
-#### 🛑 Termination Types
+### 🛑 Termination Types
 | Type                         | Description                                                             |
 |-----------------------------|-------------------------------------------------------------------------|
 | `MaxTurns`                  | Ends after fixed number of exchanges                                    |
