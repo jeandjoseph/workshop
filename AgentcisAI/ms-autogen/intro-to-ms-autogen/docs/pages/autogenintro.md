@@ -16,12 +16,12 @@ What is Microsoft Autogen Framework?
 
 It's like giving AI agents personalities and letting them talk to each other to get stuff done efficiently.
 
-## AutoGen v0.4+ Architecture Overview
+### AutoGen v0.4+ Architecture Overview
 ![](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/AutoGeArchitecture.png)
 
-# 🚀 Microsoft AutoGen v0.4+ Overview
+### 🚀 Microsoft AutoGen v0.4+ Overview
 
-## ⚙️ Core Framework
+### ⚙️ Core Framework
 AutoGen is a Python-based framework for building **multi-agent LLM applications**.
 
 - **Core**: Agent classes, messaging protocols, task orchestration.
@@ -29,19 +29,19 @@ AutoGen is a Python-based framework for building **multi-agent LLM applications*
 - **Extensions**: Custom tools, memory modules, evaluators, and protocols.
 - **Your Extensions**: Integrate domain logic, APIs, or external services.
 
-## 🧠 Developer Tools
+### 🧠 Developer Tools
 Accelerate design, testing, and deployment.
 
 - **Studio**: Visual interface for building agents and workflows.
 - **Bench**: CLI for scripted agent sessions and integration testing.
 
-## 📦 Apps Layer
+### 📦 Apps Layer
 Run production-grade agent apps.
 
 - **Magnetic-One**: Microsoft sample app using advanced agent orchestration.
 - **Your Custom App**: Your tailored agent-based solutions, built atop the framework.
 
-## 🧩 Design Principles
+### 🧩 Design Principles
 
 | Principle               | Description                                                 |
 |------------------------|-------------------------------------------------------------|
