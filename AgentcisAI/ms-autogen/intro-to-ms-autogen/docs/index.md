@@ -2,7 +2,7 @@
   <h2>Welcome to the Microsoft Autogen Workshop:<br>A Beginner’s Guide to Agentic AI</h2>
 </div>
 
-## 🧠 Workshop Overview: Agentic AI Foundations with Microsoft AutoGen
+### 🧠 Workshop Overview: Agentic AI Foundations with Microsoft AutoGen
 
 This beginner-friendly, 8-hour workshop introduces you to the foundations of Agentic AI in data workflows. Ideal for data engineers, analysts, or anyone curious about how autonomous agents can support smarter decision-making, this hands-on session begins with [Microsoft AutoGen](https://microsoft.github.io/autogen/stable/index.html) a robust framework for designing, orchestrating, and automating multi-agent systems that tackle complex tasks through role-driven collaboration.
 
