@@ -16,8 +16,14 @@ pip install -U autogenstudio
 ```
 ⏳ Sit back while the packages install, you’re laying the foundation for agent workflows, environment config, and UI demos!
 
+#### 🔐 Step 2: Validate If AutoGen Studio is successfully installed
+```bash
+pip show autogenstudio
+```
+You should see a screen similar to the one shown below.
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/verifyautogenstudioinstalled.png)
 
-#### 🔐 Step 2: Setting Up Azure OpenAI Key for AutoGen Studio
+#### 🔐 Step 3: Setting Up Azure OpenAI Key for AutoGen Studio
 To use Azure OpenAI with [Microsoft AutoGen Studio](https://microsoft.github.io/autogen/stable/index.html), you need to configure your API credentials so agents can access models securely.
 
 ✅ Gather Your Azure OpenAI Credentials
