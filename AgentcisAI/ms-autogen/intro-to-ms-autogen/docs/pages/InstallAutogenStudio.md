@@ -15,3 +15,38 @@
 pip install -U autogenstudio
 ```
 ⏳ Sit back while the packages install, you’re laying the foundation for agent workflows, environment config, and UI demos!
+
+
+#### 🔐 Step 2: Setting Up Azure OpenAI Key for AutoGen Studio
+To use Azure OpenAI with [Microsoft AutoGen Studio](https://microsoft.github.io/autogen/stable/index.html), you need to configure your API credentials so agents can access models securely.
+
+✅ Gather Your Azure OpenAI Credentials
+From the [Azure Portal](https://portal.azure.com), locate your Azure OpenAI resource and copy:
+- `AZURE_OPENAI_API_KEY` (either Key 1 or Key 2)
+- `AZURE_OPENAI_ENDPOINT` (e.g., `https://your-resource-name.openai.azure.com`)
+- `DEPLOYMENT_NAME` (your model deployment name, e.g., `gpt-4`)
+- `API_VERSION` (e.g., `2024-02-01`)
+
+🧪 Set Environment Variables
+In your terminal or `.env` file:
+```bash
+export AZURE_OPENAI_API_KEY="your-api-key"
+export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com"
+```
+⚙️ Configure AutoGen Studio
+When defining your agent or workflow, use the following llm_config:
+```bash
+llm_config = {
+  "config_list": [
+    {
+      "model": "your-deployment-name",
+      "api_key": os.environ["AZURE_OPENAI_API_KEY"],
+      "base_url": os.environ["AZURE_OPENAI_ENDPOINT"],
+      "api_type": "azure",
+      "api_version": "2024-02-01"
+    }
+  ]
+}
+```
+
+💡 Tip: For production use, consider Azure Identity and RBAC authentication instead of raw API keys for enhanced security.
