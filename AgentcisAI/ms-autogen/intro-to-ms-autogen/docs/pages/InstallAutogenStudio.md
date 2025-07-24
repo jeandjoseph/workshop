@@ -113,7 +113,7 @@ Here's what each part does:
 
 #### 🧠 Why Node.js Is Required
 
-AutoGen Studio’s UI is built with **React** and **Gatsby**, which require a Node.js environment when:
+[AutoGen Studio’s UI](https://microsoft.github.io/autogen/stable/user-guide/autogenstudio-user-guide/installation.html#install-from-source) is built with **React** and **Gatsby**, which require a Node.js environment when:
 
 - You’re **installing from source**
 - You want to **modify or customize the UI**
