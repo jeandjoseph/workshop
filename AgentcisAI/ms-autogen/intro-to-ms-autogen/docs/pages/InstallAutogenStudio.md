@@ -36,13 +36,13 @@ From the [Azure Portal](https://portal.azure.com), locate your Azure OpenAI reso
 🧪 Set Environment Variables
 In your terminal or `.env` file:
 
-for Unix-style export command:
+for 🐧 Bash-style (macOS/Linux) command:
 ```bash
 export AZURE_OPENAI_API_KEY="your-api-key"
 export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com"
 ```
 
-for PowerShell-style export command:
+for 🪟 PowerShell-style command:
 ```powershell
 $env:AZURE_OPENAI_ENDPOINT = "https://your-resource-name.openai.azure.com/"
 $env:AZURE_OPENAI_API_KEY = "your-api-key"
@@ -79,8 +79,17 @@ You can also enter this configuration directly in AutoGen Studio’s JSON editor
 Using the --appdir parameter when launching AutoGen Studio is essential for maintaining clean, modular project organization. It ensures your agent workflows, skills, and configuration files stay isolated from other Studio instances, allowing for easier version control, backup, and the ability to run multiple distinct environments like dev, test, or production—all without overlap or interference.
 
 To launch the AutoGen Studio interface with a custom setup, copy and paste the following command into your terminal:
+
+🐧 Bash-style (macOS/Linux)
 ```bash
+mkdir -p ./mydir
 autogenstudio ui --port 8081 --appdir ./mydir
+```
+
+🪟 PowerShell-style command
+```powershell
+New-Item -ItemType Directory -Path .\mydir -Force
+autogenstudio ui --port 8081 --appdir .\mydir
 ```
 Here's what each part does:
 | Command Part | Description |
