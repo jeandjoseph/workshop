@@ -39,7 +39,7 @@ In your terminal or `.env` file:
 export AZURE_OPENAI_API_KEY="your-api-key"
 export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com"
 ```
-⚙️ Configure AutoGen Studio
+⚙️ Option: Configure AutoGen Studio
 When defining your agent or workflow, use the following llm_config:
 ```bash
 llm_config = {
@@ -54,6 +54,25 @@ llm_config = {
   ]
 }
 ```
+
 You can also enter this configuration directly in AutoGen Studio’s JSON editor if you're using the UI.
 
 💡 Tip: For production use, consider Azure Identity and RBAC authentication instead of raw API keys for enhanced security.
+
+#### 🖥️ Step 4: Launch AutoGen Studio UI
+Using the --appdir parameter when launching AutoGen Studio is essential for maintaining clean, modular project organization. It ensures your agent workflows, skills, and configuration files stay isolated from other Studio instances, allowing for easier version control, backup, and the ability to run multiple distinct environments like dev, test, or production—all without overlap or interference.
+
+To launch the AutoGen Studio interface with a custom setup, copy and paste the following command into your terminal:
+```bash
+autogenstudio ui --port 8081 --appdir ./mydir
+```
+Here's what each part does:
+| Command Part | Description |
+|--------------|-------------|
+| `autogenstudio` | The CLI tool provided by the AutoGen Studio package. |
+| `ui` | Starts the **web interface** for designing agent workflows. |
+| `--port 8081` | Runs the UI server on **port 8081** (instead of the default 8080). Useful if another service is using port 8080. |
+| `--appdir ./mydir` | Overrides the default app directory (`~/.autogenstudio`). All configs, databases, logs, and runtime files will be stored in `./mydir`. |
+
+---
+
