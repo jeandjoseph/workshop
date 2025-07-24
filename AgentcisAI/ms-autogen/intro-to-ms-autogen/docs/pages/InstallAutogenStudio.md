@@ -1,5 +1,5 @@
 ## ⚙️ Installing Microsoft AutoGen Studio 0.4+
-AutoGen Studio is a low-code web interface built on top of Microsoft’s AutoGen framework. It lets you visually design, configure, and run multi-agent AI workflows perfect for prototyping agentic systems without diving deep into backend code.
+[AutoGen Studio](https://microsoft.github.io/autogen/stable/user-guide/autogenstudio-user-guide/installation.html) is a low-code web interface built on top of Microsoft’s AutoGen framework. It lets you visually design, configure, and run multi-agent AI workflows perfect for prototyping agentic systems without diving deep into backend code.
 
 🧠 What AutoGen Studio Offers
 - **Agent Creation**: Drag-and-drop agent workflow creation with roles, models, and skills.
