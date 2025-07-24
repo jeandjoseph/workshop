@@ -109,3 +109,30 @@ Here's what each part does:
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/autogen_studio_web_interface.png)
 
+#### ⚙️ Installing Node.js for AutoGen Studio Frontend (May Be Required)
+
+#### 🧠 Why Node.js Is Required
+
+AutoGen Studio’s UI is built with **React** and **Gatsby**, which require a Node.js environment when:
+
+- You’re **installing from source**
+- You want to **modify or customize the UI**
+- You need to **rebuild the frontend**
+
+You do **not** need Node.js if you're using AutoGen Studio via pip and **not modifying** the interface.
+
+#### 🧭 Steps to Prepare the AutoGen Studio Frontend (Node.js Required)
+
+This sequence outlines how to install Node.js and build the AutoGen Studio UI if you're setting it up from source or customizing the frontend.
+
+
+#### ✅ Step 1: Download & Install Node.js
+🔗 [download & Install Node.js](https://nodejs.org/en/download)
+
+#### ✅ Step 2: Install Gatsby CLI and Yarn
+Use npm (Node’s package manager) to globally install the Gatsby CLI and Yarn:
+
+```bash
+npm install -g gatsby-cli
+npm install --global yarn
+```
