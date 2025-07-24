@@ -35,9 +35,25 @@ From the [Azure Portal](https://portal.azure.com), locate your Azure OpenAI reso
 
 🧪 Set Environment Variables
 In your terminal or `.env` file:
+
+for Unix-style export command:
 ```bash
 export AZURE_OPENAI_API_KEY="your-api-key"
 export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com"
+```
+
+for PowerShell-style export command:
+```powershell
+$env:AZURE_OPENAI_ENDPOINT = "https://your-resource-name.openai.azure.com/"
+$env:AZURE_OPENAI_API_KEY = "your-api-key"
+
+<#
+# ✅ Check if the API key is set
+$env:AZURE_OPENAI_API_KEY
+
+# ✅ Check if the endpoint is set
+$env:AZURE_OPENAI_ENDPOINT
+#>
 ```
 ⚙️ Option: Configure AutoGen Studio
 When defining your agent or workflow, use the following llm_config:
