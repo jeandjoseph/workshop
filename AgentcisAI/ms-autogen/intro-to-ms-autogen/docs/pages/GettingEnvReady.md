@@ -25,10 +25,10 @@
 
 To get started, you'll need to install and configure **two distinct environments**:
 
-1. 🌐 [Microsoft AutoGen for Azure OpenAI API](../pages/EnvSettingMsAutoGenAPI.md)  
+1. 🌐 [Microsoft AutoGen for Azure OpenAI API](../pages/InstallAutoGenAPI.md)  
    – Set up the core AutoGen libraries for API-based agent orchestration.
 
-2. 🧪 [Microsoft AutoGen Studio](../pages/EnvSettingMsAutoStudio.md)  
+2. 🧪 [Microsoft AutoGen Studio](../pages/InstallAutogenStudio.md)  
    – Configure the Studio interface for designing, testing, and managing agents and workflows.
 
 > ✅ Complete both installations before proceeding to hands-on tasks or demos.
