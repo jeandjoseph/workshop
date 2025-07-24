@@ -33,11 +33,23 @@ python -m venv autogenv5
 #### ⚡ 2. Activate Your Python Virtual Environment
  - For PowerShell on Windows
  - Or use the appropriate activation command for your OS/shell
-```bash
-.\autogenv5\Scripts\Activate.ps1
-```
-You should see a screen similar to the one shown below, with the relevant section highlighted in red. If this appears, you're all set to begin installing the dependencies.
-![Check if Python Virtual Environment is Active](../docs/images/pyenv.png)
+ - Step to follow:
+   - Navigate to your **Python Virtual Environment** folder.
+   - Expand the environment directory to reveal subfolders.
+   - Open the **Scripts** folder inside the environment.
+   - Right-click on `Activate.ps1`.
+   - Select **Copy Path** from the context menu.
+     ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/right_click_copy_path_activate_py_env.png)
+   - Open your **terminal or PowerShell window**.
+   - Paste the copied path directly into the terminal to activate the environment:
+     ```powershell
+     & "F:/DevDemos/DataAnalysis/autogenv5/Scripts/Activate.ps1"
+   - You should see a screen similar to the one shown below.
+
+     ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/ps_script_activate_py_env.png)
+   - Press **Enter** and wait until the exexution is done
+   - Again, You should see a screen similar to the one shown below, with the relevant section highlighted in red. If this appears, you're all set to begin installing the dependencies.
+     ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/pyenv.png)
 
 
 ### 📦 3. Install Dependencies
