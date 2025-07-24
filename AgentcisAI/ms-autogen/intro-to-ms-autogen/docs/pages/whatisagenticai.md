@@ -1,3 +1,7 @@
+<div align="center" style="color:#00acee">
+  <h2>Demystify the core concept of Agentic AI</h2>
+</div>
+
 ## 🔍 What Is Agentic AI?
 Agentic AI systems consist of **goal-driven agents** that:
 - Autonomously **reason**, **plan**, and **act** toward an objective.
