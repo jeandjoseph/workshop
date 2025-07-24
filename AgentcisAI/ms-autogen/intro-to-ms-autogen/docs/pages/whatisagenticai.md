@@ -1,5 +1,5 @@
 <div align="center" style="color:#00acee">
-  <h2>Demystify the core concept of Agentic AI</h2>
+  <h1>Demystify the core concept of Agentic AI</h1>
 </div>
 
 ## 🔍 What Is Agentic AI?
