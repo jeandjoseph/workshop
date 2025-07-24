@@ -59,17 +59,4 @@
 
 💡 Pro tip: Save your terminal output as part of a session log if you're documenting setup reproducibility.
 
-🌟 Proceed to the **Next Page** to dive into the core concepts of [Microsoft Autogen](https://microsoft.github.io/autogen/stable/index.html)
-
-
-<table width="100%">
-  <tr>
-    <td align="left" style="white-space: nowrap;">
-      <a href="../pages/autogencomponents.md">← Previous Page</a>
-    </td>
-    <td style="width: 100px;"></td> <!-- Blank column for separation -->
-    <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectHumanInteraction.md">Next → Page</a>
-    </td>
-  </tr>
-</table>
+🔙 Return to the [Getting Your Environment Ready](../pages/GettingEnvReady.md) or click on [Install Microsoft Autogen Studion]() to continue working with Microsoft AutoGen Studio.
