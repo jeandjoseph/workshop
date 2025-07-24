@@ -6,7 +6,7 @@ Here are the most critical components beginners should be aware of to set yourse
 
 These five are the essentials-not just for prototyping, but for building teachable, scalable systems. Once you master them, you're equipped to layer in more advanced orchestration like custom protocols, memory, and cost control. It's like learning the chords before composing symphonies: these concepts set the rhythm for every successful AutoGen deployment.
 
-Let us explore them one by one
+Let's walk through them step by step.
 
 ## 🤖 Agent
 A conversational entity powered by a language model that performs tasks, executes code, uses tools, or routes requests based on its configuration.
