@@ -48,5 +48,6 @@ llm_config = {
   ]
 }
 ```
+You can also enter this configuration directly in AutoGen Studio’s JSON editor if you're using the UI.
 
 💡 Tip: For production use, consider Azure Identity and RBAC authentication instead of raw API keys for enhanced security.
