@@ -98,6 +98,14 @@ Here's what each part does:
 | `ui` | Starts the **web interface** for designing agent workflows. |
 | `--port 8081` | Runs the UI server on **port 8081** (instead of the default 8080). Useful if another service is using port 8080. |
 | `--appdir ./mydir` | Overrides the default app directory (`~/.autogenstudio`). All configs, databases, logs, and runtime files will be stored in `./mydir`. |
-
 ---
+🚀 If no errors appear and two output looks similar to the sample below, you’re good to go for the hands-on workshop!
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/launch_autogen_studio_cmd.png)
+
+📍 Once you see **Application startup complete. Navigate to http://127.0.0.1:8081**, simply click the link to launch AutoGen Studio in your browser.
+
+👇 **Note:** The link appears at the bottom of your terminal output—scroll down if needed!
+
+
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/autogen_studio_web_interface.png)
 
