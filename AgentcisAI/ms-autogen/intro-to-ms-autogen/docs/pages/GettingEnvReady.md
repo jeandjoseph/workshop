@@ -21,8 +21,18 @@
         5. Create a new folder (for instance, name it `AIAgent`) to keep your project structure clean and secure.
         6. Save the text file as **.env** (environment configuration file) inside the newly created folder.
 ---
+## ⚙️ Environment Setup Overview
 
-## ⚙️ [Installing Microsoft AutoGen for Azure OpenAI API](../pages/EnvSettingMsAutoGenAPI.md)
+To get started, you'll need to install and configure **two distinct environments**:
+
+1. 🌐 [Microsoft AutoGen for Azure OpenAI API](../pages/EnvSettingMsAutoGenAPI.md)  
+   – Set up the core AutoGen libraries for API-based agent orchestration.
+
+2. 🧪 [Microsoft AutoGen Studio](../pages/EnvSettingMsAutoStudio.md)  
+   – Configure the Studio interface for designing, testing, and managing agents and workflows.
+
+> ✅ Complete both installations before proceeding to hands-on tasks or demos.
+
 
 
 🌟 Proceed to the **Next Page** to dive into the core concepts of [Microsoft Autogen](https://microsoft.github.io/autogen/stable/index.html)
