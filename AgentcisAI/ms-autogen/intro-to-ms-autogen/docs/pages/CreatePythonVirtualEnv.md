@@ -1,7 +1,10 @@
-## ⚙️ Installing Microsoft AutoGen for Azure OpenAI API
+## ⚙️ Configure Python Virtual Environment
+A Python virtual environment is like a sandbox for your Python project. It isolates your dependencies so they don’t interfere with other projects or your system-wide Python installation.
 
+🧑‍💻 **Prerequisite:** 
+1. Make sure you have [Visual Studio Code (VS Code)](https://code.visualstudio.com/download) or any similar IDE and [Python](https://www.python.org/downloads/) installed before proceeding with the virtual environment setup.
+    * If the link doesn’t work, you can download VS Code here: https://code.visualstudio.com/download and https://www.python.org/downloads/
 #### 🐍 Step 1: Set Up Your Python Virtual Environment
-
 - Create a new folder named **AIAgent**.
 - Launch **VS Code** or any IDE you're comfortable using.
 - Ensure your terminal’s working directory is set to the newly created `AIAgent` folder.
