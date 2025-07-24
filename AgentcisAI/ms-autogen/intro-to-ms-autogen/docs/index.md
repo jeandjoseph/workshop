@@ -2,11 +2,33 @@
   <h2>Welcome to the Microsoft Autogen Workshop:<br>A Beginner’s Guide to Agentic AI</h2>
 </div>
 
-This beginner-level, 8-hour workshop is designed for anyone curious about getting started with Agentic AI in the world of data. Whether you're a data engineer, analyst, or simply exploring how AI can support smarter decisions, this session will guide you through the basics. 
+## 🧠 Workshop Overview: Agentic AI Foundations with Microsoft AutoGen
 
-![](../docs/images/autogen-live-session.png)
+This beginner-friendly, 8-hour workshop introduces you to the foundations of Agentic AI in data workflows. Ideal for data engineers, analysts, or anyone curious about how autonomous agents can support smarter decision-making, this hands-on session begins with [Microsoft AutoGen](https://microsoft.github.io/autogen/stable/index.html) a robust framework for designing, orchestrating, and automating multi-agent systems that tackle complex tasks through role-driven collaboration.
 
-In the first part of the workshop, you'll dive into [Microsoft Autogen](https://microsoft.github.io/autogen/stable/index.html) to learn what Agentic AI is, how it can automate tasks, and how it enhances data workflows through multi-agent coordination. You'll get hands-on experience building intelligent systems using AutoGen before expanding into other tools like [Semantic Kernel](https://github.com/microsoft/semantic-kernel) and [Crew AI](https://www.crewai.com/) in part 2.
+
+### ⚙️ Workshop Part 1: Designing Agentic AI Workflows with Microsoft AutoGen
+#### 🚀 What You'll Build
+- Agentic systems capable of task decomposition and coordination
+- Modular workflows that combine prompt engineering, agent roles, and execution protocols
+- Scalable automation pipelines that enhance data-centric operations
+
+#### 🔍 Key Concepts
+- **Agentic AI**: Systems designed to reason, collaborate, and execute autonomously
+- **AutoGen**: Orchestration framework for multi-agent task automation with full visibility and termination control
+- **Workflow Enhancement**: Leveraging agents to optimize data transformation, analysis, and insight generation
+
+#### 🛠️ Hands-On Objectives
+> You'll dive into [Microsoft AutoGen](https://microsoft.github.io/autogen/stable/index.html) to:
+> - Learn how Agentic AI streamlines automation through role-driven coordination
+> - Implement modular agents that communicate, delegate, and log execution paths
+> - Build intelligent workflows that extend across data, prompt optimization, and diagnostics
+
+#### 🔗 Looking Ahead
+In Part 2, we’ll expand your agentic toolkit:
+- Integrate with [Semantic Kernel](https://github.com/microsoft/semantic-kernel) for advanced memory and skill-based reasoning
+- Apply [Crew AI](https://www.crewai.com/) to orchestrate larger-scale collaboration across diverse agent teams
+---
 
 #### 💡 Workshop Demo Disclaimer
 
