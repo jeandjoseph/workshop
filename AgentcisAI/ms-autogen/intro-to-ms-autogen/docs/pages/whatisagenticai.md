@@ -2,7 +2,7 @@
   <h1>Demystify the core concept of Agentic AI</h1>
 </div>
 
-## 🔍 What Is Agentic AI?
+### 🔍 What Is Agentic AI?
 Agentic AI systems consist of **goal-driven agents** that:
 - Autonomously **reason**, **plan**, and **act** toward an objective.
 - Collaborate via **multi-agent orchestration**, often using tools like [Microsoft AutoGen](https://microsoft.github.io/autogen/stable/index.html).
@@ -11,7 +11,7 @@ Agentic AI systems consist of **goal-driven agents** that:
 > Think: not just answering a question, but coordinating tasks, escalating issues, and deciding what to do next, like a team of specialists, not just assistants.
 ---
 
-## 🚀 Why Is Agentic AI Needed?
+### 🚀 Why Is Agentic AI Needed?
 While traditional LLMs tend to respond passively to prompts, Agentic AI introduces initiative and coordination to elevate system capabilities. Specifically, Agentic AI:
 - Enables **automation** of complex workflows beyond one-shot prompting.
 - Supports **decision-making chains**, persistent memory, and task decomposition.
@@ -24,7 +24,7 @@ Especially vital for:
 - Adapting in real time to new data or objectives
 ---
 
-## 💼 Key Business Use Cases
+### 💼 Key Business Use Cases
 | Domain               | Use Case                                                       |
 |----------------------|----------------------------------------------------------------|
 | 🧾 Finance & Ops      | Agent-led audit trail review, compliance checks, reconciliation |
@@ -38,7 +38,7 @@ Especially vital for:
 ---
 
 
-##  ✅ Summary
+###  ✅ Summary
 Agentic AI represents more than a technical feature. It’s a strategic shift enabling **autonomous reasoning**, **scalable decision flows**, and **cross-functional automation**. The real business value comes from deploying modular, teachable agents that operate with purpose, leverage memory, and collaborate effectively across tasks.
 
 
