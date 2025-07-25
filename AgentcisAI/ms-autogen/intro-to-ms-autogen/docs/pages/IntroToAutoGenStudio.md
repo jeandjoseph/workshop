@@ -36,3 +36,16 @@
 ---
 
 💡 Whether you're a developer or domain expert, AutoGen Studio 0.4+ makes it easier to harness LLMs for real-world applications—**with minimal coding and maximal flexibility**.
+
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/autogencomponents.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/IntroToAutoGenStudio.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
