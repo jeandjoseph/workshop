@@ -158,7 +158,7 @@ For migration details and examples, see the [official migration guide](https://m
 
 "Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core concepts, let’s shift from theory to practice by setting up your environment for hands-on exploration. It’s ideal to use a brand-new environment—this way, you can safely discard it later if it’s no longer needed. All demos are tested on versions 0.4 to 0.6.4 of AutoGen; using other versions may lead to unexpected failures.
 
-🚀 Head over to the Next Page to unleash the powerful capabilities of Microsoft AutoGen Studio.
+🚀 Head over to the **Next Page** to unleash the powerful capabilities of Microsoft AutoGen Studio.
 
 <table width="100%">
   <tr>
