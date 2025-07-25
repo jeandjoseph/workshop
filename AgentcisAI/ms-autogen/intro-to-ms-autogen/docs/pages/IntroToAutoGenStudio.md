@@ -1,6 +1,6 @@
-# 🧩 AutoGen Studio 0.4+ – Low-Code LLM Agent Framework
+## 🧩 AutoGen Studio 0.4+: Your Low-Code Gateway to LLM Agent Development
 
-AutoGen Studio 0.4+ is a **low-code development platform** by Microsoft designed to build, test, and deploy collaborative multi-agent systems powered by Large Language Models (LLMs). It empowers developers, researchers, and product teams to create intelligent workflows—without heavy coding—by combining modular tools, intuitive interfaces, and flexible orchestration.
+[AutoGen Studio](https://microsoft.github.io/autogen/stable/user-guide/autogenstudio-user-guide/index.html) 0.4+ is a **low-code development platform** by Microsoft designed to build, test, and deploy collaborative multi-agent systems powered by Large Language Models (LLMs). It empowers developers, researchers, and product teams to create intelligent workflows—without heavy coding—by combining modular tools, intuitive interfaces, and flexible orchestration.
 
 ## 🔧 Core Components
 
