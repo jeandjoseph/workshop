@@ -1,6 +1,6 @@
-## 🧠 Understanding `SelectOneGroupChat` in Microsoft AutoGen
+## 🧠 Understanding `SelectorGroupChat` in Microsoft AutoGen
 
-`SelectOneGroupChat` is a coordination mode where **only one agent responds at a time**, hand-picked for its relevance to the task or prompt. Unlike traditional group chat strategies that allow multiple responses (like `RoundRobinGroupChat`), this method keeps interactions **focused and streamlined**.
+`SelectorGroupChat` is a coordination mode where **only one agent responds at a time**, hand-picked for its relevance to the task or prompt. Unlike traditional group chat strategies that allow multiple responses (like `RoundRobinGroupChat`), this method keeps interactions **focused and streamlined**.
 
 ---
 
@@ -26,7 +26,7 @@ This mode is ideal when:
 | Mode                  | Response Style               | Use Case                              |
 |----------------------|------------------------------|----------------------------------------|
 | `RoundRobinGroupChat`| All agents take turns         | Panel-style debates, brainstorming     |
-| `SelectOneGroupChat` | One agent responds per round  | Expert Q&A, focused dialog             |
+| `SelectorGroupChat` | One agent responds per round  | Expert Q&A, focused dialog             |
 
 ---
 
@@ -38,7 +38,7 @@ from dotenv import load_dotenv
 
 from autogen_ext.models.openai import AzureOpenAIChatCompletionClient  
 from autogen_agentchat.agents import AssistantAgent
-from autogen_agentchat.teams import SelectOneGroupChat
+from autogen_agentchat.teams import SelectorGroupChat
 from autogen_agentchat.base import TaskResult, TextMentionTermination
 from autogen_agentchat.manager import GroupChatManager
 
@@ -105,7 +105,7 @@ async def run_ai_agent_debate(user_message):
         )
     )
 
-    team = SelectOneGroupChat(
+    team = SelectorGroupChat(
         participants=[Moderator, Daniel, Jean],
         selector=Moderator,
         max_turns=15,
