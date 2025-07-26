@@ -1,5 +1,18 @@
 ## 🌤️ Entity Extraction with Agentic Weather Retrieval in AutoGen 0.4+
-We've all seen how powerful agents can be when orchestrated with purpose. Now let's extend their capabilities by registering tools—giving agents a way to interact with the real world.
+We've all seen how powerful agents can be when orchestrated with purpose. Now let's extend their capabilities by registering [Tools](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.tools.html#autogen_core.tools.FunctionTool), giving agents a way to interact with the real world.
+
+First, let’s define what tools are in the world of Microsoft AutoGen.
+
+🛠️ In AutoGen, tools are callable Python functions, wrapped in a way that allows agents to understand their purpose, parameters, and outputs. Think of them as skill modules: when an agent hits a challenge it can't answer with reasoning alone, it can invoke a tool to fetch, compute, or transform real-world data.
+
+They’re registered using [FunctionTool](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html#function-tool), which automatically gives the tool an OpenAPI-like schema. This means agents can ask smart questions like: "Is there a tool that gets weather data?" …and AutoGen will know exactly what’s available, how to use it, and when it makes sense.
+
+📌 **Use tools when:**
+- Your agent needs access to external logic or APIs (e.g. weather data, file lookup, math computation).
+- You're designing a modular workflow that separates what agents do from how things get done.
+- You want reproducibility and clarity—tools are defined once, discoverable by name, and invocable by design.
+
+They’re the backbone of smart, utility-driven agents.
 
 In this workshop segment, you'll build a smart multi-agent pipeline that:
 1. Extracts location entities from user input
