@@ -21,6 +21,16 @@ In this workshop segment, you'll build a smart multi-agent pipeline that:
 
 This setup leverages FunctionTool from AutoGen 0.4+ and orchestrates agents using RoundRobinGroupChat. Let’s dive in 👇
 
+### 👤 Why we use `UserProxyAgent`
+Since the goal of our agentic workflow is to extract entities from human input, we have to rely on `UserProxyAgent`—AutoGen's built-in interface that captures user responses during a multi-agent conversation.
+
+`user_proxy = UserProxyAgent(name="user_proxy")` creates a “listener” inside the AI system that speaks on your behalf. Think of it like inviting yourself into a team conversation among smart assistants. This part of the code makes sure there’s always a spot saved for you to jump in and say, “Here’s what I want” or “Let me explain.” When the AI team needs real details from a human, this listener gently pauses the conversation and lets you talk. Then, the rest of the team picks up what you said and uses it to do their job like finding specific information or organizing your thoughts.
+
+You’ll see this line:
+
+```python
+user_proxy = UserProxyAgent(name="user_proxy")
+
 ```python
 # -------------------------------
 # 📦 Standard Library
