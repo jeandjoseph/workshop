@@ -26,7 +26,51 @@ Since the goal of our agentic workflow is to extract entities from human input, 
 
 `user_proxy = UserProxyAgent(name="user_proxy")` creates a “listener” inside the AI system that speaks on your behalf. Think of it like inviting yourself into a team conversation among smart assistants. This part of the code makes sure there’s always a spot saved for you to jump in and say, “Here’s what I want” or “Let me explain.” When the AI team needs real details from a human, this listener gently pauses the conversation and lets you talk. Then, the rest of the team picks up what you said and uses it to do their job like finding specific information or organizing your thoughts.
 
-You’ll see this line:
+### Explain the Tool
+Since the goal is to retrieve current weather conditions, the `get_weather_details` function is create specifically for that job. It pulls live weather data like temperature, wind speed, humidity, sunrise, and sunset—from wttr.in, based on the city name provided. This tool keeps things clean and fast: agents feed it a city like "Boston," and it returns a structured summary of what's happening in the sky right now. It's designed to be plug-and-play in your workflow, so agents can respond instantly with fresh, formatted weather info.
+
+```python
+async def get_weather_details(city: str) -> dict:
+    """
+    Fetches structured weather information from wttr.in for a given city.
+    Returns temperature, wind, humidity, sunrise/sunset, etc.
+    """
+    import requests
+    url_c = f"https://wttr.in/{city}?format=%C|%t|%w|Humidity:%h|Sunrise:%S|Sunset:%s"        # Celsius
+    url_f = f"https://wttr.in/{city}?format=%C|%t|%w|Humidity:%h|Sunrise:%S|Sunset:%s&u"      # Fahrenheit
+
+    try:
+        # Make request and parse response into fields
+        resp_c = requests.get(url_c, timeout=10).text.strip()
+        resp_f = requests.get(url_f, timeout=10).text.strip()
+        keys = ["condition", "temperature", "wind", "humidity", "sunrise", "sunset"]
+
+        return {
+            "location": city.title(),
+            # Celsius response available, but skipped
+            #"celsius": dict(zip(keys, resp_c.split("|"))),
+            "fahrenheit": dict(zip(keys, resp_f.split("|"))),
+        }
+```
+
+Without registering `get_weather_details` above function using FunctionTool (or an equivalent schema-based wrapper), the agent has no way to "see" or invoke that function. From the agent’s perspective, it simply doesn’t exist as a callable tool—it lacks the schema, name, description, and input/output structure that AutoGen relies on during planning and orchestration. So yes, registration is not optional; it’s what turns raw Python logic into actionable capabilities within the agentic flow.
+
+```python
+# Register tool using FunctionTool — canonical approach in AutoGen 0.4+
+weather_tool = FunctionTool(
+    func=get_weather_details,  # 🔧 Reference actual function
+    name="get_weather_details",  # 🏷️ Tool name
+    description="Returns weather info for a given city"  # 📘 Docs for LLM usage
+)
+```
+
+#### 🌦️ Agentic RAG-Based Demo: Get Current Weather
+Let’s dive into the Agentic RAG-Based Demo: Get Current Weather demo!  
+This walkthrough assumes you’re already comfortable with the general script flow—it should feel familiar.
+
+✅ Steps to Run the Demo:
+1. 🛠️ Ensure your Python virtual environment is activated.
+2. 📋 Copy the provided code snippet into your preferred text editor (e.g., Notepad).
 
 ```python
 user_proxy = UserProxyAgent(name="user_proxy")
@@ -207,3 +251,10 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+
+3. 💾 Save the file as `get_current_weather.py`.
+4. 🚀 In your terminal, execute the script:
+   ```bash
+   python get_current_weather.py
+   ```
+⏳ Wait for the output to appear—your agent team should respond with fresh weather insights.
