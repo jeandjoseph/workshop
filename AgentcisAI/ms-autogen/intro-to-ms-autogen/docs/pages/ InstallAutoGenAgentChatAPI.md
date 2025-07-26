@@ -21,6 +21,12 @@ pip install nest_asyncio                                     # Enables async com
 
 pip install tiktoken                                         # Token encoding for LLM compatibility
 pip install streamlit                                        # Optional: UI framework for interactive demos
+
+pip install aioodbc
+pip install pandas
+pip install Seaborn
+pip install Matplotlib
+
 ```
 
 ⏳ Sit back while the packages install—you’re laying the foundation for agent workflows, environment config, and UI demos!
