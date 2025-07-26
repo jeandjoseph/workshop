@@ -22,12 +22,12 @@ In this workshop segment, you'll build a smart multi-agent pipeline that:
 This setup leverages FunctionTool from AutoGen 0.4+ and orchestrates agents using RoundRobinGroupChat. Let’s dive in 👇
 
 ### 👤 Why we use `UserProxyAgent`
-Since the goal of our agentic workflow is to extract entities from human input, we have to rely on `UserProxyAgent`—AutoGen's built-in interface that captures user responses during a multi-agent conversation.
+Since the goal of our agentic workflow is to extract entities from human input, we have to rely on [UserProxyAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.UserProxyAgent) AutoGen's built-in interface that captures user responses during a multi-agent conversation.
 
 `user_proxy = UserProxyAgent(name="user_proxy")` creates a “listener” inside the AI system that speaks on your behalf. Think of it like inviting yourself into a team conversation among smart assistants. This part of the code makes sure there’s always a spot saved for you to jump in and say, “Here’s what I want” or “Let me explain.” When the AI team needs real details from a human, this listener gently pauses the conversation and lets you talk. Then, the rest of the team picks up what you said and uses it to do their job like finding specific information or organizing your thoughts.
 
 ### Explain the Tool
-Since the goal is to retrieve current weather conditions, the `get_weather_details` function is create specifically for that job. It pulls live weather data like temperature, wind speed, humidity, sunrise, and sunset—from wttr.in, based on the city name provided. This tool keeps things clean and fast: agents feed it a city like "Boston," and it returns a structured summary of what's happening in the sky right now. It's designed to be plug-and-play in your workflow, so agents can respond instantly with fresh, formatted weather info.
+Since the goal is to retrieve current weather conditions, the `get_weather_details` function is create specifically for that job. It pulls live weather data like temperature, wind speed, humidity, sunrise, and sunset from wttr.in, based on the city name provided. This [Tool](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.tools.html#module-autogen_core.tools) keeps things clean and fast: agents feed it a city like "Boston," and it returns a structured summary of what's happening in the sky right now. It's designed to be plug-and-play in your workflow, so agents can respond instantly with fresh, formatted weather info.
 
 ```python
 async def get_weather_details(city: str) -> dict:
@@ -64,9 +64,8 @@ weather_tool = FunctionTool(
 )
 ```
 
-#### 🌦️ Agentic RAG-Based Demo: Get Current Weather
-Let’s dive into the Agentic RAG-Based Demo: Get Current Weather demo!  
-This walkthrough assumes you’re already comfortable with the general script flow—it should feel familiar.
+Now, let’s dive into the Agentic RAG-Based Demo: Get Current Weather demo!  
+This walkthrough assumes you’re already comfortable with the general script flow, it should feel familiar.
 
 ✅ Steps to Run the Demo:
 1. 🛠️ Ensure your Python virtual environment is activated.
@@ -257,4 +256,4 @@ if __name__ == "__main__":
    ```bash
    python get_current_weather.py
    ```
-⏳ Wait for the output to appear—your agent team should respond with fresh weather insights.
+⏳ Wait for the output to appear your agent team should respond with fresh weather insights.
