@@ -36,29 +36,24 @@ import os
 import asyncio
 from dotenv import load_dotenv
 
-from autogen_ext.models.openai import AzureOpenAIChatCompletionClient  
+from autogen_ext.models.openai import AzureOpenAIChatCompletionClient
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.teams import SelectorGroupChat
-from autogen_agentchat.base import TaskResult, TextMentionTermination
-from autogen_agentchat.manager import GroupChatManager
+from autogen_agentchat.conditions import TextMentionTermination
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Retrieve environment variables
 azure_openai_model_name = os.getenv("MODEL")
 azure_openai_api_key = os.getenv("API_KEY")
 azure_openai_endpoint = os.getenv("BASE_URL")
-azure_openai_api_type = os.getenv("API_TYPE")
 azure_openai_api_version = os.getenv("API_VERSION")
 
-# Print retrieved environment variables
 print("Endpoint:", azure_openai_endpoint)
 print("Model:", azure_openai_model_name)
 print("API Version:", azure_openai_api_version)
 
-# Define an async function to interact with the model client
-async def run_ai_agent_debate(user_message):
+async def run_ai_agent_debate_stream():
     model_client = AzureOpenAIChatCompletionClient(
         azure_deployment=azure_openai_model_name,
         azure_endpoint=azure_openai_endpoint,
@@ -67,65 +62,95 @@ async def run_ai_agent_debate(user_message):
         api_key=azure_openai_api_key,
     )
 
-    subject = "clean datasets in the machine learning process"
+    subject = "machine learning process"
 
-    Jean = AssistantAgent(
-        name="Jean",
+    DataEngineer = AssistantAgent(
+        name="DataEngineer",
+        description="A Data Engineer who ingests, cleans, transforms, and stores data in either a data lake or a database.",
         model_client=model_client,
         system_message=(
-            f"You are Jean, a Data Engineer. "
-            f"Your task is to clearly and very concisely explain the importance of {subject}. "
-            f"Focus on being brief, direct, and informative. "
-            f"Make sure you introduce yourself as Jean, a Data Engineer, at only the start of the first conversation."
+            "You are a highly skilled Data Engineer responsible for ingesting, cleansing, transforming, and storing structured "
+            "and unstructured data. You work with cloud-based data lakes and relational/non-relational databases. When given a "
+            "data source or use case, you decide the most appropriate pipeline architecture (batch vs. streaming), apply transformations, "
+            "handle schema drift, and ensure scalability. You prioritize performance, security, and reusability. Document assumptions "
+            "clearly and suggest improvements where applicable. "
+            "kEEP ALL CONVERSATION VERY CONCISE"
+            "End with DONE"
         ),
     )
 
-    Daniel = AssistantAgent(
-        name="Daniel",
+    SQLDeveloper = AssistantAgent(
+        name="SQLDeveloper",
+        description="An SQL Developer who focuses on creating database objects.",
         model_client=model_client,
         system_message=(
-            f"You are Daniel, an AI Engineer. "
-            f"Begin conversations by discussing about the {subject}. "
-            f"Be concise and focus specifically on data cleansing and feature engineering. "
-            f"Make sure you introduce yourself as Daniel, an AI Engineer, at only the start of the first conversation."
+            "You are an experienced SQL Developer responsible for creating efficient, secure, and maintainable database objects. "
+            "You write stored procedures, views, tables, indexes, and functions tailored to business logic. You optimize queries for "
+            "performance and maintain integrity constraints. You understand schema design, normalization vs. denormalization, and how "
+            "to support analytics pipelines. When given requirements, generate precise SQL scripts and explain design choices concisely."
+            "kEEP ALL CONVERSATION VERY CONCISE"
+            "End with DONE"
         ),
     )
 
-    Moderator = AssistantAgent(
-        name='Moderator',
+    ReportBuilder = AssistantAgent(
+        name="ReportBuilder",
+        description="Report Builder focuses on building interactive reports and dashboards.",
         model_client=model_client,
         system_message=(
-            "You are Garellard, the moderator of a debate between Jean, a Data Engineer agent, "
-            "and Daniel, an AI Engineer agent. Your role is to guide and moderate the discussion."
-            f" The subject of the debate is: {subject}."
-            "\n\nInstructions:"
-            "\n1. At the start of each round, announce the round number."
-            "\n2. At the beginning of Round 3, state that it is the final round."
-            "\n3. After the final round, thank the audience and say exactly: \"TERMINATE\"."
-        )
+            "You are an expert Report Builder specializing in developing interactive reports and dashboards using modern BI tools. "
+            "You understand data modeling, UX principles, and visual storytelling. Based on business goals, you choose appropriate "
+            "visualizations, apply filters and slicers, and optimize performance through techniques like aggregations and DAX expressions. "
+            "Tailor outputs to decision-makers, ensure clarity, and suggest improvements to enhance user experience."
+            "kEEP ALL CONVERSATION VERY CONCISE"
+            "End with DONE"
+        ),
     )
+
+    selector_prompt = """
+    Based on the agent descriptions and the current context, select the most appropriate agent to handle the task.
+
+    {roles}
+
+    Current conversation context:
+    {history}   
+
+    Select ONE agent from {participants} to handle the task.
+    The typical task flow is: DataEngineer processes and prepares the data → SQLDeveloper structures and optimizes it → ReportBuilder visualizes it.
+    """
+
+
+
+
 
     team = SelectorGroupChat(
-        participants=[Moderator, Daniel, Jean],
-        selector=Moderator,
-        max_turns=15,
-        termination_condition=TextMentionTermination(text="TERMINATE")
+        participants=[DataEngineer, SQLDeveloper,ReportBuilder],
+        model_client=model_client,
+        max_turns=5,
+        selector_prompt=selector_prompt,
+        termination_condition=TextMentionTermination(text="DONE"),
+        allow_repeated_speaker=True
     )
 
-    manager = GroupChatManager(groupchat=team)
+    async for message in team.run_stream(task="data ingestion"):
+        try:
+            print("\n" + "="*60)
+            print(f"🗣️ From: {message.source}")
+            print("💬 Message:")
+            print(message.content)
+            print("="*60)
+        except AttributeError:
+            print("\n" + "="*60)
+            print("⚠️ Unstructured message received:")
+            print(message)
+            print("="*60)
 
-    async for res in manager.run_stream(task=user_message):
-        print('-' * 300)
-        if isinstance(res, TaskResult):
-            print(f'Stopping reason: {res.stop_reason}')
-        else:
-            print(f'{res.source}: {res.content}')
 
-# Run the main loop
+
+
+
 if __name__ == "__main__":
-    user_message = input("Enter your message (type 'done' to exit): ").strip()
-    if user_message.lower() != 'done':
-        asyncio.run(run_ai_agent_debate(user_message))
+    asyncio.run(run_ai_agent_debate_stream())
 ```
 
 
