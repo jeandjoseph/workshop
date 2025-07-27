@@ -167,7 +167,7 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/IntroToAutoGenStudio.md">Next → Page</a>
+      <a href="../pages/IntroToAutoGenStudio.md">Next Page →</a>
     </td>
   </tr>
 </table>
