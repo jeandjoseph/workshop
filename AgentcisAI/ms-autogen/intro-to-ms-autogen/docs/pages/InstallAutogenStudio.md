@@ -136,3 +136,17 @@ Use npm (Node’s package manager) to globally install the Gatsby CLI and Yarn:
 npm install -g gatsby-cli
 npm install --global yarn
 ```
+
+🚀 Head over to the **Next Page** to install and configure AgentChat SDK.
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/IntroToAutoGenStudio.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/InstallAutoGenAgentChatAPI.md">Next → Page</a>
+    </td>
+  </tr>
+</table>
