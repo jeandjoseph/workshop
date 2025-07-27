@@ -35,7 +35,7 @@
 
 ---
 
-💡 Whether you're a developer or domain expert, AutoGen Studio 0.4+ makes it easier to harness LLMs for real-world applications—**with minimal coding and maximal flexibility**.
+💡 Whether you're a developer or domain expert, AutoGen Studio 0.4+ makes it easier to harness LLMs for real-world applications **with minimal coding and maximal flexibility**.
 
 
 <table width="100%">
