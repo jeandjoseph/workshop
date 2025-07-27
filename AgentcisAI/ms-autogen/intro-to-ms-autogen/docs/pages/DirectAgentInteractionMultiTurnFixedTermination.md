@@ -29,6 +29,15 @@ This is useful when you want fairness and transparency in agent participation.
 
 This is great for expert selection or when minimizing noise in the conversation.
 
+### 🐝 SwarmGroupChat – Non-Deterministic
+
+- **How it works**: All agents respond to a user message simultaneously.
+- **Behavior**: Parallel replies from agents are gathered at once, each independently leveraging its own context and expertise.
+- **Use case**: Best suited for brainstorming, broad coverage tasks, and idea divergence where multiple perspectives are valuable.
+- **Key trait**: Non-deterministic — agent responses vary based on the LLM’s interpretation of context and prompt.
+- **Example**: Agent A + Agent B + Agent C all respond in parallel → Collated as a batch for the user.
+
+
 ### 🧲 MagenticOneGroupChat – Context-Aware & Adaptive
 - **How it works**: Agents are selected based on their "magnetism" to the task—i.e., how relevant or capable they are in the current context.
 - **Behavior**: The system dynamically routes tasks to the most appropriate agent(s), often using memory, prior performance, or domain expertise.
@@ -39,11 +48,17 @@ Think of this as a smart routing system that picks the best agent for the job at
 
 ### 🧠 GroupChat Strategy Summary in Microsoft AutoGen
 
-| Strategy              | Determinism       | Agent Turn Logic                  | Best For                                 |
-|-----------------------|-------------------|-----------------------------------|-------------------------------------------|
-| `RoundRobinGroupChat` | Deterministic     | Fixed circular order              | Equal participation, structured dialogue  |
-| `SelectOneGroupChat`  | Non-deterministic | LLM selects one agent to respond  | Focused replies, expert selection         |
-| `MagenticOneGroupChat`| Non-deterministic | Context-aware agent selection     | Adaptive, intelligent task routing        |
+### 🧠 GroupChat Strategy Summary in Microsoft AutoGen
+
+| Strategy               | Determinism       | Agent Turn Logic                         | Best For                                       |
+|------------------------|-------------------|------------------------------------------|------------------------------------------------|
+| [`RoundRobinGroupChat`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat)  | Deterministic     | Fixed circular order                     | Equal participation, structured dialogue       |
+| [`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html)   | Non-deterministic | LLM selects one agent to respond         | Focused replies, expert selection              |
+| [`SwarmGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/swarm.html)       | Non-deterministic | All agents respond simultaneously        | Collective brainstorming, high-parallelism     |
+| [`MagenticOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/magentic-one.html) | Non-deterministic | Context-aware agent selection            | Adaptive, intelligent task routing             |
+
+
+
 
 
 Our focus is on building a **deterministic** Microsoft AutoGen agent, which necessitates using the `RoundRobinGroupChat` to ensure predictable, sequential message passing among agents. This structure avoids randomness in agent selection, aligning with our deterministic design goals. 
