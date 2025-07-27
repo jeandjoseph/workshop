@@ -51,3 +51,15 @@ pip show openai
 💡 Pro tip: Save your terminal output as part of a session log if you're documenting setup reproducibility.
 
 🔙 Return to the [Getting Your Environment Ready](../pages/GettingEnvReady.md) or click on [Install Microsoft Autogen Studion]() to continue working with Microsoft AutoGen Studio.
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/InstallAutogenStudio.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/DirectHumanInteraction.md">Next Page →</a>
+    </td>
+  </tr>
+</table>
