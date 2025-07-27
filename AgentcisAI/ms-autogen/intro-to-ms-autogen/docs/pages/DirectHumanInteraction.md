@@ -137,7 +137,7 @@ In Microsoft AutoGen 0.4, the core difference between asynchronous and synchrono
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectAgentInteractionMultiTurnFixedTermination.md">Next → Page</a>
+      <a href="../pages/DirectAgentInteractionMultiTurnFixedTermination.md">Next Page →</a>
     </td>
   </tr>
 </table>
