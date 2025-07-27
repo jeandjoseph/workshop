@@ -38,7 +38,7 @@ Accelerate design, testing, and deployment.
   - Ideal for rapid prototyping and instructional demos
 
 
-- 📊 Bench (AutoGen Bench)
+- 📊 [Bench](https://microsoft.github.io/autogen/0.2/blog/2024/01/25/AutoGenBench/) (AutoGen Bench)
   - Benchmarking suite for evaluating agents across tasks, models, and configurations
   - Includes scoring logic, task templates, and automation support
   - Useful for researchers and developers optimizing agent strategies
