@@ -11,7 +11,7 @@ Let's walk through them step by step.
 ## 🤖 Agent
 A conversational entity powered by a language model that performs tasks, executes code, uses tools, or routes requests based on its configuration.
 
-#### 👤 Agent Types
+#### 👤 [Agent](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html) Types
 AutoGen v0.4+ introduces a layered architecture. To me below are the two primary families of agents—**Core Agents** and **AgentChat Agents**. Each serving a different purpose in building flexible, scalable multi-agent systems.
 
 ---
@@ -49,7 +49,7 @@ Conversational, LLM-powered agents designed for prototyping and multi-agent coll
 
 ### 🧲 Why Magentic-One Matters
 
-When introducing agent types, it's essential to showcase **Magentic-One** as a working example of agent orchestration in AutoGen v0.4. It demonstrates how AgentChat agents can be composed into a **generalist multi-agent system** that solves open-ended tasks across domains like web automation, file navigation, and code execution.
+When introducing agent types, it's essential to showcase [Magentic-One](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/magentic-one.html) as a working example of agent orchestration in AutoGen v0.4. It demonstrates how AgentChat agents can be composed into a **generalist multi-agent system** that solves open-ended tasks across domains like web automation, file navigation, and code execution.
 
 Magentic-One includes:
 
@@ -69,7 +69,7 @@ Magentic-One includes:
 ## 🧠 Model
 The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agent intelligence and response generation. Choice of model impacts cost, latency, and reasoning depth.
 
-### 🧩 Model Clients
+### 🧩 [Model](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/models.html) Clients
 | Model Type                        | Description                                      |
 |----------------------------------|--------------------------------------------------|
 | `OpenAIChatCompletionClient`     | Connects to OpenAI models like GPT-4o            |
@@ -83,7 +83,7 @@ The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agen
 ## 🔧 Tool
 A callable function or service (Python, REST, etc.) exposed to agents to enhance their capabilities beyond natural language—like accessing APIs, running code, or querying data.
 ### 🛠️ Tool Types
-| Tool Type                     | Functionality                                                           |
+| [Tool](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.tools.html#module-autogen_agentchat.tools) Type                     | Functionality                                                           |
 |------------------------------|-------------------------------------------------------------------------|
 | `CodeExecutionTool`          | Executes Python or shell code                                           |
 | `FunctionCallTool`           | Invokes structured functions via LLM                                    |
@@ -94,7 +94,7 @@ A callable function or service (Python, REST, etc.) exposed to agents to enhance
 
 ---
 ## 👥 Team
-A **Team** is a group of agents that collaborate to solve a task. Each team defines:
+A [Team](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/teams.html) is a group of agents that collaborate to solve a task. Each team defines:
 - A **coordination strategy** (e.g. round-robin, selector-based, swarm)
 - A **termination condition** (e.g. keyword match, external signal)
 - A **shared context** for message exchange
@@ -139,7 +139,7 @@ Now that we are done with the `Team` concepts, let's focus on the `Termination C
 ## 🛑 Termination Condition
 Predefined rules that control when a conversation or agent loop should end-based on success, round count, or manual logic (e.g., `max_rounds`, `conclude_on_success`, `early_stop`).
 
-### 🛑 Termination Types
+### 🛑 [Termination](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html) Types
 | Type                         | Description                                                             |
 |-----------------------------|-------------------------------------------------------------------------|
 | `MaxTurns`                  | Ends after fixed number of exchanges                                    |
