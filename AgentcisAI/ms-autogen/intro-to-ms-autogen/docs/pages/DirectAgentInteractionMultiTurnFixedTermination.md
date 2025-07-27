@@ -1,4 +1,3 @@
-
 #
 <h1 style="color:white; text-align:center;">
 Microsoft AutoGen Multi-Agent:<br>
@@ -69,11 +68,8 @@ Additionally, we distinguish between `run()` and `run_stream()` in asyncio:` run
 Our first demo uses `asyncio.run()` to execute a deterministic AutoGen conversation with `RoundRobinGroupChat`, returning the final result after completing the full dialogue.
 
 #### ✅ Steps to follow:
-1. Copy and paste the code into a Python file, and save it: example - autogen_demo_run.py
-2. Activate your Python virtual environment to ensure dependencies are correctly managed.
-3. Run the script using the terminal: Observe how the agents communicate in a multi-turn conversation with deterministic sequencing.
-
-Once complete, we’ll explore the run_stream() generator for real-time interaction and step-by-step output.
+1. Activate your Python virtual environment. Make sure it's up and running without issues.
+2. Copy the code below into a text editor. You can use something simple like Notepad.
 
 ````bash
 import os
@@ -160,7 +156,15 @@ if __name__ == "__main__":
     main()
 ````
 
-We just explored run(), which waits for the entire conversation to finish before showing results. Now, let’s shift to run_stream(). The key difference is that run_stream() is an async generator—it lets us observe the conversation step by step as it unfolds. Unlike regular functions that reset after returning, generators remember where they left off and resume from the last yield, making them perfect for interactive, real-time experimentation.
+3. Save the file as `autogen_fixed_turn_demo_run.py`. Choose a folder where your virtual environment can easily access it.
+5. Run the script using the terminal: Observe how the agents communicate in a multi-turn conversation with deterministic sequencing.
+```python
+python autogen_fixed_turn_demo_run.py
+```
+
+Once complete, we’ll explore the run_stream() generator for real-time interaction and step-by-step output.
+
+We just explored `asyncio.run()`, which waits for the entire conversation to finish before showing results. Now, let’s shift to run_stream(). The key difference is that run_stream() is an async generator—it lets us observe the conversation step by step as it unfolds. Unlike regular functions that reset after returning, generators remember where they left off and resume from the last yield, making them perfect for interactive, real-time experimentation.
 
 When using `run_stream()`, make sure to import `TaskResult` with `from autogen_agentchat.base import TaskResult`. This is essential because each step in the stream yields a TaskResult object, which holds the intermediate output of the conversation. Without this import, you won’t be able to properly access or interpret the streamed results as they come in.
 
