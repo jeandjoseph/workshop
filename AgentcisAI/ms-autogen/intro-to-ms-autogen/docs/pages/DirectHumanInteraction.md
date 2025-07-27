@@ -121,7 +121,16 @@ if __name__ == "__main__":
 
 ```
 
-In Microsoft AutoGen 0.4, the core difference between asynchronous and synchronous execution lies in how agents (including humans, LLMs, or tools) interact with each other and how tasks are managed within the agent loop.
+🧩 Explanation this piece of code
+
+```python
+result = await model_client.create([
+    UserMessage(content=user_message, source="user")
+])
+```
+this snippet creates an asynchronous user message exchange with a model client: model_client.create([...]) sends the message, wrapped as a UserMessage with content containing the user's input and source="user" indicating the origin; the await keyword ensures the code waits for the model’s response before continuing, and that response is stored in result, which includes structured metadata like role, content, and timestamp—all part of AutoGen's modular agent communication flow.
+
+we also used `asyncio.run()` which is a synchronous entry point that executes an asynchronous coroutine. In Microsoft AutoGen 0.4+, the core distinction between asynchronous and synchronous execution lies in how agents (humans, LLMs, or tools) interact and how tasks are orchestrated in the agent loop. We used `asyncio.run()` as a synchronous entry point to execute async coroutines, it blocks until completion—while `asyncio.run_stream()` supports streaming interactions with agents, enabling async updates during task progression.
 
 ### 🔄 Synchronous Interaction
 - **Blocking behavior**: Each agent waits for the previous one to finish before proceeding.
@@ -135,10 +144,7 @@ In Microsoft AutoGen 0.4, the core difference between asynchronous and synchrono
 - **Use case**: Essential for multi-agent collaboration, tool invocation, or when integrating with APIs or external systems.
 - **Example**: While one agent is waiting for a tool to return data, another agent can continue processing or responding.
 
-### 🧠 In AutoGen 0.4 Context
-- AutoGen 0.4 introduced async-compatible model clients (like AzureOpenAIChatCompletionClient) and agent orchestration that supports both sync and async modes.
-- When you use await model_client.create(...), you're leveraging asynchronous messaging, which is crucial for building responsive, real-time agentic systems.
-- This allows human agents, LLMs, and tools to collaborate fluidly without blocking each other, especially important in complex workflows.
+Click on the **Next Page** to begin demonstrating how agents interact with one another. We'll focus on fixed-turn conversations.
 
 <table width="100%">
   <tr>
