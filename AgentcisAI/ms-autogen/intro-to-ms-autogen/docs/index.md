@@ -58,6 +58,14 @@ You're absolutely encouraged to:
 
 The goal is to empower you to shape and refine agent workflows to best fit your needs. Flexibility and exploration are part of the learning process, so feel free to make it your own!
 
+#### 🧑‍💻 Prerequisite:
+
+Before processing, ensure your setup is ready:
+- <a href="../docs/pages/GettingEnvReady.md" target="_blank">Install Python, configure VS Code, and confirm OpenAI access.</a>
+
+- <a href="../docs/pages//CreatePythonVirtualEnv.md" target="_blank">Create a Python virtual environment to isolate dependencies and keep your project clean and reproducible.</a>
+
+
 #### 👋 Why don’t I introduce myself?
 
 Hi! I'm <a href="https://datadrivencommunity.com/About-Jean-Joseph.html" target="_blank">Jean Joseph</a>, the person behind this workshop. I created it as a welcoming space for anyone curious about Agentic AI, whether you're diving in for the first time or looking to build smarter data workflows.
