@@ -34,18 +34,5 @@ To get started, you'll need to install and configure **two distinct environments
 > ✅ Complete both installations before proceeding to hands-on tasks or demos.
 
 
+🌟 Ready to move forward? [Click here](../pages/CreatePythonVirtualEnv.md) to configure your Python virtual environment, or head back to the [home page](../index.md) to revisit your options.
 
-🌟 Proceed to the **Next Page** to dive into the core concepts of [Microsoft Autogen](https://microsoft.github.io/autogen/stable/index.html)
-
-
-<table width="100%">
-  <tr>
-    <td align="left" style="white-space: nowrap;">
-      <a href="../pages/autogencomponents.md">← Previous Page</a>
-    </td>
-    <td style="width: 100px;"></td> <!-- Blank column for separation -->
-    <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectHumanInteraction.md">Next → Page</a>
-    </td>
-  </tr>
-</table>
