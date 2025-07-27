@@ -109,6 +109,8 @@ Here's what each part does:
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/autogen_studio_web_interface.png)
 
+[Here’s a reference for live interaction using AutoGen Studio 0.4+: since the interface is constantly changing.](https://microsoft.github.io/autogen/stable/user-guide/autogenstudio-user-guide/index.html)
+
 #### ⚙️ Installing Node.js for AutoGen Studio Frontend (May Be Required)
 
 #### 🧠 Why Node.js Is Required
