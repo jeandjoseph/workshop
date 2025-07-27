@@ -80,7 +80,7 @@ Let’s get started! 👉 Click through to the **Next page** to define and unpac
 <table width="100%">
   <tr>
     <td align="right" style="white-space: nowrap;">
-        <a href="../docs/pages/whatisagenticai.md">Next → Page</a>
+        <a href="../docs/pages/whatisagenticai.md">Next Page →</a>
     </td>
   </tr>
 </table>
