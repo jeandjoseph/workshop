@@ -23,16 +23,25 @@
 ---
 ## ⚙️ Environment Setup Overview
 
-To get started, you'll need to install and configure **two distinct environments**:
+📦 **First**, to begin, you'll need to create two separate Python virtual environments to keep dependencies isolated and projects reproducible.  
+   → Follow this guide: [Creating Python Virtual Environments](../pages/CreatePythonVirtualEnv.md)
 
-1. 🌐 [Microsoft AutoGen for Azure OpenAI API](../pages/InstallAutoGenAPI.md)  
-   – Set up the core AutoGen libraries for API-based agent orchestration.
+1️⃣ Environment 1 – AutoGen SDK for Azure OpenAI
+- 🌐 [Install AutoGen SDK for Azure OpenAI API](../pages/InstallAutoGenAgentChatAPI.md)
+- Set up core libraries to orchestrate agents programmatically using the Azure OpenAI API.
+- Ideal for building scalable workflows and experimenting with custom agents in code.
 
-2. 🧪 [Microsoft AutoGen Studio](../pages/InstallAutogenStudio.md)  
-   – Configure the Studio interface for designing, testing, and managing agents and workflows.
+2️⃣ Environment 2 – AutoGen Studio
+- 🧪 [Install AutoGen Studio](../pages/InstallAutogenStudio.md)
+- Launch the Studio interface for designing, testing, and managing agents visually.
+- Use Studio to quickly prototype and debug agent behaviors without writing code.
+
+✅ Each environment serves a different purpose, and separating them helps avoid conflicts between dependencies.
+
+
 
 > ✅ Complete both installations before proceeding to hands-on tasks or demos.
 
 
-🌟 Ready to move forward? [Click here](../pages/CreatePythonVirtualEnv.md) to configure your Python virtual environment, or head back to the [home page](../index.md) to revisit your options.
+🌟 Ready to move forward? head back to the [home page](../index.md) to revisit your options.
 
