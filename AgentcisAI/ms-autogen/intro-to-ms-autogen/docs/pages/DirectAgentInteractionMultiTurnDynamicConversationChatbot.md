@@ -164,7 +164,7 @@ To explore a different chat strategy, click on **Next Page**. This will change t
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectAgentDynamicInteractionSelect.md">Next → Page</a>
+      <a href="../pages/DirectAgentDynamicInteractionSelect.md">Next Page →</a>
     </td>
   </tr>
 </table>
