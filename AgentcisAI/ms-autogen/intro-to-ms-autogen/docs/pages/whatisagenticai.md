@@ -51,7 +51,7 @@ Agentic AI represents more than a technical feature. It’s a strategic shift en
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/autogenintro.md">Next → Page</a>
+      <a href="../pages/autogenintro.md">Next Page →</a>
     </td>
   </tr>
 </table>
