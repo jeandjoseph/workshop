@@ -1,4 +1,4 @@
-## ⚙️ Installing Microsoft AutoGen AgentChat DSK for Azure OpenAI API
+## ⚙️ Installing Microsoft AutoGen AgentChat SDK for Azure OpenAI API
 The **AgentChat SDK** is a high-level Python API within [Microsoft AutoGen](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/installation.html) designed for building and orchestrating multi-agent AI systems. It simplifies the creation of agents that can communicate, collaborate, and execute tasks autonomously.
 
 #### 🔧 Key Features
