@@ -78,7 +78,7 @@ Run production-grade agent apps.
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/autogencomponents.md">Next → Page</a>
+      <a href="../pages/autogencomponents.md">Next Page →</a>
     </td>
   </tr>
 </table>
