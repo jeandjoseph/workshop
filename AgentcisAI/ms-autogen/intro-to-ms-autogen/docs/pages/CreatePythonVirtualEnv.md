@@ -32,4 +32,6 @@ A Python virtual environment is like a sandbox for your Python project. It isola
    - Again, You should see a screen similar to the one shown below, with the relevant section highlighted in red. If this appears, you're all set to begin installing the dependencies.
      ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/pyenv.png)
 
+Click [here to install](../pages/InstallAutoGenAgentChatAPI.md) all required Python libraries into your newly created virtual environment.
+
 🌟 Ready to move forward? head back to the [home page](../index.md) to revisit your options.
