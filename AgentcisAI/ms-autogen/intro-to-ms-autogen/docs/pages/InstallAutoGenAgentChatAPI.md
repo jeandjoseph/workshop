@@ -50,7 +50,9 @@ pip show openai
 
 💡 Pro tip: Save your terminal output as part of a session log if you're documenting setup reproducibility.
 
-🔙 Return to the [Getting Your Environment Ready](../pages/GettingEnvReady.md) or click on [Install Microsoft Autogen Studion]() to continue working with Microsoft AutoGen Studio.
+🔙 **Return to** [Getting Your Environment Ready](../pages/GettingEnvReady.md) If your environment is not fully configured, .
+
+Otherwise, click on the **Next Page** to begin our first hands-on activity where a human collaborator will interact directly with the AI agent.
 
 <table width="100%">
   <tr>
