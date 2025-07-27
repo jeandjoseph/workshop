@@ -22,10 +22,11 @@ pip install nest_asyncio                                     # Enables async com
 pip install tiktoken                                         # Token encoding for LLM compatibility
 pip install streamlit                                        # Optional: UI framework for interactive demos
 
-pip install aioodbc
-pip install pandas
-pip install Seaborn
-pip install Matplotlib
+pip install aioodbc                                          # Async ODBC driver for accessing databases in agentic workflows
+pip install pandas                                           # Core data manipulation library; essential for tabular data operations
+pip install Seaborn                                          # High-level statistical data visualization built on top of Matplotlib
+pip install Matplotlib                                       # Foundational plotting library for generating figures and charts
+
 
 ```
 
