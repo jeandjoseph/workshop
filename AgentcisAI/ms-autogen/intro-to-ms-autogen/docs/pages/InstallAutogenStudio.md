@@ -148,7 +148,7 @@ npm install --global yarn
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/InstallAutoGenAgentChatAPI.md">Next → Page</a>
+      <a href="../pages/InstallAutoGenAgentChatAPI.md">Next Page →</a>
     </td>
   </tr>
 </table>
