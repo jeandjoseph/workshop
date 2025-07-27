@@ -5,7 +5,7 @@
 This script demonstrates one of the simplest and most direct ways to leverage Microsoft AutoGen by enabling a human to interact directly with an agentic framework without needing a complex orchestration layer or multi-agent setup.
 
 ### 🧠 What It Does
-It sets up a basic loop where a human types a message, and that message is sent to an AI model (hosted via Azure OpenAI) using the AutoGen-compatible AzureOpenAIChatCompletionClient. The model responds, and the human sees the output just like chatting with an assistant.
+It sets up a basic loop where a human types a message, and that message is sent to an AI model (hosted via Azure OpenAI) using the AutoGen-compatible **AzureOpenAIChatCompletionClient**. The model responds, and the human sees the output just like chatting with an assistant.
 
 ### 🧩 Why It’s Agentic
 In the AutoGen ecosystem, an agent is any entity that can send and receive messages, make decisions, and take actions. In this case:
@@ -34,22 +34,30 @@ This script is a foundational example of how to use Microsoft AutoGen to let a h
   * Sending and receiving messages in a structured, agent-like format.
   * Managing the lifecycle of the connection (e.g., opening and closing sessions).
 
-This client is what allows your script to behave like an agent interface—you send a message, and it returns a response from the model.
+This client is what allows your script to behave like an agent interface you send a message, and it returns a response from the model.
 
 **UserMessage from autogen_core.models**: This class wraps the human’s input into a structured message object. It includes:
     - The message content (what the user says).
-    - The source, which in this case is "user"—indicating that the message is coming from a human agent.
+    - The source, which in this case is "user", indicating that the message is coming from a human agent.
 
 This structure is essential for AutoGen’s agent framework, which relies on message objects to track and manage interactions between agents.
 
-**await model_client.create([
-    UserMessage(content=user_message, source="user")
-])**: This line sends the wrapped message to the model asynchronously and waits for a response. It’s the moment of interaction between the human and the AI agent.
+**await model_client.create([UserMessage(content=user_message, source="user")])**: This line sends the wrapped message to the model asynchronously and waits for a response. It’s the moment of interaction between the human and the AI agent.
 * **UserMessage(...)**: This wraps the human's input into a structured message object that AutoGen agents understand.
 * **content=user_message**: This is the actual text the human types.
 * **source="user"**: This explicitly identifies the origin of the message as a human agent. In AutoGen, every message includes a source field to track which agent (human, LLM, or tool) sent it. By setting source="user", you're telling the system:
     - “This message comes from a human agent participating in the agent loop.”
 * **await model_client.create([...])**: This sends the message to an LLM agent (like GPT hosted on Azure) and waits for its response asynchronously.
+
+#### ⚙️ Steps to Run `HumanAndAIAgent.py`
+1. Activate your Python virtual environment. Make sure it's up and running without issues.
+2. Copy the code below into a text editor. You can use something simple like Notepad.
+3. Save the file as `HumanAndAIAgent.py`. Choose a folder where your virtual environment can easily access it.
+4. Execute the script within your virtual environment context. Open a terminal or command prompt and run:
+   ```bash
+   python HumanAndAIAgent.py
+  ```
+
 
 ````bash
 import os
@@ -128,7 +136,7 @@ In Microsoft AutoGen 0.4, the core difference between asynchronous and synchrono
 ### 🧠 In AutoGen 0.4 Context
 - AutoGen 0.4 introduced async-compatible model clients (like AzureOpenAIChatCompletionClient) and agent orchestration that supports both sync and async modes.
 - When you use await model_client.create(...), you're leveraging asynchronous messaging, which is crucial for building responsive, real-time agentic systems.
-- This allows human agents, LLMs, and tools to collaborate fluidly without blocking each other—especially important in complex workflows.
+- This allows human agents, LLMs, and tools to collaborate fluidly without blocking each other, especially important in complex workflows.
 
 <table width="100%">
   <tr>
