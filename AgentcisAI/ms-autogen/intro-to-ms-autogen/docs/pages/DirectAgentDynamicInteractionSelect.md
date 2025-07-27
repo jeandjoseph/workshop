@@ -161,7 +161,7 @@ if __name__ == "__main__":
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DataAnalystAgentCsvFile.md">Next → Page</a>
+      <a href="../pages/DataAnalystAgentCsvFile.md">Next Page →</a>
     </td>
   </tr>
 </table>
