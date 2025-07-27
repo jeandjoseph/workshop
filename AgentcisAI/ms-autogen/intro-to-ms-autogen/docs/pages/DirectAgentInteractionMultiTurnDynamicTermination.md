@@ -256,7 +256,7 @@ Having explored the capabilities of `RoundRobinGroupChat`, let's build a simple 
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">Next → Page</a>
+      <a href="../pages/DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">Next Page →</a>
     </td>
   </tr>
 </table>
