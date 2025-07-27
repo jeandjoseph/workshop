@@ -54,12 +54,14 @@ This structure is essential for AutoGen’s agent framework, which relies on mes
 2. Copy the code below into a text editor. You can use something simple like Notepad.
 3. Save the file as `HumanAndAIAgent.py`. Choose a folder where your virtual environment can easily access it.
 4. Execute the script within your virtual environment context. Open a terminal or command prompt and run:
-   ```bash
-   python HumanAndAIAgent.py
-  ```
+```bash
+ python HumanAndAIAgent.py
+```
 
 
-````bash
+
+
+```python
 import os
 from dotenv import load_dotenv
 # Imports the Azure OpenAI Chat Completion Client from the autogen_ext.models.openai module
@@ -117,7 +119,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-````
+```
 
 In Microsoft AutoGen 0.4, the core difference between asynchronous and synchronous execution lies in how agents (including humans, LLMs, or tools) interact with each other and how tasks are managed within the agent loop.
 
