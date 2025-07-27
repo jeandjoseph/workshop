@@ -270,7 +270,7 @@ We hope this demo helped you understand how Microsoft AutoGen 0.4 enables struct
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectAgentInteractionMultiTurnDynamicTermination.md">Next → Page</a>
+      <a href="../pages/DirectAgentInteractionMultiTurnDynamicTermination.md">Next Page →</a>
     </td>
   </tr>
 </table>
