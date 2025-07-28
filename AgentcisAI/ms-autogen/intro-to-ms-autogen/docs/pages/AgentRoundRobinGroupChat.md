@@ -271,7 +271,7 @@ Notice that during execution with `run_stream()`, we can observe the conversatio
 - 🛠️ You can adjust this value in the group chat settings or directly in the `AgentChatGroup` initialization depending on your AutoGen setup.
   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script2_img_1.png)
 
-🔍 Let’s go over it now to understand what triggered the termination.
+🔍 Let’s go over the different ways an agent conversation might end and in this case, what triggered the termination.
 
 ### 🔢🛑 Balancing Turn Limits with Semantic Termination in AutoGen 0.4+
 In the above demo, the [max_turns](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html) parameter enforces a hard cap on the number of agent responses, using `MaxMessageTermination` to ensure the conversation ends predictably. This is ideal for controlled experiments, debugging, and reproducible demos, especially when showcasing agent behavior in a fixed number of steps. However, it can prematurely cut off meaningful exchanges if agents are mid-task or require more turns to reach consensus, making it less suitable for open-ended or goal-driven interactions.
@@ -311,13 +311,8 @@ Introducing a guiding voice helps the demo stay focused and provides contextual 
         name='Moderator',
         model_client=model_client,
         system_message=(
-            "You are Garellard, the moderator of a debate between Jean, a Data Engineer agent, "
-            "and Daniel, an AI Engineer agent. Your role is to guide and moderate the discussion."
-            f" The subject of the debate is: {subject}."
-            "\n\nInstructions:"
-            "\n1. At the start of each round, announce the round number."
-            "\n2. At the beginning of Round 3, state that it is the final round."
-            "\n3. After the final round, thank the audience and say exactly: \"TERMINATE\"."
+            f"You are Garellard, the moderator of the debate between Jean and Daniel. Subject: {subject}. "
+            "Announce each round, flag round 3 as final, and end with 'TERMINATE'."
         )
     )
 ```
@@ -325,7 +320,14 @@ Introducing a guiding voice helps the demo stay focused and provides contextual 
 
 🚀 To experience real-time agent interactions using `termination_condition`, completely replace your existing Python script with the snippet below. Save it and run the script to activate this version’s enhanced control flow and semantic termination.
 
-📌 Notice: We’ve updated the `max_turns` parameter to 15.
+📌 **Notice:** We’ve updated the `max_turns` parameter to 15.
+
+- With the optimized prompt, the moderator is smart enough to [terminate](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMentionTermination) the conversation at the right moment using semantic cues.
+- It's also important to highlight the role of the [CancellationToken](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html#autogen_core.CancellationToken), which allows external interruption of ongoing agent interactions when needed.
+
+🚀 To explore `termination_condition` agent interactions using `run_stream()`, replace your existing Python script with the snippet below, then save and execute it by typing `Data Cleansing`. This version enables precise, semantic message termination triggered by configured agent conditions, perfect for demos and debugging workflows.
+
+Make sure you close your previous conversation by pressing Ctrl+C, then proceed with the tasks below.
 
 ```python
 import os, sys
@@ -353,7 +355,7 @@ if sys.platform == "win32":
     asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
 # 🧠 Setup debate team with agents and moderator
-async def initialize_ai_debate_team(subject):
+async def run_ai_agent_debate(subject):
     model_client = AzureOpenAIChatCompletionClient(
         azure_deployment=azure_openai_model_name,
         azure_endpoint=azure_openai_endpoint,
@@ -368,6 +370,7 @@ async def initialize_ai_debate_team(subject):
         system_message=(
             f"You are Jean, a Data Engineer. Your task is to clearly and concisely explain the importance of {subject}. "
             "Introduce yourself only at the start of the first conversation."
+            "Focus on being very brief, direct, and informative."
         ),
     )
 
@@ -377,6 +380,7 @@ async def initialize_ai_debate_team(subject):
         system_message=(
             f"You are Daniel, an AI Engineer. Focus on {subject} with emphasis on data cleansing and feature engineering. "
             "Introduce yourself only at the start of the first conversation."
+            "Focus on being very brief, direct, and informative."
         ),
     )
 
@@ -408,6 +412,17 @@ if __name__ == "__main__":
     if user_message.lower() != 'done':
         asyncio.run(run_ai_agent_debate(user_message))
 ```
+After running the script, you'll get a screen that looks like the one shown below.
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script3_img_1.png)
+
+This shows the moderator isn’t just a passive agent, it’s a conversation architect with built-in judgment.
+
+🎯 **Moderator**'s Key Roles in the Example
+- 👋 **Welcoming Participants**: Clearly introduces all agents—Jean and Daniel—setting a professional, inclusive tone.
+- 📚 **Structuring the Debate**: Splits the interaction into defined rounds: Opening Statements, Key Challenges, and Final Statements, creating a focused, time-boxed flow.
+- 🧮 **Managing Turn Count**: Although max_turns is set to 15, the moderator enforces semantic rules (like termination triggers) to stop earlier, keeping things efficient.
+- 🛑 **Early Termination Control**: Uses smart condition matching (e.g. message contains "TERMINATE") to override the default turn limit for graceful, content-aware shutdowns.
+
 ### 🧩 To Summarize
 
 This demo walked you through the two core conversation strategies in Microsoft AutoGen: **Fixed Multi-Turn**, which uses `max_turns` for predictable, structured exchanges, and **Dynamic Multi-Turn**, which leverages `TextMentionTermination` for more natural, context-aware dialogue. Each approach serves different goals whether you're aiming for control or flexibility in agent behavior.
