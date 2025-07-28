@@ -23,13 +23,21 @@ This is useful when you want fairness and transparency in agent participation.
 
 Our focus is on building a **deterministic** Microsoft AutoGen agent, which necessitates using the `RoundRobinGroupChat` to ensure predictable, sequential message passing among agents. This structure avoids randomness in agent selection, aligning with our deterministic design goals. 
 
-Additionally, we distinguish between `run()` and `run_stream()` in asyncio:` run()` executes the full conversation and returns the final result, while `run_stream()` yields intermediate steps in real time, offering more granular control and visibility during execution.
+🧠 **Key Takeaway:** Async Execution Paths Matter
 
-#
-Our first demo uses `asyncio.run()` to execute a deterministic AutoGen conversation with `RoundRobinGroupChat`, returning the final result after completing the full dialogue.
+In `asyncio`, we distinguish between `run()` and `run_stream()`:
+- `run()` executes the full conversation flow and returns only the final result.
+- `run_stream()` yields intermediate steps in real time, ideal for debugging, monitoring, or building reactive interfaces.
+- **Note:** Choosing between the two depends on whether you need post-hoc results or granular, step-by-step visibility during execution.
 
-#### ✅ Steps to follow:
-1. Activate your Python virtual environment. Make sure it's up and running without issues.
+🧩 **Related Constructs:** 
+- `AssistantAgent`: A modular, autonomous agent powered by a language model configured with tools and a system_message to perform specialized roles in orchestration.
+- `team.run()`: Executes the full agentic workflow asynchronously and returns the final result (TaskResult) without streaming intermediate messages.
+- `max_turns`: Limits the number of exchanges in a group chat to prevent infinite loops or overly long conversations.
+
+
+#### ✅ Steps to complete this demo:
+1. Activate your [Python virtual](../pages/CreatePythonVirtualEnv.md) environment. Make sure it's up and running without issues.
 2. Copy the code below into a text editor. You can use something simple like Notepad.
 
 ````bash
@@ -122,18 +130,30 @@ if __name__ == "__main__":
 ```python
 python autogen_fixed_turn_demo_run.py
 ```
+6. Wait until the execution is completed
 
+Notice that in a RoundRobinGroupChat, the order of agents in the participants list directly determines the turn-taking sequence. For example, if `participants = [Daniel, Jean]`, Daniel will respond first, followed by Jean, then back to Daniel, and so on alternating strictly in that order. Changing it to `participants = [Jean, Daniel]` means Jean takes the first turn, followed by Daniel, and the cycle continues from there.
+
+🔁 Here’s an example: Replace your original Team participant setup with the script below and observe how the listed order defines the flow of the conversation:
+
+```python
+team = RoundRobinGroupChat(
+    participants=[Daniel, Jean],
+    max_turns=3,
+)
+```
 Once complete, we’ll explore the run_stream() generator for real-time interaction and step-by-step output.
 
-We just explored `asyncio.run()`, which waits for the entire conversation to finish before showing results. Now, let’s shift to run_stream(). The key difference is that run_stream() is an async generator—it lets us observe the conversation step by step as it unfolds. Unlike regular functions that reset after returning, generators remember where they left off and resume from the last yield, making them perfect for interactive, real-time experimentation.
+We just explored `asyncio.run()`, which waits for the entire conversation to finish before showing results. Now, let’s shift to `run_stream()`. The key difference is that `run_stream()` is an async generator it lets us observe the conversation step by step as it unfolds. Unlike regular functions that reset after returning, generators remember where they left off and resume from the last yield, making them perfect for interactive, real-time experimentation.
 
 When using `run_stream()`, make sure to import `TaskResult` with `from autogen_agentchat.base import TaskResult`. This is essential because each step in the stream yields a TaskResult object, which holds the intermediate output of the conversation. Without this import, you won’t be able to properly access or interpret the streamed results as they come in.
 
-### 🔄 Code Update Summary
+### 🔄 `run_stream()`. Code Update Summary
 
 In this version, we made two key changes:
 
-1️⃣ **Replaced the blocking `run()` call with the streaming `run_stream()`** to observe the conversation step by step:
+1️⃣ Replaced the blocking run() call with the streaming run_stream() to observe the conversation step by step and capture real-time outputs. 
+2️⃣ TaskResult indicates why the chat stopped (e.g. max_turns, tool_use_limit) and optionally includes final results for post-processing.
 
 ```python
 # ❌ Old approach from above scripts
