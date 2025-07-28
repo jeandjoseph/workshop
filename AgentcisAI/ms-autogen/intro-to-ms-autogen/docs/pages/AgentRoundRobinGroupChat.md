@@ -36,7 +36,7 @@ In `asyncio`, we distinguish between `run()` and `run_stream()`:
 - `max_turns`: Limits the number of exchanges in a group chat to prevent infinite loops or overly long conversations.
 
 
-#### ✅ Steps to complete this demo:
+### ✅ Steps to complete this demo:
 1. Activate your [Python virtual](../pages/CreatePythonVirtualEnv.md) environment. Make sure it's up and running without issues.
 2. Copy the code below into a text editor. You can use something simple like Notepad.
 
@@ -164,7 +164,7 @@ for message in res.messages:
     print(f"{message.source}: {message.content}")
 `````
 
-## ✅ New approach using run_stream
+### ✅ New approach using run_stream
 ```python
 async for res in team.run_stream(task=user_message):
     print('='*100)
@@ -258,7 +258,7 @@ if __name__ == "__main__":
 
 Notice that during execution with `run_stream()`, we can observe the conversation unfold **step by step** in real time. Each message is streamed as it’s generated, allowing us to monitor the interaction live—unlike `run()`, which only shows the full conversation after it completes. This makes `run_stream()` ideal for debugging, experimentation, and interactive applications.
 
-#### 🔢🛑 Balancing Turn Limits with Semantic Termination in AutoGen 0.4+
+### 🔢🛑 Balancing Turn Limits with Semantic Termination in AutoGen 0.4+
 In the above demo, the [max_turns](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html) parameter enforces a hard cap on the number of agent responses, using `MaxMessageTermination` to ensure the conversation ends predictably. This is ideal for controlled experiments, debugging, and reproducible demos—especially when showcasing agent behavior in a fixed number of steps. However, it can prematurely cut off meaningful exchanges if agents are mid-task or require more turns to reach consensus, making it less suitable for open-ended or goal-driven interactions.
 
 To address this limitation, AutoGen 0.4 introduces [TextMentionTermination](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMentionTermination), which halts the conversation when a specific keyword (e.g., "TERMINATE" or "APPROVE") appears in any message. This allows agents to self-signal completion based on semantic cues rather than arbitrary limits, enabling more natural and context-aware termination. Combining both conditions (e.g., MaxMessageTermination | TextMentionTermination) offers a flexible safety net—ensuring runs don’t hang indefinitely while still allowing agents to exit gracefully when their task is complete.
@@ -307,9 +307,112 @@ Introducing a guiding voice helps the demo stay focused and provides contextual 
     )
 ```
 
->
+
 🚀 To experience real-time agent interactions using `termination_condition`, completely replace your existing Python script with the snippet below. Save it and run the script to activate this version’s enhanced control flow and semantic termination.
->
+
+📌 Notice: We’ve updated the `max_turns` parameter to 15.
+
+```python
+import os, sys
+import asyncio
+from dotenv import load_dotenv
+
+# 🤖 AgentChat and Azure OpenAI imports
+from autogen_ext.models.openai import AzureOpenAIChatCompletionClient  
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.conditions import TextMentionTermination
+from autogen_agentchat.base import TaskResult
+
+# 🌱 Load environment variables from .env file
+load_dotenv()
+
+# 🔐 Retrieve Azure OpenAI credentials from environment
+azure_openai_model_name = os.getenv("MODEL")
+azure_openai_api_key = os.getenv("API_KEY")
+azure_openai_endpoint = os.getenv("BASE_URL")
+azure_openai_api_version = os.getenv("API_VERSION")
+
+# 🚨 Windows compatibility for asyncio event loop
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
+# 🧠 Setup debate team with agents and moderator
+async def initialize_ai_debate_team(subject):
+    model_client = AzureOpenAIChatCompletionClient(
+        azure_deployment=azure_openai_model_name,
+        azure_endpoint=azure_openai_endpoint,
+        model=azure_openai_model_name,
+        api_version=azure_openai_api_version,
+        api_key=azure_openai_api_key,
+    )
+
+    Jean = AssistantAgent(
+        name="Jean",
+        model_client=model_client,
+        system_message=(
+            f"You are Jean, a Data Engineer. Your task is to clearly and concisely explain the importance of {subject}. "
+            "Introduce yourself only at the start of the first conversation."
+        ),
+    )
+
+    Daniel = AssistantAgent(
+        name="Daniel",
+        model_client=model_client,
+        system_message=(
+            f"You are Daniel, an AI Engineer. Focus on {subject} with emphasis on data cleansing and feature engineering. "
+            "Introduce yourself only at the start of the first conversation."
+        ),
+    )
+
+    Moderator = AssistantAgent(
+        name='Moderator',
+        model_client=model_client,
+        system_message=(
+            f"You are Garellard, the moderator of the debate between Jean and Daniel. Subject: {subject}. "
+            "Announce each round, flag round 3 as final, and end with 'TERMINATE'."
+        )
+    )
+
+    team = RoundRobinGroupChat(
+        participants=[Moderator, Daniel, Jean],
+        max_turns=15,
+        termination_condition=TextMentionTermination(text="TERMINATE")
+    )
+
+    async for res in team.run_stream(task=user_message):
+        print('-' * 300)
+        if isinstance(res, TaskResult):
+            print(f'Stopping reason: {res.stop_reason}')
+        else:
+            print(f'{res.source}: {res.content}')
+
+# Run the main loop
+if __name__ == "__main__":
+    user_message = input("Enter your message (type 'done' to exit): ").strip()
+    if user_message.lower() != 'done':
+        asyncio.run(run_ai_agent_debate(user_message))
+```
+### 🧩 To Summarize
+
+This demo walked you through the two core conversation strategies in Microsoft AutoGen: **Fixed Multi-Turn**, which uses `max_turns` for predictable, structured exchanges, and **Dynamic Multi-Turn**, which leverages `TextMentionTermination` for more natural, context-aware dialogue. Each approach serves different goals whether you're aiming for control or flexibility in agent behavior.
+
+### **Optional Demo:** Turn the above snippet into a chatbot using Streamlit
+
+**Real-life benefits for end users interacting via an interface:**
+- 💬 Personalized Help: Users can ask questions and get agent responses tailored to their needs (e.g., workshop FAQs, support)
+- 🧭 Guided Exploration: Chatbots can walk users through demos, tools, or learning modules step by step
+- 📋 Real-time Feedback: Users can quickly share thoughts or satisfaction while the context is fresh
+- 🖼️ Visual Interface: Conversational UI lowers cognitive load compared to navigating dense pages or forms
+
+
+🚀 **Microsoft AutoGen 0.4+ is our primary focus.**  However, if you're interested in learning about Streamlit, please visit the [official website](https://docs.streamlit.io/).
+
+To experience real-time Chatbot interactions using `streamlit`.
+
+✅ Steps to complete this demo:
+1. 📥 **Copy, paste, and completely replace** your existing Python script with the snippet below. 💾 Then, save the file to apply the changes.
+
 ```python
 import os, sys
 import asyncio
@@ -378,22 +481,72 @@ async def initialize_ai_debate_team(subject):
         termination_condition=TextMentionTermination(text="TERMINATE")
     )
 
-    async for res in team.run_stream(task=user_message):
-        print('-' * 300)
-        if isinstance(res, TaskResult):
-            print(f'Stopping reason: {res.stop_reason}')
+# 📡 Run debate stream and update UI with messages
+async def run_debate_and_stream(team):
+    import streamlit as st  # ✅ Move import here before usage
+    message_container = st.empty()
+    content_buffer = []
+
+    async for message in team.run_stream(task="Start the debate!"):
+        if isinstance(message, TaskResult):
+            formatted = f"🛑 **Stopping reason**: {message.stop_reason}"
         else:
-            print(f'{res.source}: {res.content}')
+            formatted = f"**{message.source}**: {message.content}"
+        content_buffer.append(formatted)
+        message_container.markdown("\n\n".join(content_buffer))
 
-# Run the main loop
-if __name__ == "__main__":
-    user_message = input("Enter your message (type 'done' to exit): ").strip()
-    if user_message.lower() != 'done':
-        asyncio.run(run_ai_agent_debate(user_message))
+# 🖼️ Streamlit UI components (imported right before use)
+import streamlit as st  # ✅ Primary import for Streamlit interface
+st.set_page_config(page_title="AI Debate Arena", layout="wide")
+st.title("🧠💬 AI Debate Arena")
+
+# 📝 Capture user input for debate topic
+topic = st.text_input("Enter debate topic:", value="type any kind of topics")
+start_button = st.button("Start Debate")
+
+# ⚙️ Initialize Streamlit session state
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+if "debate_triggered" not in st.session_state:
+    st.session_state.debate_triggered = False
+
+# ▶️ Start debate if triggered
+if start_button and topic and not st.session_state.debate_triggered:
+    async def debate_sequence():
+        team = await initialize_ai_debate_team(topic)
+        await run_debate_and_stream(team)
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(debate_sequence())
+
+# 💬 Display message history after debate
+st.markdown("---")
+for msg in st.session_state.messages:
+    st.markdown(msg)
 ```
-### ✨ Share Your Experience
 
-We hope this demo helped you understand how Microsoft AutoGen 0.4 enables structured, realistic conversations between AI agents. If you found this experience insightful or enjoyable, feel free to leave a comment and share your thoughts your feedback helps us improve and shape future workshops!
+
+2. **Open your terminal**, then run:
+```bash
+   streamlit run autogen_chatbot_app.py
+```
+
+3. 🌐 Once the Streamlit App Opens in Your Browser, Follow These Steps:
+    1. Go to the local Streamlit URL-usually `http://localhost:8502/`.
+    2. Find the input box labeled **Enter debate topic**.
+    3. Type in a topic of your choice, such as `Data Cleansing`.
+    4. Click the **Start Debating** button.
+    5. Observe the live debate unfold between three AI agents as they take turns discussing the topic.
+
+
+
+### ✨ Share Your Experience and Satisfaction
+
+🙏 We hope you found this experience insightful! If you enjoyed the demos or learned something new, feel free to share your feedback and satisfaction—post this page on social media to help us make future sessions even better.
+
+✅ By now, you have a solid understanding of the **RoundRobinGroupChat** conversation flow.  
+🚀 Let's shift gears and dive into **SelectorGroupChat** by clicking on **Next Page**.
 
 
 <table width="100%">
@@ -403,7 +556,7 @@ We hope this demo helped you understand how Microsoft AutoGen 0.4 enables struct
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DirectAgentInteractionMultiTurnDynamicTermination.md">Next Page →</a>
+      <a href="../pages/AgentSelectorGroupChat.md">Next Page →</a>
     </td>
   </tr>
 </table>
