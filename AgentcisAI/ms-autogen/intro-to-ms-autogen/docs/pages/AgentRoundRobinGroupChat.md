@@ -427,7 +427,8 @@ This shows the moderator isn’t just a passive agent, it’s a conversation arc
 
 This demo walked you through the two core conversation strategies in Microsoft AutoGen: **Fixed Multi-Turn**, which uses `max_turns` for predictable, structured exchanges, and **Dynamic Multi-Turn**, which leverages `TextMentionTermination` for more natural, context-aware dialogue. Each approach serves different goals whether you're aiming for control or flexibility in agent behavior.
 
-### **Optional Demo:** Turn the above snippet into a chatbot using Streamlit
+### **Optional Demo:** 
+Turn the above snippet into a chatbot using Streamlit
 
 **Real-life benefits for end users interacting via an interface:**
 - 💬 Personalized Help: Users can ask questions and get agent responses tailored to their needs (e.g., workshop FAQs, support)
@@ -441,7 +442,7 @@ This demo walked you through the two core conversation strategies in Microsoft A
 To experience real-time Chatbot interactions using `streamlit`.
 
 ✅ Steps to complete this demo:
-1. 📥 **Copy, paste, and completely replace** your existing Python script with the snippet below. 💾 Then, save the file to apply the changes.
+1. 📥 **Copy, paste, and completely replace** your existing Python script with the snippet below. 💾 Then, save the file as `autogen_chatbot_app.py` to apply the changes.
 
 ```python
 import os, sys
@@ -559,15 +560,19 @@ for msg in st.session_state.messages:
 
 2. **Open your terminal**, then run:
 ```bash
-   streamlit run autogen_chatbot_app.py
+streamlit run autogen_chatbot_app.py
 ```
+After the script finishes running, a screen like the one below will appear.
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script4_img_1.png)
 
 3. 🌐 Once the Streamlit App Opens in Your Browser, Follow These Steps:
     1. Go to the local Streamlit URL-usually `http://localhost:8502/`.
-    2. Find the input box labeled **Enter debate topic**.
-    3. Type in a topic of your choice, such as `Data Cleansing`.
-    4. Click the **Start Debating** button.
-    5. Observe the live debate unfold between three AI agents as they take turns discussing the topic.
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script4_img_2.png)
+    3. Find the input box labeled **Enter debate topic**.
+    4. Type in a topic of your choice, such as `Data Cleansing`.
+    5. Click the **Start Debating** button.
+    6. Observe the live debate unfold between three AI agents as they take turns discussing the topic.
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script4_img_3.png)
 
 
 
