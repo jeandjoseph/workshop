@@ -1,11 +1,6 @@
-#
-<h1 style="color:white; text-align:center;">
-Getting Started with RoundRobinGroupChat in AutoGen 0.4+<br>
-Structured Multi-Turn Conversations Made Simple
-</h1>
+## 🧠 Understanding `RoundRobinGroupChat` in Microsoft AutoGen 0.4+
 
 This workshop script shows how two AI agents **Jean** and **Daniel** can take turns responding in a way that feels like a real conversation, using Microsoft AutoGen 0.4’s or latest RoundRobinGroupChat strategy to simulate a structured, back-and-forth dialogue.
-
 #
 
 In this part of the demo, we're working within a controlled conversation flow. Each agent gets a chance to speak, but only up to a predefined number of turns—set by the max_turns limit. Think of it as a structured debate where the clock is ticking and each round counts. It's designed to keep things focused, concise, and efficient while still showcasing the dynamic between the agents.
