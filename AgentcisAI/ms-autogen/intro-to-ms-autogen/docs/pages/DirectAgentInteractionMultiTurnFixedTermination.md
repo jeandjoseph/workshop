@@ -172,9 +172,7 @@ async for res in team.run_stream(task=user_message):
         print(f'Stopping reason: {res.stop_reason}')
     else:
         print(f'{res.source}: {res.content}')
-`````
-
-
+```
 >
 🚀 To experience real-time agent interactions with `run_stream()`, replace your existing Python script entirely with the code snippet below, save and run it. This version enables step-by-step observation of agent responses as the conversation unfolds.
 
@@ -260,7 +258,154 @@ if __name__ == "__main__":
 
 Notice that during execution with `run_stream()`, we can observe the conversation unfold **step by step** in real time. Each message is streamed as it’s generated, allowing us to monitor the interaction live—unlike `run()`, which only shows the full conversation after it completes. This makes `run_stream()` ideal for debugging, experimentation, and interactive applications.
 
+#### 🔢🛑 Balancing Turn Limits with Semantic Termination in AutoGen 0.4+
+In the above demo, the [max_turns](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html) parameter enforces a hard cap on the number of agent responses, using `MaxMessageTermination` to ensure the conversation ends predictably. This is ideal for controlled experiments, debugging, and reproducible demos—especially when showcasing agent behavior in a fixed number of steps. However, it can prematurely cut off meaningful exchanges if agents are mid-task or require more turns to reach consensus, making it less suitable for open-ended or goal-driven interactions.
 
+To address this limitation, AutoGen 0.4 introduces [TextMentionTermination](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMentionTermination), which halts the conversation when a specific keyword (e.g., "TERMINATE" or "APPROVE") appears in any message. This allows agents to self-signal completion based on semantic cues rather than arbitrary limits, enabling more natural and context-aware termination. Combining both conditions (e.g., MaxMessageTermination | TextMentionTermination) offers a flexible safety net—ensuring runs don’t hang indefinitely while still allowing agents to exit gracefully when their task is complete.
+
+When building agentic AI systems with Microsoft AutoGen, it's important to think carefully about **how and when your agents should stop talking**. Parameters like `max_turns` and `TextMentionTermination` aren’t just technical details, they shape the flow, clarity, and usefulness of your conversations.
+
+### 🛠️ What’s Modified in the thi Version
+
+This demo focuses on enabling **Dynamic Multi-Turn Conversation** using a content-based stopping condition.
+
+Here’s what we changed to improve clarity and control flow during real-time agent interactions:
+
+### 1️⃣ Imported a semantic termination condition
+
+This allows agents to end the conversation naturally by mentioning a specific keyword.
+
+```python
+from autogen_agentchat.conditions import TextMentionTermination
+```
+
+2️⃣ Applied the termination rule to the chat group
+
+This ensures the conversation stops when an agent explicitly says "TERMINATE".
+
+```python
+termination_condition = TextMentionTermination(text="TERMINATE")`
+```
+
+3️⃣ Added a moderator agent for structured debate dynamics
+
+Introducing a guiding voice helps the demo stay focused and provides contextual cues for when to stop.
+
+```python
+    Moderator = AssistantAgent(
+        name='Moderator',
+        model_client=model_client,
+        system_message=(
+            "You are Garellard, the moderator of a debate between Jean, a Data Engineer agent, "
+            "and Daniel, an AI Engineer agent. Your role is to guide and moderate the discussion."
+            f" The subject of the debate is: {subject}."
+            "\n\nInstructions:"
+            "\n1. At the start of each round, announce the round number."
+            "\n2. At the beginning of Round 3, state that it is the final round."
+            "\n3. After the final round, thank the audience and say exactly: \"TERMINATE\"."
+        )
+    )
+```
+
+>
+🚀 To experience real-time agent interactions using `termination_condition`, completely replace your existing Python script with the snippet below. Save it and run the script to activate this version’s enhanced control flow and semantic termination.
+>
+```python
+import os
+import asyncio
+from dotenv import load_dotenv
+
+from autogen_ext.models.openai import AzureOpenAIChatCompletionClient  
+from autogen_agentchat.agents import AssistantAgent
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.conditions import TextMentionTermination
+from autogen_agentchat.base import TaskResult
+
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve environment variables
+azure_openai_model_name = os.getenv("MODEL")
+azure_openai_api_key = os.getenv("API_KEY")
+azure_openai_endpoint = os.getenv("BASE_URL")
+azure_openai_api_type = os.getenv("API_TYPE")
+azure_openai_api_version = os.getenv("API_VERSION")
+
+# Print retrieved environment variables
+print("Endpoint:", azure_openai_endpoint)
+print("Model:", azure_openai_model_name)
+print("API Version:", azure_openai_api_version)
+
+# Define an async function to interact with the model client
+async def run_ai_agent_debate(user_message):
+    model_client = AzureOpenAIChatCompletionClient(
+        azure_deployment=azure_openai_model_name,
+        azure_endpoint=azure_openai_endpoint,
+        model=azure_openai_model_name,
+        api_version=azure_openai_api_version,
+        api_key=azure_openai_api_key,
+    )
+
+    subject = "clean datasets in the machine learning process"
+
+    Jean = AssistantAgent(
+        name="Jean",
+        model_client=model_client,
+        system_message=(
+            f"You are Jean, a Data Engineer. "
+            f"Your task is to clearly and very concisely explain the importance of {subject}. "
+            f"Focus on being brief, direct, and informative. "
+            f"Make sure you introduce yourself as Jean, a Data Engineer, at only the start of the first conversation."
+        ),
+    )
+
+    Daniel = AssistantAgent(
+        name="Daniel",
+        model_client=model_client,
+        system_message=(
+            f"You are Daniel, an AI Engineer. "
+            f"Begin conversations by discussing about the {subject}. "
+            f"Be concise and focus specifically on data cleansing and feature engineering. "
+            f"Make sure you introduce yourself as Daniel, an AI Engineer, at only the start of the first conversation."
+        ),
+    )
+
+
+    Moderator = AssistantAgent(
+        name='Moderator',
+        model_client=model_client,
+        system_message=(
+            "You are Garellard, the moderator of a debate between Jean, a Data Engineer agent, "
+            "and Daniel, an AI Engineer agent. Your role is to guide and moderate the discussion."
+            f" The subject of the debate is: {subject}."
+            "\n\nInstructions:"
+            "\n1. At the start of each round, announce the round number."
+            "\n2. At the beginning of Round 3, state that it is the final round."
+            "\n3. After the final round, thank the audience and say exactly: \"TERMINATE\"."
+        )
+    )
+
+
+    team = RoundRobinGroupChat(
+        participants=[Moderator, Daniel, Jean],
+        max_turns=15,
+        termination_condition = TextMentionTermination(text="TERMINATE")
+    )
+
+    async for res in team.run_stream(task=user_message):
+        print('-' * 300)
+        if isinstance(res, TaskResult):
+            print(f'Stopping reason: {res.stop_reason}')
+        else:
+            print(f'{res.source}: {res.content}')
+
+# Run the main loop
+if __name__ == "__main__":
+    user_message = input("Enter your message (type 'done' to exit): ").strip()
+    if user_message.lower() != 'done':
+        asyncio.run(run_ai_agent_debate(user_message))
+```
 ### ✨ Share Your Experience
 
 We hope this demo helped you understand how Microsoft AutoGen 0.4 enables structured, realistic conversations between AI agents. If you found this experience insightful or enjoyable, feel free to leave a comment and share your thoughts your feedback helps us improve and shape future workshops!
