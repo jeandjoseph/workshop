@@ -1,15 +1,16 @@
 #
 <h1 style="color:white; text-align:center;">
-Microsoft AutoGen Multi-Agent:<br>
-With Fixed Multi-Turns Conversation
+Getting Started with RoundRobinGroupChat in AutoGen 0.4+<br>
+Structured Multi-Turn Conversations Made Simple
 </h1>
-This workshop script shows how two AI agents Jean and Daniel can take turns responding in a way that feels like a real conversation, using Microsoft AutoGen 0.4’s or latest RoundRobinGroupChat strategy to simulate a structured, back-and-forth dialogue.
+
+This workshop script shows how two AI agents **Jean** and **Daniel** can take turns responding in a way that feels like a real conversation, using Microsoft AutoGen 0.4’s or latest RoundRobinGroupChat strategy to simulate a structured, back-and-forth dialogue.
 
 #
 
 In this part of the demo, we're working within a controlled conversation flow. Each agent gets a chance to speak, but only up to a predefined number of turns—set by the max_turns limit. Think of it as a structured debate where the clock is ticking and each round counts. It's designed to keep things focused, concise, and efficient while still showcasing the dynamic between the agents.
 
-In Microsoft AutoGen 0.4 or latest, the framework introduces agent selection strategies that determine how messages are routed among multiple agents. These strategies fall into two broad categories: deterministic and non-deterministic, and they play a crucial role in shaping how agentic AI systems behave.
+In Microsoft AutoGen 0.4 and later, the framework introduces agent selection strategies that determine how messages are routed among multiple agents. These strategies fall into two broad categories: deterministic and non-deterministic, each playing a crucial role in shaping how agentic AI systems behave. This demo focuses on deterministic strategies, where the flow of conversation is predefined making `RoundRobinGroupChat` the ideal choice.
 
 ### 🔁 RoundRobinGroupChat – Deterministic
 - **How it works**: Agents take turns in a fixed, circular order.
@@ -19,46 +20,6 @@ In Microsoft AutoGen 0.4 or latest, the framework introduces agent selection str
 - **Example**: Agent A → Agent B → Agent C → Agent A...
 
 This is useful when you want fairness and transparency in agent participation.
-
-### 🎯 SelectOneGroupChat – Non-Deterministic
-- **How it works**: After each message, a model (usually an LLM) selects the next agent to respond.
-- **Behavior**: Only one agent is chosen to reply at each step, based on context or relevance.
-- **Use case**: Efficient when only one agent needs to act or when you want to avoid redundant responses.
-- **Key trait**: Non-deterministic — the next speaker is chosen dynamically, not in a fixed order.
-
-This is great for expert selection or when minimizing noise in the conversation.
-
-### 🐝 SwarmGroupChat – Non-Deterministic
-
-- **How it works**: All agents respond to a user message simultaneously.
-- **Behavior**: Parallel replies from agents are gathered at once, each independently leveraging its own context and expertise.
-- **Use case**: Best suited for brainstorming, broad coverage tasks, and idea divergence where multiple perspectives are valuable.
-- **Key trait**: Non-deterministic — agent responses vary based on the LLM’s interpretation of context and prompt.
-- **Example**: Agent A + Agent B + Agent C all respond in parallel → Collated as a batch for the user.
-
-
-### 🧲 MagenticOneGroupChat – Context-Aware & Adaptive
-- **How it works**: Agents are selected based on their "magnetism" to the task—i.e., how relevant or capable they are in the current context.
-- **Behavior**: The system dynamically routes tasks to the most appropriate agent(s), often using memory, prior performance, or domain expertise.
-- **Use case**: Best for complex, open-ended tasks where agent specialization matters.
-- **Key trait**: Non-deterministic and intelligent — agent selection is adaptive and optimized for task relevance.
-
-Think of this as a smart routing system that picks the best agent for the job at each step.
-
-### 🧠 GroupChat Strategy Summary in Microsoft AutoGen
-
-### 🧠 GroupChat Strategy Summary in Microsoft AutoGen
-
-| Strategy               | Determinism       | Agent Turn Logic                         | Best For                                       |
-|------------------------|-------------------|------------------------------------------|------------------------------------------------|
-| [`RoundRobinGroupChat`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat)  | Deterministic     | Fixed circular order                     | Equal participation, structured dialogue       |
-| [`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html)   | Non-deterministic | LLM selects one agent to respond         | Focused replies, expert selection              |
-| [`SwarmGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/swarm.html)       | Non-deterministic | All agents respond simultaneously        | Collective brainstorming, high-parallelism     |
-| [`MagenticOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/magentic-one.html) | Non-deterministic | Context-aware agent selection            | Adaptive, intelligent task routing             |
-
-
-
-
 
 Our focus is on building a **deterministic** Microsoft AutoGen agent, which necessitates using the `RoundRobinGroupChat` to ensure predictable, sequential message passing among agents. This structure avoids randomness in agent selection, aligning with our deterministic design goals. 
 
@@ -115,7 +76,7 @@ async def interact_with_model(user_message):
         system_message=(
             "You are Jean, a Data Engineer. "
             "Your task is to clearly and very concisely explain the importance of {subject}. "
-            "Focus on being brief, direct, and informative. "
+            "Focus on being very brief, direct, and informative. "
             "Make sure you introduce yourself as Jean, a Data Engineer, at only the start of the first conversation. "
      ),
     )
@@ -127,7 +88,7 @@ async def interact_with_model(user_message):
         system_message=(
             "You are Daniel, an AI Engineer. "
             "Begin conversations by discussing anout the {subject}. "
-            "Be concise and focus specifically on data cleansing and feature engineering. "
+            "Be very concise and focus specifically on data cleansing and feature engineering. "
             "Make sure you introduce yourself as Daniel, an AI Engineer, at only the start of the first conversation."
      ),
     )
@@ -237,7 +198,7 @@ async def run_ai_agent_debate(user_message):
         system_message=(
             f"You are Jean, a Data Engineer. "
             f"Your task is to clearly and very concisely explain the importance of {subject}. "
-            f"Focus on being brief, direct, and informative. "
+            f"Focus on being very brief, direct, and informative. "
             f"Make sure you introduce yourself as Jean, a Data Engineer, at only the start of the first conversation."
         ),
     )
@@ -248,7 +209,7 @@ async def run_ai_agent_debate(user_message):
         system_message=(
             f"You are Daniel, an AI Engineer. "
             f"Begin conversations by discussing about the {subject}. "
-            f"Be concise and focus specifically on data cleansing and feature engineering. "
+            f"Be very concise and focus specifically on data cleansing and feature engineering. "
             f"Make sure you introduce yourself as Daniel, an AI Engineer, at only the start of the first conversation."
         ),
     )
