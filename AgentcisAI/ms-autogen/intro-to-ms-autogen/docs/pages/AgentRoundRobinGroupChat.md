@@ -578,7 +578,8 @@ After the script finishes running, a screen like the one below will appear.
 
 ### ✨ Share Your Experience and Satisfaction
 
-🙏 We hope you found this experience insightful! If you enjoyed the demos or learned something new, feel free to share your feedback and satisfaction—post this page on social media to help us make future sessions even better.
+🙏 We hope you found this experience insightful! If you enjoyed the demos or learned something new, we’d love to hear your feedback. Feel free to share this page on social media to help us reach even more people interested in Agentic AI.
+
 
 ✅ By now, you have a solid understanding of the **RoundRobinGroupChat** conversation flow.  
 🚀 Let's shift gears and dive into **SelectorGroupChat** by clicking on **Next Page**.
