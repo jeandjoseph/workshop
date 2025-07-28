@@ -150,10 +150,11 @@ When using `run_stream()`, make sure to import `TaskResult` with `from autogen_a
 
 ### 🔄 `run_stream()`. Code Update Summary
 
-In this version, we made two key changes:
+🔧 In this version, we made three key changes:
 
-1️⃣ Replaced the blocking run() call with the streaming run_stream() to observe the conversation step by step and capture real-time outputs. 
-2️⃣ TaskResult indicates why the chat stopped (e.g. max_turns, tool_use_limit) and optionally includes final results for post-processing.
+- 1️⃣ Replaced the blocking run() call with the streaming run_stream() to observe the conversation step by step and capture real-time outputs. 
+- 2️⃣ TaskResult indicates why the chat stopped (e.g. max_turns, tool_use_limit) and optionally includes final results for post-processing. 
+- 3️⃣ 🧹 Removed the looped conversation logic to focus on a single, streamable interaction for clarity and experimentation.
 
 ```python
 # ❌ Old approach from above scripts
@@ -173,7 +174,9 @@ async for res in team.run_stream(task=user_message):
         print(f'{res.source}: {res.content}')
 `````
 
-2️⃣ 🧹 Removed the looped conversation logic to focus on a single, streamable interaction for clarity and experimentation.
+
+>
+🚀 To experience real-time agent interactions with `run_stream()`, replace your existing Python script entirely with the code snippet below, save and run it. This version enables step-by-step observation of agent responses as the conversation unfolds.
 
 ````python
 import os
@@ -260,7 +263,7 @@ Notice that during execution with `run_stream()`, we can observe the conversatio
 
 ### ✨ Share Your Experience
 
-We hope this demo helped you understand how Microsoft AutoGen 0.4 enables structured, realistic conversations between AI agents. If you found this experience insightful or enjoyable, feel free to leave a comment and share your thoughts—your feedback helps us improve and shape future workshops!
+We hope this demo helped you understand how Microsoft AutoGen 0.4 enables structured, realistic conversations between AI agents. If you found this experience insightful or enjoyable, feel free to leave a comment and share your thoughts your feedback helps us improve and shape future workshops!
 
 
 <table width="100%">
