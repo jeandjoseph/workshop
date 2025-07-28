@@ -130,19 +130,25 @@ if __name__ == "__main__":
 ```python
 python autogen_fixed_turn_demo_run.py
 ```
-6. Wait until the execution is completed
+6. When prompted, type **Data Cleansing** as shown below, then press **Enter**.
+   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_0.png)
+8. Wait until the execution is complete, then you will see a screen similar to the one shown below.
+   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_2.png)
 
-Notice that in a RoundRobinGroupChat, the order of agents in the participants list directly determines the turn-taking sequence. For example, if `participants = [Daniel, Jean]`, Daniel will respond first, followed by Jean, then back to Daniel, and so on alternating strictly in that order. Changing it to `participants = [Jean, Daniel]` means Jean takes the first turn, followed by Daniel, and the cycle continues from there.
+
+Notice that in a `RoundRobinGroupChat`, the order of agents in the participants list directly determines the turn-taking sequence. For example, if `participants = [Daniel, Jean]`, Daniel will respond first, followed by Jean, then back to Daniel, and so on alternating strictly in that order. Changing it to `participants = [Jean, Daniel]` means Jean takes the first turn, followed by Daniel, and the cycle continues from there.
 
 🔁 Here’s an example: Replace your original Team participant setup with the script below and observe how the listed order defines the flow of the conversation:
 
 ```python
 team = RoundRobinGroupChat(
-    participants=[Daniel, Jean],
+    participants=[Jean, Daniel],
     max_turns=3,
 )
 ```
-Once complete, we’ll explore the run_stream() generator for real-time interaction and step-by-step output.
+With the small change above, `participants=[Jean, Daniel]`, we can clearly see that it affects the sequence flow of the conversation—Jean now speaks first, followed by Daniel, as shown below.
+  ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_3.png)
+
 
 We just explored `asyncio.run()`, which waits for the entire conversation to finish before showing results. Now, let’s shift to `run_stream()`. The key difference is that `run_stream()` is an async generator it lets us observe the conversation step by step as it unfolds. Unlike regular functions that reset after returning, generators remember where they left off and resume from the last yield, making them perfect for interactive, real-time experimentation.
 
@@ -175,6 +181,8 @@ async for res in team.run_stream(task=user_message):
 ```
 >
 🚀 To experience real-time agent interactions with `run_stream()`, replace your existing Python script entirely with the code snippet below, save and run it. This version enables step-by-step observation of agent responses as the conversation unfolds.
+
+Make sure you close your previous conversation by pressing Ctrl+C, then proceed with the tasks below.
 
 ````python
 import os
