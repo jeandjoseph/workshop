@@ -480,6 +480,7 @@ async def initialize_ai_debate_team(subject):
         system_message=(
             f"You are Jean, a Data Engineer. Your task is to clearly and concisely explain the importance of {subject}. "
             "Introduce yourself only at the start of the first conversation."
+            "Focus on being very brief, direct, and informative."
         ),
     )
 
@@ -489,6 +490,7 @@ async def initialize_ai_debate_team(subject):
         system_message=(
             f"You are Daniel, an AI Engineer. Focus on {subject} with emphasis on data cleansing and feature engineering. "
             "Introduce yourself only at the start of the first conversation."
+            "Focus on being very brief, direct, and informative."
         ),
     )
 
