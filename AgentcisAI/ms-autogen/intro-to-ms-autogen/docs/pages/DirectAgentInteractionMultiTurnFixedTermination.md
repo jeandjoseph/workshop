@@ -311,34 +311,32 @@ Introducing a guiding voice helps the demo stay focused and provides contextual 
 🚀 To experience real-time agent interactions using `termination_condition`, completely replace your existing Python script with the snippet below. Save it and run the script to activate this version’s enhanced control flow and semantic termination.
 >
 ```python
-import os
+import os, sys
 import asyncio
 from dotenv import load_dotenv
 
+# 🤖 AgentChat and Azure OpenAI imports
 from autogen_ext.models.openai import AzureOpenAIChatCompletionClient  
 from autogen_agentchat.agents import AssistantAgent
 from autogen_agentchat.teams import RoundRobinGroupChat
 from autogen_agentchat.conditions import TextMentionTermination
 from autogen_agentchat.base import TaskResult
 
-
-# Load environment variables from .env file
+# 🌱 Load environment variables from .env file
 load_dotenv()
 
-# Retrieve environment variables
+# 🔐 Retrieve Azure OpenAI credentials from environment
 azure_openai_model_name = os.getenv("MODEL")
 azure_openai_api_key = os.getenv("API_KEY")
 azure_openai_endpoint = os.getenv("BASE_URL")
-azure_openai_api_type = os.getenv("API_TYPE")
 azure_openai_api_version = os.getenv("API_VERSION")
 
-# Print retrieved environment variables
-print("Endpoint:", azure_openai_endpoint)
-print("Model:", azure_openai_model_name)
-print("API Version:", azure_openai_api_version)
+# 🚨 Windows compatibility for asyncio event loop
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
-# Define an async function to interact with the model client
-async def run_ai_agent_debate(user_message):
+# 🧠 Setup debate team with agents and moderator
+async def initialize_ai_debate_team(subject):
     model_client = AzureOpenAIChatCompletionClient(
         azure_deployment=azure_openai_model_name,
         azure_endpoint=azure_openai_endpoint,
@@ -347,16 +345,12 @@ async def run_ai_agent_debate(user_message):
         api_key=azure_openai_api_key,
     )
 
-    subject = "clean datasets in the machine learning process"
-
     Jean = AssistantAgent(
         name="Jean",
         model_client=model_client,
         system_message=(
-            f"You are Jean, a Data Engineer. "
-            f"Your task is to clearly and very concisely explain the importance of {subject}. "
-            f"Focus on being brief, direct, and informative. "
-            f"Make sure you introduce yourself as Jean, a Data Engineer, at only the start of the first conversation."
+            f"You are Jean, a Data Engineer. Your task is to clearly and concisely explain the importance of {subject}. "
+            "Introduce yourself only at the start of the first conversation."
         ),
     )
 
@@ -364,33 +358,24 @@ async def run_ai_agent_debate(user_message):
         name="Daniel",
         model_client=model_client,
         system_message=(
-            f"You are Daniel, an AI Engineer. "
-            f"Begin conversations by discussing about the {subject}. "
-            f"Be concise and focus specifically on data cleansing and feature engineering. "
-            f"Make sure you introduce yourself as Daniel, an AI Engineer, at only the start of the first conversation."
+            f"You are Daniel, an AI Engineer. Focus on {subject} with emphasis on data cleansing and feature engineering. "
+            "Introduce yourself only at the start of the first conversation."
         ),
     )
-
 
     Moderator = AssistantAgent(
         name='Moderator',
         model_client=model_client,
         system_message=(
-            "You are Garellard, the moderator of a debate between Jean, a Data Engineer agent, "
-            "and Daniel, an AI Engineer agent. Your role is to guide and moderate the discussion."
-            f" The subject of the debate is: {subject}."
-            "\n\nInstructions:"
-            "\n1. At the start of each round, announce the round number."
-            "\n2. At the beginning of Round 3, state that it is the final round."
-            "\n3. After the final round, thank the audience and say exactly: \"TERMINATE\"."
+            f"You are Garellard, the moderator of the debate between Jean and Daniel. Subject: {subject}. "
+            "Announce each round, flag round 3 as final, and end with 'TERMINATE'."
         )
     )
 
-
-    team = RoundRobinGroupChat(
+    return RoundRobinGroupChat(
         participants=[Moderator, Daniel, Jean],
         max_turns=15,
-        termination_condition = TextMentionTermination(text="TERMINATE")
+        termination_condition=TextMentionTermination(text="TERMINATE")
     )
 
     async for res in team.run_stream(task=user_message):
