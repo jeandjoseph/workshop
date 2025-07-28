@@ -131,7 +131,7 @@ if __name__ == "__main__":
 python autogen_fixed_turn_demo_run.py
 ```
 6. When prompted, type **Data Cleansing** as shown below, then press **Enter**.
-   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_0.png)
+   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_1.png)
 8. Wait until the execution is complete, then you will see a screen similar to the one shown below.
    ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_2.png)
 
@@ -264,12 +264,19 @@ if __name__ == "__main__":
 
 ### 👀 Observation During `run_stream()` Execution
 
-Notice that during execution with `run_stream()`, we can observe the conversation unfold **step by step** in real time. Each message is streamed as it’s generated, allowing us to monitor the interaction live—unlike `run()`, which only shows the full conversation after it completes. This makes `run_stream()` ideal for debugging, experimentation, and interactive applications.
+Notice that during execution with `run_stream()`, we can observe the conversation unfold **step by step** in real time. Each message is streamed as it’s generated, allowing us to monitor the interaction live unlike `run()`, which only shows the full conversation after it completes. This makes `run_stream()` ideal for debugging, experimentation, and interactive applications.
+
+📌 Notice: We have **Stopping reason: Maximum number of turns (3) reached** in the screenshot below.  
+- The conversation stopped due to `max_turns=3` a parameter that limits the number of message exchanges in the agent group.
+- 🛠️ You can adjust this value in the group chat settings or directly in the `AgentChatGroup` initialization depending on your AutoGen setup.
+  ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script2_img_1.png)
+
+🔍 Let’s go over it now to understand what triggered the termination.
 
 ### 🔢🛑 Balancing Turn Limits with Semantic Termination in AutoGen 0.4+
-In the above demo, the [max_turns](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html) parameter enforces a hard cap on the number of agent responses, using `MaxMessageTermination` to ensure the conversation ends predictably. This is ideal for controlled experiments, debugging, and reproducible demos—especially when showcasing agent behavior in a fixed number of steps. However, it can prematurely cut off meaningful exchanges if agents are mid-task or require more turns to reach consensus, making it less suitable for open-ended or goal-driven interactions.
+In the above demo, the [max_turns](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html) parameter enforces a hard cap on the number of agent responses, using `MaxMessageTermination` to ensure the conversation ends predictably. This is ideal for controlled experiments, debugging, and reproducible demos, especially when showcasing agent behavior in a fixed number of steps. However, it can prematurely cut off meaningful exchanges if agents are mid-task or require more turns to reach consensus, making it less suitable for open-ended or goal-driven interactions.
 
-To address this limitation, AutoGen 0.4 introduces [TextMentionTermination](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMentionTermination), which halts the conversation when a specific keyword (e.g., "TERMINATE" or "APPROVE") appears in any message. This allows agents to self-signal completion based on semantic cues rather than arbitrary limits, enabling more natural and context-aware termination. Combining both conditions (e.g., MaxMessageTermination | TextMentionTermination) offers a flexible safety net—ensuring runs don’t hang indefinitely while still allowing agents to exit gracefully when their task is complete.
+To address this limitation, AutoGen 0.4 introduces [TextMentionTermination](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.conditions.html#autogen_agentchat.conditions.TextMentionTermination), which halts the conversation when a specific keyword (e.g., "TERMINATE" or "APPROVE") appears in any message. This allows agents to self-signal completion based on semantic cues rather than arbitrary limits, enabling more natural and context-aware termination. Combining both conditions (e.g., MaxMessageTermination | TextMentionTermination) offers a flexible safety net, ensuring runs don’t hang indefinitely while still allowing agents to exit gracefully when their task is complete.
 
 When building agentic AI systems with Microsoft AutoGen, it's important to think carefully about **how and when your agents should stop talking**. Parameters like `max_turns` and `TextMentionTermination` aren’t just technical details, they shape the flow, clarity, and usefulness of your conversations.
 
