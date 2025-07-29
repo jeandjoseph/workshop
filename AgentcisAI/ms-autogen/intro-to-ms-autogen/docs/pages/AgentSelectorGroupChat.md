@@ -166,6 +166,7 @@ When prompted to enter your message, we’ll try out the three prompt examples b
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/SelectorGroupChat_script1_img_2.png)
 
 5. Let us optimize the second prompt above to force the `SelectorGroupChat` to follow the agent position sequence in order. Now, copy and paste the following text into your terminal: `We just identified anomalies and a data ingestion issue in user engagement while building a dashboard that visualizes DAUs, session duration, and conversion rates for actionable insights.`
+
 👉 This phrasing triggers:
 - **DataEngineer** first, to address ingestion and anomaly repair.
 - **DataAnalyst** next, to interpret post-correction trends.
