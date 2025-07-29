@@ -176,9 +176,13 @@ We just identified anomalies in user engagement while building a dashboard visua
 ```text
 We just identified anomalies and a data ingestion issue in user engagement while building a dashboard that visualizes DAUs, session duration, and conversion rates for actionable insights.`
 ```
-Feel free to try this prompt as well
+Feel free to try either or both of these prompts as well.
 ```text
 While crafting a visualization dashboard meant for actionable insights on metrics like DAUs, conversion rates, and session duration, an issue emerged—one part anomaly, another stemming from ingestion complications tied to user engagement patterns we had just identified.
+
+# or
+
+We’ve received overlapping vendor datasets tracking machine uptime, energy usage, and temperature spikes. Some column names conflict, and timestamps vary. Integrate them into a clean structure, extract operational risks, and produce a visual report of anomalies. Each agent must respond ONLY with a concise task plan—no code, no execution, no analysis—just the plan. Begin with: 'Here is what I plan to perform to achieve your tasks.' Confirm your plan with the next agent before proceeding.
 ```
 
 👉 This phrasing triggers:
