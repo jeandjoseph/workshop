@@ -27,7 +27,7 @@ This mode is ideal when:
 | [`RoundRobinGroupChat`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat)  | Deterministic     | Fixed circular order                     | Equal participation, structured dialogue, Panel-style debates, brainstorming       |
 ---
 
-Great—now that you’ve got a solid grasp of SelectOneGroupChat and how it differs from RoundRobinGroupChat, let’s dive into the hands-on setup.
+Great, now that you’ve got a solid grasp of SelectOneGroupChat and how it differs from RoundRobinGroupChat, let’s dive into the hands-on setup.
 
 #### ✅ Steps to follow:
 1. Activate your Python virtual environment. Make sure it's up and running without issues.
