@@ -1,16 +1,13 @@
 ## 🧠 Understanding `SelectorGroupChat` in Microsoft AutoGen
 
-[`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html) is a coordination mode where **only one agent responds at a time**, hand-picked for its relevance to the task or prompt. Unlike traditional group chat strategies that allow multiple responses (like `RoundRobinGroupChat`), this method keeps interactions **focused and streamlined**.
-
----
+[`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html) is a dynamic agent orchestration pattern in Microsoft AutoGen 0.4+ that lets a language model choose which agent should speak next based on the conversation context. It’s like having a smart moderator that reads the room and picks the best contributor for each moment.
 
 🧠 How `SelectorGroupChat` Works
 - **Model-Based Selection**: Instead of round-robin turns, a language model analyzes the conversation history and agent descriptions to choose the next speaker.
 - **Agent Descriptions Matter**: Each agent’s name and description help the model decide who’s best suited to respond next.
 - **Custom Selector Prompt**: You can define a prompt that guides the model’s selection logic (e.g., “Only select the planner agent first”).
 - **Termination Conditions**: Supports semantic termination (e.g., when an agent says “TERMINATE”) and hard limits like max_messages=25.
-- **Flexible Turn Control**: You can allow repeated speakers or prevent back-to-back turns with allow_repeated_speaker.
-
+- **Flexible Turn Control**: You can allow repeated speakers or prevent back-to-back turns with `allow_repeated_speaker`.
 ---
 
 ### 💡 Why Use It?
@@ -22,13 +19,12 @@ This mode is ideal when:
 
 ---
 
-### 🔬 Comparison with Other Modes
+### 🔬 Comparison `SelectOneGroupChat` with `RoundRobinGroupChat`
 
 | Strategy               | Determinism       | Agent Turn Logic                         | Best For                                       |
 |------------------------|-------------------|------------------------------------------|------------------------------------------------|
-| [`RoundRobinGroupChat`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat)  | Deterministic     | Fixed circular order                     | Equal participation, structured dialogue, Panel-style debates, brainstorming       |
 | [`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html)   | Non-deterministic | LLM selects one agent to respond         | Focused replies, expert selection, Expert Q&A, focused dialog              |
-
+| [`RoundRobinGroupChat`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat)  | Deterministic     | Fixed circular order                     | Equal participation, structured dialogue, Panel-style debates, brainstorming       |
 ---
 
 
