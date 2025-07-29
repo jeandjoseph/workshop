@@ -197,6 +197,31 @@ By now, you’ve got a solid sense of when `SelectorGroupChat` shines, and it’
 
 [selector_prompt](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html#selector-prompt) in `SelectorGroupChat` offers a prompt-driven way to guide agent selection without writing custom functions, ideal for onboarding and simple orchestration logic. It allows dynamic, model-agnostic control using context like roles and history, but it’s less precise than code-based selectors, harder to debug, and can break down with complex logic or large agent groups. For clarity and ease, start with a prompt; for robustness and scalability, evolve toward a [selector_func](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html#custom-selector-function).
 
+Why `selector_prompt`?
+In complex multi-agent systems like SelectorGroupChat, default model selection alone can be unpredictable or hard to debug. That’s why we use a selector prompt—it acts like a guided rubric, helping the model choose the right agent based on clearly defined roles, past conversation history, and an explicit workflow sequence. Instead of leaving selection up to implicit behavior, we give the model structure: “Here’s what each agent does, here’s what’s happened so far, and here’s what typically comes next.” This turns random agent routing into thoughtful orchestration you can trust, explain, and refine.
+
+
+```python
+selector_prompt = """
+Based on the agent descriptions and the current context, select the most appropriate agent to handle the task.
+
+{roles}
+- **DataEngineer**: Ingest, prepares and transforms raw data. Manages pipelines, storage, and data quality. Does not perform analysis or visualization.
+
+- **DataAnalyst**: Extracts insights, trends, and anomalies from structured data. Does not Ingest, prepares and transforms raw data and create dashboards or visual reports.
+
+- **ReportBuilder**: Designs visualizations and business-aligned reports. Focuses on clarity, KPIs, and presentation. Does not Ingest, prepares, transforms raw data, analyze raw data, extracts insights, trends, and anomalies.
+
+Current conversation context:
+{history}
+
+Select ONE agent from {participants} to handle the task.
+The typical task flow is: DataEngineer → SQLDeveloper → ReportBuilder.
+"""
+
+```
+
+
 <table width="100%">
   <tr>
     <td align="left" style="white-space: nowrap;">
