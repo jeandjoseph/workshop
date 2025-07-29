@@ -200,6 +200,7 @@ By now, you’ve got a solid sense of when `SelectorGroupChat` shines, and it’
 Why `selector_prompt`?
 In complex multi-agent systems like SelectorGroupChat, default model selection alone can be unpredictable or hard to debug. That’s why we use a selector prompt—it acts like a guided rubric, helping the model choose the right agent based on clearly defined roles, past conversation history, and an explicit workflow sequence. Instead of leaving selection up to implicit behavior, we give the model structure: “Here’s what each agent does, here’s what’s happened so far, and here’s what typically comes next.” This turns random agent routing into thoughtful orchestration you can trust, explain, and refine.
 
+Steps to follow to modify the above codes o
 
 ```python
 selector_prompt = """
