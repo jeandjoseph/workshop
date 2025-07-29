@@ -221,19 +221,25 @@ team = SelectorGroupChat(
     participants=[DataEngineer, DataAnalyst,ReportBuilder],
     model_client=model_client,
     max_turns=10,
+    selector_prompt=selector_prompt,
     termination_condition=termination_condition,
     allow_repeated_speaker=True
 )
 ```
 
+Feel free to bring any kind of custom prompt to test `selector_prompt`.
+
+✅ By now, you have a solid understanding of the **SelectorGroupChat** conversation flow.  
+🚀 Let's shift gears and dive into **Swarm** by clicking on **Next Page**.
+
 <table width="100%">
   <tr>
     <td align="left" style="white-space: nowrap;">
-      <a href="../pages/DirectAgentInteractionMultiTurnDynamicConversationChatbot.md">← Previous Page</a>
+      <a href="../pages/AgentRoundRobinGroupChat.md">← Previous Page</a>
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/DataAnalystAgentCsvFile.md">Next Page →</a>
+      <a href="../pages/AgentSwarmGroupChat.md">Next Page →</a>
     </td>
   </tr>
 </table>
