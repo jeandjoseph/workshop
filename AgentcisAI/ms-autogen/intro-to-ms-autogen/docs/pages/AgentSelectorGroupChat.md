@@ -157,15 +157,29 @@ if __name__ == "__main__":
 python SelectorGroupChatagent.py
 ```
 When prompted to enter your message, we’ll try out the three prompt examples below.
-1. Copy and paste this text into your terminal: `Data is already production-ready. Analyze customer churn trends and create a dashboard showing monthly retention rates.`
-2. Wait until it’s done, then notice the order of the agents: `participants=[DataEngineer, DataAnalyst, ReportBuilder]` from the code above. Observe how `SelectorGroupChat` elegantly reaches out to each agent based on domain expertise, skipping `DataEngineer` despite its lead position.
+1. Copy and paste this text into your terminal:
+```text
+Data is already production-ready. Analyze customer churn trends and create a dashboard showing monthly retention rates.
+```
+3. Wait until it’s done, then notice the order of the agents: `participants=[DataEngineer, DataAnalyst, ReportBuilder]` from the code above. Observe how `SelectorGroupChat` elegantly reaches out to each agent based on domain expertise, skipping `DataEngineer` despite its lead position.
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/SelectorGroupChat_script1_img_1.png)
-5. Again Copy and paste this text into your terminal: `We just identified anomalies in user engagement while building a dashboard visualizing DAUs, session duration, and conversion rates for actionable insights.` Observe the output and see how the `SelectorGroupChat` uses the LLM model to guess the order of agent conversations based on the context of the user input (prompt).
+5. Again Copy and paste this text into your terminal: 
+```text
+We just identified anomalies in user engagement while building a dashboard visualizing DAUs, session duration, and conversion rates for actionable insights.
+```
+6. Observe the output and see how the `SelectorGroupChat` uses the LLM model to guess the order of agent conversations based on the context of the user input (prompt).
    
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/SelectorGroupChat_script1_img_2.png)
 
-5. Let us optimize the second prompt above to force the `SelectorGroupChat` to follow the agent position sequence in order. Now, copy and paste the following text into your terminal: `We just identified anomalies and a data ingestion issue in user engagement while building a dashboard that visualizes DAUs, session duration, and conversion rates for actionable insights.`
+7. Let us optimize the second prompt above to force the `SelectorGroupChat` to follow the agent position sequence in order. Now, copy and paste the following text into your terminal:
+```text
+We just identified anomalies and a data ingestion issue in user engagement while building a dashboard that visualizes DAUs, session duration, and conversion rates for actionable insights.`
+```
+Feel free to try this prompt as well
+```text
+While crafting a visualization dashboard meant for actionable insights on metrics like DAUs, conversion rates, and session duration, an issue emerged—one part anomaly, another stemming from ingestion complications tied to user engagement patterns we had just identified.
+```
 
 👉 This phrasing triggers:
 - **DataEngineer** first, to address ingestion and anomaly repair.
@@ -174,7 +188,10 @@ When prompted to enter your message, we’ll try out the three prompt examples b
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/SelectorGroupChat_script1_img_3.png)
 
+#### Introducing `selector_prompt`
+By now, you’ve got a solid sense of when `SelectorGroupChat` shines, and it’s a good moment to introduce its two selector options: `selector_prompt` and `selector_func`. Since we’re keeping this workshop beginner-friendly, we’ll mostly focus on the prompt-based path.
 
+[selector_prompt](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html#selector-prompt) in `SelectorGroupChat` offers a prompt-driven way to guide agent selection without writing custom functions, ideal for onboarding and simple orchestration logic. It allows dynamic, model-agnostic control using context like roles and history, but it’s less precise than code-based selectors, harder to debug, and can break down with complex logic or large agent groups. For clarity and ease, start with a prompt; for robustness and scalability, evolve toward a [selector_func](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html#custom-selector-function).
 
 <table width="100%">
   <tr>
