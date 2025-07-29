@@ -161,7 +161,7 @@ When prompted to enter your message, we’ll try out the three prompt examples b
 2. Wait until it’s done, then notice the order of the agents: `participants=[DataEngineer, DataAnalyst, ReportBuilder]` from the code above. Observe how `SelectorGroupChat` elegantly reaches out to each agent based on domain expertise, skipping `DataEngineer` despite its lead position.
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/SelectorGroupChat_script1_img_1.png)
-5. Again Copy and paste this text into your terminal: `We just identified anomalies in user engagement while building a dashboard visualizing DAUs, session duration, and conversion rates for actionable insights.` Observe the output
+5. Again Copy and paste this text into your terminal: `We just identified anomalies in user engagement while building a dashboard visualizing DAUs, session duration, and conversion rates for actionable insights.` Observe the output and see how the `SelectorGroupChat` uses the LLM model to guess the order of agent conversations based on the context of the user input (prompt).
    
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/SelectorGroupChat_script1_img_2.png)
 
