@@ -12,3 +12,20 @@ In Microsoft AutoGen 0.4+, a [`Swarm`](https://microsoft.github.io/autogen/stabl
 | 🧩 Modular Expertise    | Allows each agent to specialize, improving clarity and reuse               |
 | 🔄 Adaptability         | Swarms flexibly respond to changing inputs or business conditions          |
 | 📊 Transparent Logging  | Agent responses are traceable for auditability and compliance              |
+
+
+
+
+
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/AgentSelectorGroupChat.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/AgentSwarmGroupChat.md">Next Page →</a>
+    </td>
+  </tr>
+</table>
