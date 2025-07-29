@@ -200,28 +200,31 @@ By now, you’ve got a solid sense of when `SelectorGroupChat` shines, and it’
 Why `selector_prompt`?
 In complex multi-agent systems like SelectorGroupChat, default model selection alone can be unpredictable or hard to debug. That’s why we use a selector prompt—it acts like a guided rubric, helping the model choose the right agent based on clearly defined roles, past conversation history, and an explicit workflow sequence. Instead of leaving selection up to implicit behavior, we give the model structure: “Here’s what each agent does, here’s what’s happened so far, and here’s what typically comes next.” This turns random agent routing into thoughtful orchestration you can trust, explain, and refine.
 
-Steps to follow to modify the above codes o
+We could add the following code right before defining the type of team group chat.
 
 ```python
 selector_prompt = """
-Based on the agent descriptions and the current context, select the most appropriate agent to handle the task.
+Select an agent to perform task.
 
 {roles}
-- **DataEngineer**: Ingest, prepares and transforms raw data. Manages pipelines, storage, and data quality. Does not perform analysis or visualization.
-
-- **DataAnalyst**: Extracts insights, trends, and anomalies from structured data. Does not Ingest, prepares and transforms raw data and create dashboards or visual reports.
-
-- **ReportBuilder**: Designs visualizations and business-aligned reports. Focuses on clarity, KPIs, and presentation. Does not Ingest, prepares, transforms raw data, analyze raw data, extracts insights, trends, and anomalies.
 
 Current conversation context:
 {history}
 
-Select ONE agent from {participants} to handle the task.
-The typical task flow is: DataEngineer → SQLDeveloper → ReportBuilder.
+Read the above conversation, then select an agent from {participants} to perform the next task.
 """
-
 ```
 
+Next, update the Team codes block as follows:
+```python
+team = SelectorGroupChat(
+    participants=[DataEngineer, DataAnalyst,ReportBuilder],
+    model_client=model_client,
+    max_turns=10,
+    termination_condition=termination_condition,
+    allow_repeated_speaker=True
+)
+```
 
 <table width="100%">
   <tr>
