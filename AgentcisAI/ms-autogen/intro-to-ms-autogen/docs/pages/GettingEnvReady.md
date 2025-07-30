@@ -12,14 +12,22 @@
         1. Sign up for a [free subscription](https://azure.microsoft.com/en-us/) or use your existing Azure subscription.
         2. Create an [AI Foundry](https://ai.azure.com/) workspace to manage and host your models.
         3. Deploy a model of your choice.  
-            - For this workshop, we’re using **gpt-4.1-nano** to optimize for cost.
+            - For this workshop, we're using gpt-4.1-nano to optimize cost. If you use a different model, you may need to adjust your prompt to suit its specific behavior.
             - You can browse other models in the AI Foundry interface based on your needs.
         4. Copy, and paste the following details into a plain text file:
             - API endpoint URL
             - API key
             - Model version
         5. Create a new folder (for instance, name it `AIAgent`) to keep your project structure clean and secure.
-        6. Save the text file as **.env** (environment configuration file) inside the newly created folder.
+        6. Copy and paste the text below into a notepad. Update it with the latest information, then save the file as .env (an environment configuration file) inside the newly created folder.
+           ```text
+           MODEL='gpt-4.1-nano'
+           API_KEY='<your azure openai api key>'
+           BASE_URL='https:/<your azure openai api endpoint>.openai.azure.com/'
+           API_TYPE='azure'
+           API_VERSION='<your azure openai model version>'
+           DEPLOYMENT_NAME='<your azure openai model deployment name>'
+           ```
 ---
 ## ⚙️ Environment Setup Overview
 
