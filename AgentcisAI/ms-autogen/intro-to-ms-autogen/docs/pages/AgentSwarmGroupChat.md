@@ -175,6 +175,12 @@ Before starting, list the available agents and explicitly assign one to each of 
 image
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/Swarm_script1_img_1.png)
+
+
+✅ At this point, you’ve built a solid understanding of the `Swarm`, along with the conversation flows of both `RoundRobinGroupChat` and `SelectorGroupChat`.
+
+🚀 Now let’s shift gears and explore `Tool` by clicking on **Next Page**.
+
 <table width="100%">
   <tr>
     <td align="left" style="white-space: nowrap;">
@@ -182,7 +188,7 @@ image
     </td>
     <td style="width: 100px;"></td> <!-- Blank column for separation -->
     <td align="right" style="white-space: nowrap;">
-      <a href="../pages/AgentSwarmGroupChat.md">Next Page →</a>
+      <a href="../pages/AgentToolSearchWebWeather.md">Next Page →</a>
     </td>
   </tr>
 </table>
