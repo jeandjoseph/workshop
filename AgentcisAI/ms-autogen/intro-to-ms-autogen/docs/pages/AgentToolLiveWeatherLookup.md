@@ -1,6 +1,18 @@
 ## 🌤️ Entity Extraction with Agentic Weather Retrieval in AutoGen 0.4+
 We've all seen how powerful agents can be when orchestrated with purpose. Now let's extend their capabilities by registering [Tools](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.tools.html#autogen_core.tools.FunctionTool), giving agents a way to interact with the real world.
 
+#### 🧪 Demo Expectations: Real-Time Weather Retrieval via Tool Access
+
+**Goal**: Showcase how an agent can semantically interpret a user's natural-language query, identify the location entity, and trigger an external function to fetch real-time weather data.
+  
+What to Expect:
+- 📌 **LLM-powered** extraction: The agent identifies named entities (e.g. city, country) from flexible user input without hardcoded parsing.
+- 🔄 **Tool invocation**: The agent uses get_weather_details(location) to access external weather data.
+- 💬 **Clean handoff**: A responder agent formats and presents the data clearly, separating reasoning from execution.
+- 🧠 **No hallucination**: The agent doesn’t invent weather—it relies on tools, making the response verifiable and stable.
+- 🌍 **Location variety**: Demo can handle multiple global locations placed variably in the user query (start, middle, end).
+- 🔧 **Function tooling bridge**: You’re demonstrating how LLMs + registered tooling = smarter, extensible agent behavior beyond sandbox.
+
 First, let’s define what tools are in the world of Microsoft AutoGen.
 
 🛠️ In AutoGen, tools are callable Python functions, wrapped in a way that allows agents to understand their purpose, parameters, and outputs. Think of them as skill modules: when an agent hits a challenge it can't answer with reasoning alone, it can invoke a tool to fetch, compute, or transform real-world data.
@@ -53,7 +65,9 @@ async def get_weather_details(city: str) -> dict:
         }
 ```
 
-Without registering `get_weather_details` above function using FunctionTool (or an equivalent schema-based wrapper), the agent has no way to "see" or invoke that function. From the agent’s perspective, it simply doesn’t exist as a callable tool—it lacks the schema, name, description, and input/output structure that AutoGen relies on during planning and orchestration. So yes, registration is not optional; it’s what turns raw Python logic into actionable capabilities within the agentic flow.
+Without registering `get_weather_details` above function using `FunctionTool` (or an equivalent schema-based wrapper), the agent has no way to "see" or invoke that function. From the agent’s perspective, it simply doesn’t exist as a callable tool, it lacks the schema, name, description, and input/output structure that AutoGen relies on during planning and orchestration. So yes, registration is not optional; it’s what turns raw Python logic into actionable capabilities within the agentic flow.
+
+This snippet shows how to register a function as a tool.
 
 ```python
 # Register tool using FunctionTool — canonical approach in AutoGen 0.4+
@@ -65,14 +79,11 @@ weather_tool = FunctionTool(
 ```
 
 Now, let’s dive into the Agentic RAG-Based Demo: Get Current Weather demo!  
-This walkthrough assumes you’re already comfortable with the general script flow, it should feel familiar.
+This walkthrough assumes you’re already comfortable with the general script flow, it should feel familiar by now.
 
 ✅ Steps to Run the Demo:
 1. 🛠️ Ensure your Python virtual environment is activated.
 2. 📋 Copy the provided code snippet into your preferred text editor (e.g., Notepad).
-
-```python
-user_proxy = UserProxyAgent(name="user_proxy")
 
 ```python
 # -------------------------------
@@ -226,7 +237,7 @@ async def initialize_ai_agent_team():
 
     # 💡 Default query — you'll be prompted to change it at runtime
     # 🌟 This is the beauty of AutoGen — user_proxy simulates a human, but can also prompt you live
-    user_message = "What's the weather like in Irvington, NJ today?"
+    user_message = "Need the latest forecast? Just tell me how I can help you get it!"
     stream = team.run_stream(task=user_message)
 
     # 🔁 Stream each message from the team as it arrives
@@ -256,4 +267,16 @@ if __name__ == "__main__":
    ```bash
    python get_current_weather.py
    ```
-⏳ Wait for the output to appear your agent team should respond with fresh weather insights.
+⏳ Wait for the output and notice from below screenshot, how the agent uses its LLM-powered semantic understanding to detect **Irvington, NJ** as a location entity from a natural language query. It then calls the function `get_weather_details(location)` using this extracted value, triggering a structured weather retrieval flow. This shows how the agent relies on dynamic LLM inference, not rigid parsing to extract meaningful inputs for tooling. The response gets formatted and returned by a responder agent, with clear separation between understanding, execution, and presentation.
+
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_get_weather_img_1.png)
+
+Feel free to try out any variation you wish or copy a location from the text below.
+```text
+Do you have any weather info for Milan, Italy around this time of year?
+
+Is it rainy or clear in Cape Town, South Africa?
+
+Tokyo, Japan, what’s the weather looking like today?
+```
+``
