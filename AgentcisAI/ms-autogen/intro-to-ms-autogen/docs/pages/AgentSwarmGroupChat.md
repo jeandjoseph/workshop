@@ -14,7 +14,7 @@ In Microsoft AutoGen 0.4+, a [`Swarm`](https://microsoft.github.io/autogen/stabl
 | 📊 Transparent Logging  | Agent responses are traceable for auditability and compliance              |
 
 
-### 🔬 Comparison `SelectOneGroupChat` with `RoundRobinGroupChat`
+### 🔬 Comparison `Swarm` with `SelectOneGroupChat` and `RoundRobinGroupChat`
 
 | Strategy               | Determinism       | Agent Turn Logic                         | Best For                                       |
 |------------------------|-------------------|------------------------------------------|------------------------------------------------|
@@ -159,10 +159,19 @@ if __name__ == "__main__":
         asyncio.run(run_swarm_team(user_message))
 ```
 
+3. Save it as `SwarmGroupChatagent.py`
+4. Execute it by running the following command:
+```python
+python SwarmGroupChatagent.py
+```
+
+5. When prompted, Copy and paste this text into your terminal rhen press **Enter**:
+
 ```text
 Before starting, list the available agents and explicitly assign one to each of the following roles: data ingestion, cleaning, saving, pattern/trend/insight discovery, and reporting. Then, outline the plan using short, numbered steps that summarize each agent’s intended actions. Once all assigned tasks are completed, confirm that the dataset is fully prepared for analysis and reporting. This prompt structure promotes clarity, modularity, and consistent handoff behavior in agentic workflows.
 ```
 
+6. Wait for the execution to complete, then examine your output as shown in the screenshot below. Notice how Swarm uses task context and agent system messages, and not the participant order to determine execution flow. The agents are listed as `participants=[DataAnalyst, DataEngineer, ReportBuilder]` in the code above. Despite **DataAnalyst** agent appearing first, their system message delegates preprocessing to **DataEngineer** agent when raw data is detected. This triggers an upstream handoff, launching the appropriate agent first. In summary, execution sequence is context-driven, not list-order.
 image
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/Swarm_script1_img_1.png)
