@@ -22,10 +22,8 @@ You’re not just making things modular—you’re protecting your data, your us
 
 In this demo, we took a security-first approach to agent design by explicitly limiting what the agent can autonomously retrieve from the database. Rather than granting broad query access, we defined a SQL Server stored procedure **sales.usp_get_sales_summary_by_country** as shown below which returns only the aggregated sales data grouped by product and country. This ensures that the agent never sees raw transactional records or sensitive internal metrics beyond what’s operationally necessary.
 
-📌 Note: Before running this demo, ensure you've downloaded the CSV [file](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/csv/bicycle_data.csv) and imported it into a database engine of your choice. For demonstration purposes, we’ll be using SQL Server, which you can [download here](https://www.microsoft.com/en-us/sql-server/sql-server-downloads). Also Before running the demo, make sure to create the following stored procedure in your SQL Server database.
-
 ```sql
-CREATE PROC sales.usp_get_sales_summary_by_country
+CREATE PROC [sales].[usp_get_sales_summary_by_country]
 AS
 BEGIN
     SELECT 
@@ -34,7 +32,7 @@ BEGIN
         MAX([OrderQuantity]) AS MaxOrderQuantity,
         SUM([PurchasePrice]) AS TotalPurchasePrice,
         SUM([SellingPrice]) AS TotalSellingPrice
-    FROM [AgenticAI].[dbo].[bicycle_data_uneven]
+    FROM [sales].[BicycleSales]
     GROUP BY [ProductName], [Country]
 END
 ```
@@ -94,7 +92,14 @@ bicycle_sales_tool = FunctionTool(
 ```
 Why this matters: Again, In organizational environments, especially when working with proprietary or sensitive datasets, it's essential to restrict agent capabilities through predefined tooling. By designing tools externally and assigning them explicitly, we ensure clear governance, enforce scope boundaries, and prevent accidental overreach. Agents operate within the sandbox—we define the edges.
 
-Find the 
+📌 Note: Before running this demo, ensure you've downloaded the CSV [file](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/csv/bicycle_data.csv) and imported it into a database engine of your choice. For demonstration purposes, we’ll be using SQL Server, which you can [download here](https://www.microsoft.com/en-us/sql-server/sql-server-downloads). Also Before running the demo, make sure to create the following stored procedure in your SQL Server database.
+
+✅ Steps to complete this demo:
+1. Open this T-SQL [script file](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/db_sql_scripts/create_db_objects.sql), copy and paste the code into SSMS, then execute everything to create the database (if it doesn't already exist), along with the schema, table, and stored procedure.
+2. Ensure you've downloaded the [CSV File](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/csv/bicycle_data.csv) and imported it into the newly created database.
+3. Activate your Python virtual environment. Make sure it's up and running without issues.
+4. 📥 Copy and paste the Python script below into Notepad.
+
 ```python
 # -------------------------------
 # 📦 Standard Library
@@ -331,3 +336,21 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+
+5. 💾 Then, save the file as `sql_rag_agent_app.py` Choose a folder where your virtual environment can easily access it.
+6. Execute it by running the following command using the terminal: Observe how the agents communicate in a multi-turn conversation with deterministic sequencing.
+```python
+python sql_rag_agent_app.py
+```
+
+<table width="100%">
+  <tr>
+    <td align="left" style="white-space: nowrap;">
+      <a href="../pages/DirectHumanInteraction.md">← Previous Page</a>
+    </td>
+    <td style="width: 100px;"></td> <!-- Blank column for separation -->
+    <td align="right" style="white-space: nowrap;">
+      <a href="../pages/AgentSelectorGroupChat.md">Next Page →</a>
+    </td>
+  </tr>
+</table>
