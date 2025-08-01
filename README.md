@@ -1,10 +1,10 @@
 # 👋 Welcome to my GitHub workshop repository community
 
-Whether you're a data explorer, an AI tinkerer, a GenAI enthusiast, or a visualization storyteller—this workshop was built to support you.
+Whether you're a data explorer, an AI tinkerer, a GenAI enthusiast, or a visualization storyteller, this workshop was built to support you.
 
 ## 🎯 Our Purpose
 
-We exist to uplift the community and provide a safe, modular space for staying current in fast-evolving tech. We focus on practical skills, reproducible demos, and accessible guidance—no gatekeeping, no jargon overload.
+We exist to uplift the community and provide a safe, modular space for staying current in fast-evolving tech. We focus on practical skills, reproducible demos, and accessible guidance, no gatekeeping, no jargon overload.
 
 Scroll down to choose what interests you most 👇
 
