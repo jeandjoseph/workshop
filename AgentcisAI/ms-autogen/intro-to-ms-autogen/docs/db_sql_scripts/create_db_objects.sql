@@ -1,10 +1,18 @@
 -- Create the 'AgenticAI' database only if it doesn't already exist
+USE master
+GO
+
 IF DB_ID('AgenticAI') IS NULL
     CREATE DATABASE [AgenticAI]
 GO
 
+USE [AgenticAI]
+GO
+
 -- Create a new schema named 'sales' to organize related database objects
-CREATE DATABASE [AgenticAI]
+CREATE SCHEMA [sales]
+GO
+
 -- Enable ANSI_NULLS setting for consistent null comparison behavior
 SET ANSI_NULLS ON
 GO
@@ -49,3 +57,4 @@ BEGIN
     GROUP BY [ProductName], [Country]
 END
 GO
+
