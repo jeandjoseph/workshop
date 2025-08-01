@@ -19,7 +19,7 @@ In Microsoft AutoGen 0.4+, a [`Swarm`](https://microsoft.github.io/autogen/stabl
 | Strategy               | Determinism       | Agent Turn Logic                         | Best For                                       |
 |------------------------|-------------------|------------------------------------------|------------------------------------------------|
 | [`SwarmGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/swarm.html)       | Non-deterministic | All agents respond simultaneously        | Collective brainstorming, high-parallelism     |
-| [`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html)   | Non-deterministic | LLM selects one agent to respond         | Focused replies, expert selection, Expert Q&A, focused dialog              |
+| [`SelectorGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html)   | Non-deterministic | LLM selects one agent to respond         | Focused replies, expert selection, Expert Q&A, focused dialog              |
 | [`RoundRobinGroupChat`](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat)  | Deterministic     | Fixed circular order                     | Equal participation, structured dialogue, Panel-style debates, brainstorming       |
 ---
 
