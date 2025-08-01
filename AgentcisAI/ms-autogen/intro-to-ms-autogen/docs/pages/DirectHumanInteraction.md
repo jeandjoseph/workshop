@@ -52,14 +52,6 @@ This structure is essential for AutoGen’s agent framework, which relies on mes
 #### ⚙️ Steps to Run `HumanAndAIAgent.py`
 1. Activate your Python virtual environment. Make sure it's up and running without issues.
 2. Copy the code below into a text editor. You can use something simple like Notepad.
-3. Save the file as `HumanAndAIAgent.py`. Choose a folder where your virtual environment can easily access it.
-4. Execute the script within your virtual environment context. Open a terminal or command prompt and run:
-```bash
- python HumanAndAIAgent.py
-```
-
-
-
 
 ```python
 import os
@@ -121,6 +113,14 @@ if __name__ == "__main__":
 
 ```
 
+3. Save the file as `HumanAndAIAgent.py`. Choose a folder where your virtual environment can easily access it.
+4. Execute the script within your virtual environment context. Open a terminal or command prompt and run:
+```bash
+ python HumanAndAIAgent.py
+```
+
+5. When prompted, type `What is Power BI?` and feel free to experiment with different prompts.
+
 🧩 Explanation this piece of code
 
 ```python
@@ -128,7 +128,7 @@ result = await model_client.create([
     UserMessage(content=user_message, source="user")
 ])
 ```
-this snippet creates an asynchronous user message exchange with a model client: model_client.create([...]) sends the message, wrapped as a UserMessage with content containing the user's input and source="user" indicating the origin; the await keyword ensures the code waits for the model’s response before continuing, and that response is stored in result, which includes structured metadata like role, content, and timestamp—all part of AutoGen's modular agent communication flow.
+this snippet creates an asynchronous user message exchange with a model client: `model_client.create([...])` sends the message, wrapped as a `UserMessage` with content containing the user's input and `source="user"` indicating the origin; the await keyword ensures the code waits for the model’s response before continuing, and that response is stored in result, which includes structured metadata like role, content, and timestamp, all part of AutoGen's modular agent communication flow.
 
 we also used `asyncio.run()` which is a synchronous entry point that executes an asynchronous coroutine. In Microsoft AutoGen 0.4+, the core distinction between asynchronous and synchronous execution lies in how agents (humans, LLMs, or tools) interact and how tasks are orchestrated in the agent loop. We used `asyncio.run()` as a synchronous entry point to execute async coroutines, it blocks until completion—while `asyncio.run_stream()` supports streaming interactions with agents, enabling async updates during task progression.
 
