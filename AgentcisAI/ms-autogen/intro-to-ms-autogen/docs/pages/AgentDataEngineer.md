@@ -3,11 +3,12 @@
 Microsoft AutoGen Multi-Agent: <br>
 Coordinating SQL Creation, Execution, and Reporting with AutoGen 0.4+
 </h1>
-This demo showcases how to build an end-to-end data engineering workflow using Microsoft AutoGen’s multi-agent framework. By assigning distinct roles to specialized agents—such as SQL script generation, saving, execution, and status reporting we demonstrate how complex tasks can be modularized and automated through intelligent agent coordination.
+This demo showcases how to build an end-to-end data engineering workflow using Microsoft AutoGen’s multi-agent framework. By assigning distinct roles to specialized agents such as SQL script generation, saving, execution, and status reporting we demonstrate how complex tasks can be modularized and automated through intelligent agent coordination.
 
-<br>
 
 The goal is to highlight practical use of AutoGen 0.4+ features like SelectorGroupChat and MagneticOneGroupChat to manage task delegation and execution flow. This setup not only improves scalability and maintainability but also illustrates how multi-agent systems can streamline data operations in real-world scenarios.
+
+<br>
 
 This demo centers on using SelectorGroupChat to intelligently coordinate agent interactions, ensuring each task is routed to the agent best suited for its role and context. For a deeper dive into team-based chat strategies, feel free to explore the [Team GroupChat documentation](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/index.html).
 
@@ -142,4 +143,5 @@ async def main():
 # Launch
 asyncio.run(main())
 ```
+
 
