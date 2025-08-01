@@ -342,6 +342,19 @@ if __name__ == "__main__":
 ```python
 python sql_rag_agent_app.py
 ```
+7. When prompted, just type `Can you give me a summary of bicycle sales by country?`, then press **Enter**.
+
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_sql_db_rag_img_1.png)
+
+8. Wait until the execution is complete, then observe the output: a neatly formatted **Bicycle Sales Summary by Country**, **accompanied** by Recommendations, a **Note** regarding currencies, and a **visual chart** designed to analyze the data.
+
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_sql_db_rag_img_2.png)
+
+**To Summarize:**
+
+Notice how we pass a plain text prompt and effortlessly query a SQL Server database, analyze the underlying data, and generate a compelling visualization without writing a single line of code... how cool is that?
+
+Natural Language Processing (NLP) in generative AI has unlocked a new era of interaction, where plain English can drive complex workflows that once required deep technical skills. You can explore insights, trigger data transformations, and visualize trends with conversation alone. Still, for those who know how to code, it’s like holding the master key—giving you the power to debug, customize, and optimize every layer of the experience, especially for production-grade pipelines and agentic orchestration.
 
 <table width="100%">
   <tr>
