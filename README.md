@@ -33,5 +33,3 @@ Scroll down to choose what interests you most 👇
 - Onboarding-friendly demos for learners of all levels
 
 ---
-
-ing!
