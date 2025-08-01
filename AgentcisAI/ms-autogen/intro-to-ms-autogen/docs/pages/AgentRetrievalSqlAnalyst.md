@@ -346,8 +346,9 @@ python sql_rag_agent_app.py
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_sql_db_rag_img_1.png)
 
-8. Wait until the execution is complete, then observe the output: a neatly formatted **Bicycle Sales Summary by Country**, **accompanied** by Recommendations, a **Note** regarding currencies, and a **visual chart** designed to analyze the data.
+8. Wait until the execution is complete, then observe the output: a neatly formatted **Bicycle Sales Summary by Country**, **accompanied** by Recommendations, a **Note** regarding currencies, and a **visual chart** file created and designed to analyze the data.
 
+The screenshot below captures just a small portion of the full output. During the live demo, you'll get to experience the entire result in action.
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_sql_db_rag_img_2.png)
 
 **To Summarize:**
