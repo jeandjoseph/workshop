@@ -1,6 +1,5 @@
 #
 <h1 style="color:white; text-align:center;">
-Microsoft AutoGen Multi-Agent: <br>
 Coordinating SQL Creation, Execution, and Reporting with AutoGen 0.4+
 </h1>
 This demo showcases how to build an end-to-end data engineering workflow using Microsoft AutoGen’s multi-agent framework. By assigning distinct roles to specialized agents such as SQL script generation, saving, execution, and status reporting we demonstrate how complex tasks can be modularized and automated through intelligent agent coordination.
@@ -143,5 +142,6 @@ async def main():
 # Launch
 asyncio.run(main())
 ```
+
 
 
