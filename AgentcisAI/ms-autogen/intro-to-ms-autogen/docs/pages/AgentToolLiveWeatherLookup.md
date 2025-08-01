@@ -9,7 +9,7 @@ What to Expect:
 - 📌 **LLM-powered** extraction: The agent identifies named entities (e.g. city, country) from flexible user input without hardcoded parsing.
 - 🔄 **Tool invocation**: The agent uses get_weather_details(location) to access external weather data.
 - 💬 **Clean handoff**: A responder agent formats and presents the data clearly, separating reasoning from execution.
-- 🧠 **No hallucination**: The agent doesn’t invent weather—it relies on tools, making the response verifiable and stable.
+- 🧠 **No hallucination**: The agent doesn’t invent weather it relies on tools, making the response verifiable and stable.
 - 🌍 **Location variety**: Demo can handle multiple global locations placed variably in the user query (start, middle, end).
 - 🔧 **Function tooling bridge**: You’re demonstrating how LLMs + registered tooling = smarter, extensible agent behavior beyond sandbox.
 
@@ -22,7 +22,7 @@ They’re registered using [FunctionTool](https://microsoft.github.io/autogen/st
 📌 **Use tools when:**
 - Your agent needs access to external logic or APIs (e.g. weather data, file lookup, math computation).
 - You're designing a modular workflow that separates what agents do from how things get done.
-- You want reproducibility and clarity—tools are defined once, discoverable by name, and invocable by design.
+- You want reproducibility and clarity-tools are defined once, discoverable by name, and invocable by design.
 
 They’re the backbone of smart, utility-driven agents.
 
@@ -70,7 +70,7 @@ Without registering `get_weather_details` above function using `FunctionTool` (o
 This snippet shows how to register a function as a tool.
 
 ```python
-# Register tool using FunctionTool — canonical approach in AutoGen 0.4+
+# Register tool using FunctionTool - canonical approach in AutoGen 0.4+
 weather_tool = FunctionTool(
     func=get_weather_details,  # 🔧 Reference actual function
     name="get_weather_details",  # 🏷️ Tool name
@@ -166,7 +166,7 @@ async def get_weather_details(city: str) -> dict:
             "fahrenheit": {}
         }
 
-# Register tool using FunctionTool — canonical approach in AutoGen 0.4+
+# Register tool using FunctionTool - canonical approach in AutoGen 0.4+
 weather_tool = FunctionTool(
     func=get_weather_details,  # 🔧 Reference actual function
     name="get_weather_details",  # 🏷️ Tool name
@@ -224,7 +224,7 @@ async def initialize_ai_agent_team():
         model_client=model_client,
         system_message="""
         Take the structured weather data and present it in a clear, concise conversational format using Markdown. 
-        Make it feel like you're speaking directly to a curious human — walk through the temperature, 
+        Make it feel like you're speaking directly to a curious human - walk through the temperature, 
         conditions, and any notable alerts with friendly clarity. Once you're done, end the message with the word TERMINATE.
         """
     )
@@ -235,8 +235,8 @@ async def initialize_ai_agent_team():
         termination_condition=TextMentionTermination("TERMINATE")  # Stops once "TERMINATE" is mentioned
     )
 
-    # 💡 Default query — you'll be prompted to change it at runtime
-    # 🌟 This is the beauty of AutoGen — user_proxy simulates a human, but can also prompt you live
+    # 💡 Default query - you'll be prompted to change it at runtime
+    # 🌟 This is the beauty of AutoGen - user_proxy simulates a human, but can also prompt you live
     user_message = "Need the latest forecast? Just tell me how I can help you get it!"
     stream = team.run_stream(task=user_message)
 
@@ -282,7 +282,7 @@ Tokyo, Japan, what’s the weather looking like today?
 
 ✅ You’ve now built a solid foundation in Function Tooling with AutoGen.
 
-🚀 Let’s take the next step and explore how to access data from a database using a function tool—just click Next Page to continue.
+🚀 Let’s take the next step and explore how to access data from a database using a function tool-just click Next Page to continue.
 
 <table width="100%">
   <tr>
