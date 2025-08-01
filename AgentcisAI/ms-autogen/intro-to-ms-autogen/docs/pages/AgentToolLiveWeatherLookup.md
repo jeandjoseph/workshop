@@ -282,7 +282,7 @@ Tokyo, Japan, what’s the weather looking like today?
 
 ✅ You’ve now built a solid foundation in Function Tooling with AutoGen.
 
-🚀 Let’s take the next step and explore how to access data from a database using a function tool-just click Next Page to continue.
+🚀 Let’s take the next step and explore how to access data from a database using a function tool just click **Next Page** to continue.
 
 <table width="100%">
   <tr>
