@@ -351,10 +351,11 @@ python sql_rag_agent_app.py
 The screenshot below captures just a small portion of the full output. During the live demo, you'll get to experience the entire result in action.
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_sql_db_rag_img_2.png)
 
-feelf free to try different prompt(s)
+Feel free to give the prompt below a try or craft your own if you have a different angle in mind!
+
 ```text
 Please analyze bicycle sales by country, including key statistical distributions, top-performing regions, average and total sales figures, and any observable trends or outliers.
-``
+```
 
 **To Summarize:**
 
