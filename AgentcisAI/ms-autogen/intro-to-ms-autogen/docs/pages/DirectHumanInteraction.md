@@ -30,14 +30,6 @@ This pattern is perfect for:
 - Testing model responses in isolation  
 - Embedding human-in-the-loop workflows
 
----
-
-### 🧬 Key Concepts
-
-- `UserMessage`: Wraps your input with metadata like content and source  
-- `AzureOpenAIChatCompletionClient`: Connects to Azure-hosted models and handles structured message exchange  
-- `asyncio.run()`: Executes the async interaction loop, waiting for model responses before continuing
-
 
 #### ⚙️ Steps to Run `HumanAndAIAgent.py`
 1. 🛠️ Before you begin, make sure your [Python virtual environment](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/pages/GettingEnvReady.md) is activated, all dependencies are installed, and your `.env` file is properly configured. Everything should be running smoothly before you proceed.
@@ -119,9 +111,14 @@ result = await model_client.create([
     UserMessage(content=user_message, source="user")
 ])
 ```
-this snippet creates an asynchronous user message exchange with a model client: `model_client.create([...])` sends the message, wrapped as a `UserMessage` with content containing the user's input and `source="user"` indicating the origin; the await keyword ensures the code waits for the model’s response before continuing, and that response is stored in result, which includes structured metadata like role, content, and timestamp, all part of AutoGen's modular agent communication flow.
+🧠 This line sends the user's input to the model as a structured message and waits for the model's response.
 
-we also used `asyncio.run()` which is a synchronous entry point that executes an asynchronous coroutine. In Microsoft AutoGen 0.4+, the core distinction between asynchronous and synchronous execution lies in how agents (humans, LLMs, or tools) interact and how tasks are orchestrated in the agent loop. We used `asyncio.run()` as a synchronous entry point to execute async coroutines, it blocks until completion—while `asyncio.run_stream()` supports streaming interactions with agents, enabling async updates during task progression.
+- `UserMessage(...)`: Wraps the input with metadata (content + source)
+- `model_client.create([...])`: Sends the message to the model
+- `await`: Pauses execution until the model replies
+- `result`: Stores the model's response
+- **Note**: `AzureOpenAIChatCompletionClient`: Connects to Azure-hosted models and handles structured message exchange
+
 
 ➡️ Click on the **Next Page** to begin demonstrating how agents interact with one another. We'll focus on fixed-turn conversations.
 
@@ -136,4 +133,5 @@ we also used `asyncio.run()` which is a synchronous entry point that executes an
     </td>
   </tr>
 </table>
+
 
