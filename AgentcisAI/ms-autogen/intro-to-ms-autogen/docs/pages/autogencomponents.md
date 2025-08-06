@@ -33,15 +33,10 @@ Conversational, LLM-powered agents designed for prototyping and multi-agent coll
 
 | Agent Type             | Purpose                                                                 |
 |------------------------|-------------------------------------------------------------------------|
-| `AssistantAgent`       | LLM-powered agent with system prompt and tool-calling capabilities. General-purpose and highly flexible. |
-| `UserProxyAgent`       | Represents a human user or simulated input. Captures feedback or decisions in the workflow. |
-| `ConversableAgent`     | Messaging-enabled agent backbone. Can send/receive messages; ideal for building customized agents. |
-| `CodeExecutorAgent`    | Executes Python code locally or in Docker. Supports runtime logic, testing, and task automation. |
-| `RAGAgent`             | Combines LLMs with external document retrieval for more grounded generation. |
-| `MultimodalWebSurfer`  | Accepts text and image input; controls a headless browser to navigate and scrape websites. |
-| `GroupChatAgent`       | Coordinates multiple agents. Enables turn-based, selector-based, or parallel communication styles. |
-| `FunctionToolAgent`    | Converts native Python functions into structured tools callable by LLMs. |
-| `CustomAgent`          | User-defined subclass of `ConversableAgent`. Lets you embed business rules, prompts, and interaction logic. |
+| [AssistantAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent)       | LLM-powered agent with system prompt and tool-calling capabilities. General-purpose and highly flexible. |
+| [UserProxyAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.UserProxyAgent)       | Represents a human user or simulated input. Captures feedback or decisions in the workflow. |
+| [CodeExecutorAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.CodeExecutorAgent)    | Executes Python code locally or in Docker. Supports runtime logic, testing, and task automation. |
+| [MultimodalWebSurfer](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.agents.web_surfer.html#autogen_ext.agents.web_surfer.MultimodalWebSurfer)  | Accepts text and image input; controls a headless browser to navigate and scrape websites. |
 
 ---
 
@@ -191,6 +186,7 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
 
 
