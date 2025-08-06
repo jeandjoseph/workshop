@@ -68,12 +68,13 @@ Before processing, ensure your setup is ready:
 
 #### 👋 Why don’t I introduce myself?
 
-Hi! I'm <a href="https://datadrivencommunity.com/About-Jean-Joseph.html" target="_blank">Jean Joseph</a>, the person behind this workshop. I created it as a welcoming space for anyone curious about Agentic AI, whether you're diving in for the first time or looking to build smarter data workflows.
+<a href="https://datadrivencommunity.com/About-Jean-Joseph.html" target="_blank">Jean Joseph</a> is an independent Data & AI consultant who helps organizations architect intelligent, scalable solutions at the intersection of agentic automation and modern data platforms. With deep expertise in agent orchestration, Generative AI integration, and cloud-native data systems, Jean specializes in delivering reproducible, production-grade workflows tailored to real-world business needs. His consulting engagements span SQL optimization, AutoGen-based agent design, and end-to-end orchestration strategies that accelerate innovation and reduce operational complexity.
 
-I’m passionate about how tools like Microsoft Autogen can transform the way we work with data, and I’ve designed this session to be hands-on, inclusive, and beginner-friendly. There’s no need to be an expert, just bring your curiosity and a willingness to explore.
+A former Microsoft MVP and Senior Technical Trainer, Jean combines hands-on engineering precision with clear, actionable guidance—making him a trusted partner for teams navigating emerging AI frameworks. Whether leading strategic implementations or mentoring technical teams, he brings a systems-oriented approach that turns cutting-edge technology into scalable, secure solutions.
 
-If you’re interested in connecting, sharing ideas, or collaborating on future projects, feel free to reach out to me on <a href="https://www.linkedin.com/in/jeandjoseph/" target="_blank">LinkedIn</a>. I’d love to keep the conversation going.
+If you're seeking short-term consulting support or technical training in Data, AI, or Visualization, feel free to reach out via <a href="https://www.linkedin.com/in/jeandjoseph/" target="_blank">LinkedIn</a>. Jean is always open to collaborating on impactful, forward-looking projects.
 
+Moreover, if you’re interested in connecting, sharing ideas, or collaborating on future projects, feel free to reach out to me on <a href="https://www.linkedin.com/in/jeandjoseph/" target="_blank">LinkedIn</a>. I’d love to keep the conversation going.
 
 Let’s get started! 👉 Click through to the **Next page** to define and unpack the need for Agentic AI-where intelligence meets autonomy.
 
@@ -84,3 +85,4 @@ Let’s get started! 👉 Click through to the **Next page** to define and unpac
     </td>
   </tr>
 </table>
+
