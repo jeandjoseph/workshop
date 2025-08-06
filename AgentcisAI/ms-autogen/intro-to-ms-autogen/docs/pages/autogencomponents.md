@@ -82,13 +82,22 @@ The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agen
 ---
 ## 🔧 Tool
 A callable function or service (Python, REST, etc.) exposed to agents to enhance their capabilities beyond natural language—like accessing APIs, running code, or querying data.
-### 🛠️ Tool Types
-| [Tool](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.tools.html#module-autogen_agentchat.tools) Type                     | Functionality                                                           |
-|------------------------------|-------------------------------------------------------------------------|
-| `CodeExecutionTool`          | Executes Python or shell code                                           |
-| `FunctionCallTool`           | Invokes structured functions via LLM                                    |
-| `WebSearchTool`              | Retrieves web content                                                   |
-| `CustomTool`                 | User-defined tools for domain-specific tasks                            |
+
+### 🧰 AutoGen Tool Types 🛠️
+
+| Tool Name                  | Definition                                                                 | When to Use                                                                 | Example Usage                          |
+|----------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------|
+| `CodeExecutionTool`        | Executes Python code in a secure sandbox.                                  | For dynamic computation, data analysis, or prototyping.                     | Run `df.describe()` on uploaded data.  |
+| `FunctionCallTool`         | Invokes registered Python functions with arguments.                        | Use for structured API calls or modular task execution.                     | Call `generate_summary(text)` function.|
+| `AgentTool`                | Allows one agent to invoke another agent as a tool.                        | Delegate tasks across agents in multi-agent workflows.                      | Agent A calls Agent B for translation. |
+| `TeamTool`                 | Coordinates multiple agents as a team.                                     | Use for collaborative problem-solving or role-based orchestration.          | Team of agents solves a coding task.   |
+| `FunctionTool`             | Wraps a Python function for use in AutoGen workflows.                      | Ideal for integrating custom logic or utilities.                            | Wrap `get_weather(city)` for reuse.    |
+| `StreamTool`               | Streams output from a function in real time.                               | Use for long-running tasks or progressive updates.                          | Stream logs from model training.       |
+
+> 🔗 [AgentChat Tools Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.tools.html)  
+> 🔗 [AutoGen Core Tools Reference](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.tools.html#autogen_core.tools.StreamTool)
+
+📌 Combine `FunctionCallTool` with `StreamTool` for responsive, modular workflows. Use `TeamTool` to orchestrate agents with specialized roles.
 
 **Business Use Case**: Tools extend agent capabilities-e.g., FunctionCallTool for API orchestration, WebSearchTool for real-time insights.
 
@@ -105,8 +114,9 @@ In AutoGen v0.4+, AgentChat Team Presets are preconfigured multi-agent collabora
 |-------------------------|-----------------------------------------------------------------------------|
 | `RoundRobinGroupChat`   | Agents take turns responding in a fixed order. Simple and effective.        |
 | `SelectorGroupChat`     | Uses an LLM to select the next speaker after each message. Flexible and adaptive. |
-| `MagenticOneGroupChat`  | Generalist multi-agent system for open-ended tasks across web, code, and files. |
 | `Swarm`                 | Agents hand off control using `HandoffMessage`. Decentralized coordination. |
+| `MagenticOneGroupChat`  | Generalist multi-agent system for open-ended tasks across web, code, and files. |
+
 
 The core version also support GroupChat
 
@@ -181,6 +191,7 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
 
 
