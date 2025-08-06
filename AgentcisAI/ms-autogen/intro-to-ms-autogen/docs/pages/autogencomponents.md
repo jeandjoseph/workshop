@@ -16,7 +16,7 @@ AutoGen v0.4+ introduces a layered architecture. To me below are the two primary
 
 ---
 
-### ⚙️ [Core Agents](https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/index.html) (`autogen_core`)
+### ⚙️ [Core Agents](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html) (`autogen_core`)
 Low-level, event-driven agents ideal for distributed, scalable, and customizable workflows.
 
 | Agent Type         | Purpose                                                                 |
@@ -191,6 +191,7 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
 
 
