@@ -141,13 +141,15 @@ Predefined rules that control when a conversation or agent loop should end-based
 
 ### 🔚 [AutoGen Termination Conditions Types](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html)
 
-| Termination Type           | Definition                                                                 | When to Use                                                                 | Example Usage                          |
-|----------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------|
-| `Max_Turns`                | Terminates after a fixed number of turns (exchanges).                      | Enforce bounded interactions or prevent runaway loops.                      | Limit to 10 exchanges per session.     |
-| `MaxMessageTermination`    | Ends after a specified number of messages have been sent.                  | Control verbosity or message volume.                                        | Stop after 20 messages total.          |
-| `TextMentionTermination`   | Stops when a specific keyword or phrase is mentioned.                      | Keyword-triggered exits or sentinel-based control.                          | Terminate when "exit" is mentioned.    |
-| `CustomCondition`          | User-defined logic determines when to terminate.                          | Dynamic, context-aware workflows or multi-agent coordination.               | End if agent confidence < 0.5.         |
-| `FunctionCallTermination`  | Terminates when a specific function is called during the conversation.     | Use to halt flow after triggering a key operation or API call.              | Stop after `submit_report()` is called.|
+| Termination Condition         | Definition                                                                                          | When to Use                                                                                   | Example Usage                          |
+|------------------------------|-----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------|
+| `Max_Turns`                  | Not a termination class—refers to the `max_turns` parameter in `ConversableAgent.initiate_chat`.    | Use to cap the number of back-and-forth turns between two agents.                             | `agent.initiate_chat(peer, max_turns=5)` |
+| `MaxMessageTermination`      | Terminates after a specified number of messages (agent + task).                                     | Use to prevent long or runaway conversations.                                                  | `MaxMessageTermination(max_messages=20)` |
+| `TextMentionTermination`     | Terminates when a specific keyword or phrase appears in any message.                               | Use when agents are expected to signal completion via a keyword like `"TERMINATE"`.           | `TextMentionTermination(text="TERMINATE")` |
+| `FunctionalTermination`      | Terminates when a custom Python function returns `True` on the latest message sequence.             | Use for expressive, logic-based termination rules.                                              | `FunctionalTermination(func=lambda msgs: "done" in msgs[-1].to_text())` |
+| `TokenUsageTermination`      | Terminates when token usage exceeds a defined threshold (total, prompt, or completion).             | Use to control cost or enforce token budgets.                                                  | `TokenUsageTermination(max_total_token=5000)` |
+| `ExternalTermination`        | Terminates when triggered externally via `.set()`—often used in UI or API integrations.             | Use for programmatic control (e.g., stop button, timeout handler).                             | `external_term.set()` from outside the run |
+
 
 **Business Use Case**: Ensures control and resource efficiency-e.g., Timeout for SLA-bound tasks, CustomCondition for goal-based workflows.
 
@@ -179,4 +181,5 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
