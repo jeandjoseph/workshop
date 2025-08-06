@@ -139,15 +139,23 @@ Now that we are done with the `Team` concepts, let's focus on the `Termination C
 ## 🛑 Termination Condition
 Predefined rules that control when a conversation or agent loop should end-based on success, round count, or manual logic (e.g., `max_rounds`, `conclude_on_success`, `early_stop`).
 
-### 🛑 [Termination](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html) Types
-| Type                         | Description                                                             |
-|-----------------------------|-------------------------------------------------------------------------|
-| `MaxTurns`                  | Ends after fixed number of exchanges                                    |
-| `Timeout`                   | Ends after time limit                                                   |
-| `CustomCondition`           | Ends based on user-defined logic                                        |
-| `CancellationToken`         | Manual or programmatic cancellation                                     |
+### 🔚 [AutoGen Termination Conditions Types](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html)
+
+| Termination Type           | Definition                                                                 | When to Use                                                                 | Example Usage                          |
+|----------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------|
+| `Max_Turns`                | Terminates after a fixed number of turns (exchanges).                      | Enforce bounded interactions or prevent runaway loops.                      | Limit to 10 exchanges per session.     |
+| `MaxMessageTermination`    | Ends after a specified number of messages have been sent.                  | Control verbosity or message volume.                                        | Stop after 20 messages total.          |
+| `TextMentionTermination`   | Stops when a specific keyword or phrase is mentioned.                      | Keyword-triggered exits or sentinel-based control.                          | Terminate when "exit" is mentioned.    |
+| `CustomCondition`          | User-defined logic determines when to terminate.                          | Dynamic, context-aware workflows or multi-agent coordination.               | End if agent confidence < 0.5.         |
+| `FunctionCallTermination`  | Terminates when a specific function is called during the conversation.     | Use to halt flow after triggering a key operation or API call.              | Stop after `submit_report()` is called.|
 
 **Business Use Case**: Ensures control and resource efficiency-e.g., Timeout for SLA-bound tasks, CustomCondition for goal-based workflows.
+
+> 📌 Combine termination types for layered control - e.g., use `Max_Turns` with `FunctionCallTermination` to cap length while allowing early exit on task completion.
+
+🔗 [AutoGen Termination Guide](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html#custom-termination-condition)
+
+
 
 ---
 
@@ -171,3 +179,4 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
