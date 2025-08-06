@@ -75,7 +75,7 @@ The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agen
 **Use Case**: Choose models based on cost, latency, and capabilities—e.g., GPT-4o for multimodal tasks, cache for efficiency.
 
 ---
-## 🔧 Tool
+## 🔧 [Tool](https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/components/tools.html)
 A callable function or service (Python, REST, etc.) exposed to agents to enhance their capabilities beyond natural language—like accessing APIs, running code, or querying data.
 
 ### 🧰 AutoGen Tool Types 🛠️
@@ -186,6 +186,7 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
 
 
