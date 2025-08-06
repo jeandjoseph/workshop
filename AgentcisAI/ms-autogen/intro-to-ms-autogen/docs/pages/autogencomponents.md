@@ -137,7 +137,7 @@ Now that we are done with the `Team` concepts, let's focus on the `Termination C
 
 ---
 ## 🛑 Termination Condition
-Predefined rules that control when a conversation or agent loop should end-based on success, round count, or manual logic (e.g., `max_rounds`, `conclude_on_success`, `early_stop`).
+A Termination Condition in Microsoft AutoGen is a rule or trigger that ends a chat or agent interaction when met—like a message count limit, keyword match, token usage threshold, or custom logic function. It ensures agents stop at the right moment based on defined criteria.
 
 ### 🔚 [AutoGen Termination Conditions Types](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/termination.html)
 
@@ -181,5 +181,6 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
 
