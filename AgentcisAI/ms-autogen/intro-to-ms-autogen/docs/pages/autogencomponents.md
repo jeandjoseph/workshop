@@ -21,10 +21,10 @@ Low-level, event-driven agents ideal for distributed, scalable, and customizable
 
 | Agent Type         | Purpose                                                                 |
 |--------------------|-------------------------------------------------------------------------|
-| `Agent`            | Base class for all agents. Handles messaging, event scheduling, and runtime control. |
-| `ClosureAgent`     | Wraps a simple function or closure as an agent. Useful for embedding business logic or microservices. |
-| `ToolAgent`        | Executes external tools or functions. Ideal for invoking code, scripts, or search modules. |
-| `RoutedAgent`      | Routes messages dynamically to other agents based on rules or context. Powerful for orchestrating workflows. |
+| [Agent](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html#autogen_core.Agent)            | Base class for all agents. Handles messaging, event scheduling, and runtime control. |
+| [ClosureAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html#autogen_core.ClosureAgent)     | Wraps a simple function or closure as an agent. Useful for embedding business logic or microservices. |
+| [ToolAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.tool_agent.html#autogen_core.tool_agent.ToolAgent)        | Executes external tools or functions. Ideal for invoking code, scripts, or search modules. |
+| [RoutedAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.html#autogen_core.RoutedAgent)      | Routes messages dynamically to other agents based on rules or context. Powerful for orchestrating workflows. |
 
 ---
 
@@ -67,10 +67,10 @@ The underlying LLM (e.g., Azure OpenAI `gpt-4`, `gpt-35-turbo`) that drives agen
 ### 🧩 [Model](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/models.html) Clients
 | Model Type                        | Description                                      |
 |----------------------------------|--------------------------------------------------|
-| `OpenAIChatCompletionClient`     | Connects to OpenAI models like GPT-4o            |
-| `AzureOpenAIChatCompletionClient`| Azure-hosted GPT models with deployment config   |
-| `CustomModelClient`              | For OpenAI-compatible or third-party models      |
-| `ChatCompletionCache`            | Adds caching layer for cost/performance control  |
+| [OpenAIChatCompletionClient](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.openai.html#autogen_ext.models.openai.OpenAIChatCompletionClient)     | Connects to OpenAI models like GPT-4o            |
+| [AzureOpenAIChatCompletionClient](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.openai.html#autogen_ext.models.openai.AzureOpenAIChatCompletionClient)| Azure-hosted GPT models with deployment config   |
+| [Local LLMs](https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/cookbook/local-llms-ollama-litellm.html)              | For OpenAI-compatible or third-party models      |
+| [ChatCompletionCache](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.models.cache.html#autogen_ext.models.cache.ChatCompletionCache)            | Adds caching layer for cost/performance control  |
 
 **Use Case**: Choose models based on cost, latency, and capabilities—e.g., GPT-4o for multimodal tasks, cache for efficiency.
 
@@ -186,6 +186,7 @@ Now that you’ve got a solid foundation in AutoGen v0.4+ architecture and core 
     </td>
   </tr>
 </table>
+
 
 
 
