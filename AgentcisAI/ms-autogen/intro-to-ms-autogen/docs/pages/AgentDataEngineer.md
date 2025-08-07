@@ -14,134 +14,143 @@ This demo centers on using SelectorGroupChat to intelligently coordinate agent i
 
 ```python
 import os
-import re
 import asyncio
 from dotenv import load_dotenv
 
-from autogen_agentchat.agents import CodeExecutorAgent, AssistantAgent
-from autogen_agentchat.teams import SelectorGroupChat
-from autogen_agentchat.conditions import TextMentionTermination, MaxMessageTermination
-from autogen_agentchat.messages import TextMessage
-from autogen_agentchat.base import TaskResult
-
 from autogen_ext.models.openai import AzureOpenAIChatCompletionClient
+from autogen_agentchat.agents import AssistantAgent, CodeExecutorAgent
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.conditions import TextMentionTermination, MaxMessageTermination
 from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
 
-# Load environment variables
-load_dotenv()
-azure_openai_model_name = os.getenv("MODEL")
-azure_openai_api_key = os.getenv("API_KEY")
-azure_openai_endpoint = os.getenv("BASE_URL")
-azure_openai_api_version = os.getenv("API_VERSION")
 
-assert all([azure_openai_model_name, azure_openai_api_key, azure_openai_endpoint, azure_openai_api_version]), \
-    "Missing Azure OpenAI configuration in .env file"
+class AgenticTeamInitializer:
+    """
+    Encapsulates the initialization logic for a team of assistant and executor agents
+    using Azure OpenAI and AutoGen AgentChat SDK.
+    """
 
-# Define paths and credentials
-sql_script_files_dir = "sql_scripts"
-csv_file_path = "bicycle_data.csv"
-csv_error_log = "error_log.csv"
-stage_table_name = "BicycleStage"
-sql_server_name = "localhost"
-sql_database_name = "AgenticAI"
-authentication_mode = "windows authentication"
+    def __init__(self):
+        # Load environment variables from .env
+        load_dotenv()
 
-os.makedirs(sql_script_files_dir, exist_ok=True)
+        # Azure OpenAI configuration
+        self.azure_openai_model_name = os.getenv("MODEL")
+        self.azure_openai_api_key = os.getenv("API_KEY")
+        self.azure_openai_endpoint = os.getenv("BASE_URL")
+        self.azure_openai_api_version = os.getenv("API_VERSION")
 
-# Agent team initialization
-async def initialize_ai_agent_team():
-    model_client = AzureOpenAIChatCompletionClient(
-        azure_deployment=azure_openai_model_name,
-        azure_endpoint=azure_openai_endpoint,
-        model=azure_openai_model_name,
-        api_version=azure_openai_api_version,
-        api_key=azure_openai_api_key,
-    )
+        # Optional debug output
+        print("Endpoint:", self.azure_openai_endpoint)
+        print("Model:", self.azure_openai_model_name)
+        print("API Version:", self.azure_openai_api_version)
 
-    DbCodeCreator = AssistantAgent(
+        # Initialize chat completion client
+        self.model_client = AzureOpenAIChatCompletionClient(
+            azure_deployment=self.azure_openai_model_name,
+            azure_endpoint=self.azure_openai_endpoint,
+            model=self.azure_openai_model_name,
+            api_version=self.azure_openai_api_version,
+            api_key=self.azure_openai_api_key
+        )
+
+    async def initialize_team(self, user_message: str):
+        """
+        Constructs and returns a RoundRobinGroupChat team and executor agent.
+        """
+
+        # Agent that creates T-SQL from schema definition
+        DbCodeCreator = AssistantAgent(
         name="DbCodeCreator",
         description="Generates T-SQL scripts for SQL Server from CSV schema.",
-        model_client=model_client,
+        model_client=self.model_client,
+        #handoffs=["PythonCodeCreator"],
         system_message="""
-        Act as a T-SQL Developer expert. Write scripts to create database schemas and import a CSV with headers into SQL Server.
-        Once 'CodeSavor' notified you that his done, please respond "TERMINATE" 
-        Schema:
+        You are a T-SQL Developer collaborating with 'PythonCodeCreator'.
+
+        Your task:
+        - Generate T-SQL scripts to:
+        1. Create SQL Server schema objects.
+        2. Import a CSV file with headers into the appropriate table.
+
+        Schema definition:
         ProductId INT, ProductName VARCHAR(50), ProductType VARCHAR(30), Color VARCHAR(15),
         OrderQuantity INT, Size VARCHAR(15), Category VARCHAR(15), Country VARCHAR(30),
         Date DATE, PurchasePrice DECIMAL(18,2), SellingPrice DECIMAL(18,2)
-        Respond with SQL code inside a single markdown block.
-        """
-    )
 
-    PythonCodeCreator = AssistantAgent(
+        Response format:
+        - Always reply with **only one** markdown block containing the SQL code:
+        ```sql
+        -- your code here
+
+        - Do NOT add explanations, commentary, or multiple code blocks.
+
+        After 'CodeSavor' confirms successful execution, respond with: `TERMINATE`
+        """            
+        )
+
+        # Agent that writes the T-SQL script into Python code
+        PythonCodeCreator = AssistantAgent(
         name="PythonCodeCreator",
-        description="Saves SQL code received and passes to execution agent.",
-        model_client=model_client,
-        system_message=f"""
-        Act as a Python Developer. Save T-SQL scripts from 'DbCodeCreator' into files under '{sql_script_files_dir}'.
-        Respond with Python code inside a single markdown block.
-        """
-    )
+        description="Generates Python code to save T-SQL scripts into files without executing them.",
+        model_client=self.model_client,
+        #handoffs=["CodeSavor"],
+        system_message="""
+        You are a Python Developer collaborating with 'DbCodeCreator'.
 
-    CodeSavor = CodeExecutorAgent(
+        Your responsibilities are:
+        1. Write a Python script that:
+            - Accepts a list of T-SQL scripts, each represented as a dictionary with keys like `name` and `content`.
+            - Saves each script into a separate `.sql` file in the working directory.
+            - Uses the `name` field to generate the filename (e.g., `name.sql`). If `name` is missing, use a fallback like `script_1.sql`, `script_2.sql`, etc.
+            - At the END of your codes Confirm that all `.sql` files have been saved successfully.
+        2. Follow these strict formatting rules:
+        - Do NOT execute any code.
+        - Respond with a single Python code block formatted in markdown:
+            ```python
+            # your code here
+            ```
+        - Do NOT include explanations, comments, or multiple code blocks.
+
+        3. After generating the Python script:
+        - Initiate handoff to `CodeSavor` for execution.
+
+        """
+        )
+
+        # Agent that runs Python code and saves scripts
+        CodeSavor = CodeExecutorAgent(
         name="CodeSavor",
         code_executor=LocalCommandLineCodeExecutor(work_dir="CodeExecutionEnv"),
         system_message="""
-        Execute Python code from 'PythonCodeCreator' in the working directory.
-        Make sure each T-SQL code block save in a separate <filename.sql>
-        No need to return any *OUTPUT** if The POSIX exit code was: 0
-        Notify 'DbCodeCreator' that all scripts have been saved
-        End with: "TERMINATE"
+        You are a Code Executor.
+
+        Responsibilities:
+        - Execute Python code received from 'PythonCodeCreator' inside the working directory.
+        - Save each T-SQL code block to a unique `.sql` file.
+        - **DO NOT REPLY ON ANY OUTPUT**.
+        
+        - After executing Python code successfully, respond with `TERMINATE`.
+        - Do NOT re-execute the same code. If code has already been run, respond with `TERMINATE`.
+
         """
-    )
+        )
 
-    termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(max_messages=10)
+        # Termination logic for the team
+        termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(max_messages=5)
 
-    selector_prompt = """
-    Select the next agent to respond.
-    {roles}
-    Context:   
-    - DbCodeCreator: Generates T-SQL scripts for SQL Server from CSV schema.
-    - PythonCodeCreator: Saves SQL code received and passes to execution agent.
-    - CodeSavor: Execute Python code from 'PythonCodeCreator' to save in the working directory.
-    {history}
-    Agents must end with TERMINATE before the process is allowed to finish.
-    """
+        # Instantiate round-robin group chat
+        team = RoundRobinGroupChat(
+            participants=[DbCodeCreator, PythonCodeCreator, CodeSavor],
+            termination_condition=termination
+        )
 
-    team = SelectorGroupChat(
-        participants=[DbCodeCreator, PythonCodeCreator, CodeSavor],
-        model_client=model_client,
-        termination_condition=termination,
-        selector_prompt=selector_prompt,
-        allow_repeated_speaker=False
-    )
+        return team, CodeSavor
 
-    return team, CodeSavor
 
-# Define initial task
-task = """
-1. Generate T-SQL script to create schema 'stg' if not exists.
-2. Generate T-SQL script to create schema 'prd' if not exists.
-3. Generate T-SQL script to create schema 'etl_process' if not exists.
-"""
 
-# Orchestration logic
-async def orchestrate_ai_agent_workflow(team, executor_agent, task):
-    async for msg in team.run_stream(task=task):
-        if isinstance(msg, TextMessage):
-            cleaned_content = re.sub(r'^#{1,6}\s*', '', msg.content)
-            print(f"{msg.source}: {cleaned_content.strip()}")
-        elif isinstance(msg, TaskResult):
-            print(f"Stop reason: {msg.stop_reason}")
-
-# Entrypoint
-async def main():
-    team, executor_agent = await initialize_ai_agent_team()
-    await orchestrate_ai_agent_workflow(team, executor_agent, task)
-
-# Launch
-asyncio.run(main())
 ```
+
 
 
 
