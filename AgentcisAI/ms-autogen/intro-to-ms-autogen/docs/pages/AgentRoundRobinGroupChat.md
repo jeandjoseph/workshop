@@ -1,7 +1,7 @@
 ## 🤖 Designing [Agent](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html) Responses with AssistantMessage in AutoGen
 In agentic systems, the intelligence of interaction stems not just from user input, but from how agents interpret, reason, and respond. At the heart of this is the [AssistantAgent](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html) a core AutoGen component designed to generate structured, context-aware replies. This demo explores how `AssistantAgent` produces and utilizes [AssistantMessage](https://microsoft.github.io/autogen/stable/reference/python/autogen_core.models.html#autogen_core.models.AssistantMessage), the standardized output format that encapsulates an agent’s reply, rationale, or next action.
 
-Whether you're orchestrating a single-agent assistant or coordinating a multi-agent workflow, AssistantMessage is the expressive protocol through which AssistantAgent communicates. It ensures that every response is not just model output, but a traceable, interpretable unit of agentic reasoning.
+Whether you're orchestrating a single-agent assistant or coordinating a multi-agent workflow, AssistantMessage is the expressive protocol through which `AssistantAgent` communicates. It ensures that every response is not just model output, but a traceable, interpretable unit of agentic reasoning.
 
 To demonstrate `AssistantMessage`, we use [RoundRobinGroupChat](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.teams.html#autogen_agentchat.teams.RoundRobinGroupChat) a [team](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/tutorial/agents.html) class that coordinates sequential turn-taking among [AssistantAgent](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.agents.html#autogen_agentchat.agents.AssistantAgent) instances. Each reply is encapsulated in an `AssistantMessage`, forming a clean, predictable loop where agents build on prior outputs to execute tasks autonomously, with or without human intervention.
 
@@ -18,9 +18,9 @@ it's important to differentiate between post-hoc analysis and real-time visibili
 
 In `asyncio`, we distinguish between `run()` and `run_stream()`:
 - `run()` executes the full conversation and returns a final [TaskResult](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.TaskResult), which includes the complete set of messages (including AssistantMessage) after the interaction concludes.
-- `run_stream()` is an asynchronous generator that yields each intermediate message such as AssistantMessage, tool calls, and events in real time, followed by the final TaskResult.
+- `run_stream()` is an asynchronous generator that yields each intermediate message such as AssistantMessage, tool calls, and events in real time, followed by the final `TaskResult`.
 
-This distinction is crucial when deciding between post-hoc analysis and real-time visibility. Use run() for batch-style workflows, and run_stream() when you need granular insight, live monitoring, or reactive UI integration.
+This distinction is crucial when deciding between post-hoc analysis and real-time visibility. Use `run()` for batch-style workflows, and `run_stream()` when you need granular insight, live monitoring, or reactive UI integration.
 
 
 ### 👉 Let’s Proceed with the Demo: Agent Dialogue via `RoundRobinGroupChat`
@@ -33,10 +33,10 @@ The flow is governed by a predefined [`max_turns`](https://microsoft.github.io/a
 
 
 ### What to Expect:
-- 🤖 Deterministic agent selection: Jean and Daniel take turns in a predictable order.
-- 📦 Structured replies: Each response is wrapped in an `AssistantMessage`, enabling inspection and downstream processing.
-- 🔄 Autonomous collaboration: Agents simulate real conversation dynamics without human intervention.
-- 🧪 Reproducible behavior: The looped interaction can be rerun with consistent results, ideal for debugging or demonstration.
+- 🤖 **Deterministic agent selection**: **Jean** and **Daniel** take turns in a predictable order.
+- 📦 **Structured replies**: Each response is wrapped in an `AssistantMessage`, enabling inspection and downstream processing.
+- 🔄 **Autonomous collaboration**: Agents simulate real conversation dynamics without human intervention.
+- 🧪 **Reproducible behavior**: The looped interaction can be rerun with consistent results, ideal for debugging or demonstration.
 
 This setup showcases how AutoGen agents can collaborate intelligently in a controlled loop, perfect for modeling agentic workflows, testing prompt strategies, or building multi-agent systems.
 
@@ -142,7 +142,8 @@ python autogen_fixed_turn_demo_run.py
 
 Notice that in a `RoundRobinGroupChat`, the order of agents in the participants list directly determines the turn-taking sequence. For example, if `participants = [Daniel, Jean]`, Daniel will respond first, followed by Jean, then back to Daniel, and so on alternating strictly in that order. Changing it to `participants = [Jean, Daniel]` means Jean takes the first turn, followed by Daniel, and the cycle continues from there.
 
-🔁 Here’s an example: Replace your original Team participant setup with the script below and observe how the listed order defines the flow of the conversation:
+🔁 Here’s an example: Replace your original Team participant setup with the script below. The listed order defines the flow of the conversation and be sure to preserve indentation, or the script may fail:
+- Type `done`, press **Enter**, then **copy and paste** the code below to overwrite the existing team group chat.
 
 ```python
 team = RoundRobinGroupChat(
@@ -150,6 +151,11 @@ team = RoundRobinGroupChat(
     max_turns=3,
 )
 ```
+- 💾 Save your changes, then run the following code to execute the updated script:
+```python
+python autogen_fixed_turn_demo_run.py
+```
+
 With the small change above, `participants=[Jean, Daniel]`, we can clearly see that it affects the sequence flow of the conversation **Jean** now speaks first, followed by **Daniel**, as shown below.
   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_3.png)
 
@@ -602,5 +608,6 @@ After the script finishes running, a screen like the one below will appear.
     </td>
   </tr>
 </table>
+
 
 
