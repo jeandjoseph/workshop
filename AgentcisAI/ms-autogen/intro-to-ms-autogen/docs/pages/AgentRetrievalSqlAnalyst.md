@@ -97,8 +97,8 @@ Why this matters: Again, In organizational environments, especially when working
 ✅ Steps to complete this demo:
 1. Open this T-SQL [script file](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/db_sql_scripts/create_db_objects.sql), copy and paste the code into SSMS, then execute everything to create the database (if it doesn't already exist), along with the schema, table, and stored procedure.
 2. Ensure you've downloaded the [CSV File](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/csv/bicycle_data.csv) and imported it into the newly created database.
-3. Activate your Python virtual environment. Make sure it's up and running without issues.
-4. 📥 Copy and paste the Python script below into Notepad.
+3. 🛠️ Before you begin, make sure your [Python virtual environment](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/pages/GettingEnvReady.md) is activated, all dependencies are installed, and your `.env` file is properly configured. Everything should be running smoothly before you proceed.
+4. 📥 **Copy and paste** the Python script below into Notepad.
 
 ```python
 # -------------------------------
