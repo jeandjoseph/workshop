@@ -6,7 +6,31 @@ In traditional data engineering and analytics, success hinges not just on techni
 
 This demo shows how AutoGen’s AgentChat framework enables a round-robin group of agents to collaboratively perform end-to-end database development from schema interpretation to SQL generation, Python packaging, and file execution and all within a Microsoft Autogen Teams style chat loop.
 
-<br>
+#### 🧩 The Agentic Cast
+Using AutoGen’s AgentChat SDK, we define three specialized agents:
+
+| **Agent Name**      | **Role Description**                                                                 |
+|---------------------|--------------------------------------------------------------------------------------|
+| `DbCodeCreator`     | Converts schema definitions into T-SQL scripts for SQL Server                        |
+| `PythonCodeCreator` | Wraps T-SQL scripts into Python code that saves them as `.sql` files                 |
+| `CodeSavor`         | Executes Python code to persist the SQL scripts locally                              |
+
+Each agent is initialized with a precise system message that encodes its responsibilities and collaboration logic. This is where the magic happens: the system message acts as a proxy for human intent, guiding the agent to behave as if it were a domain expert.
+
+#### 🔁 Round-Robin Chat: Simulating Human Collaboration
+The agents are orchestrated using `RoundRobinGroupChat`, a built-in AutoGen construct that mimics structured turn-taking. This ensures that each agent contributes in sequence, handing off tasks and terminating when complete.
+
+Termination is governed by:
+- `TextMentionTermination("TERMINATE")`: Agents stop when they see the keyword.
+- `MaxMessageTermination(5)`: A safety net to prevent infinite loops.
+- `LocalCommandLineCodeExecutor`: For demo purposes, this agent runs shell commands directly in your local environment. In real-world setups, it's best to sandbox execution inside a [Docker container](https://microsoft.github.io/autogen/stable/reference/python/autogen_ext.code_executors.docker.html#module-autogen_ext.code_executors.docker) for safety and reproducibility. |
+
+#### 💡 Why Knowledge Transfer Matters
+The most important takeaway? Agentic success depends on how well human expectations are encoded into system messages. If you want your agents to perform like humans, you must guide them like humans—through clear, contextual instructions.
+
+Prompt optimization is always a work in progress, but the foundation is business knowledge. Whether you're defining a schema, specifying output formats, or setting termination logic, the agent’s effectiveness is directly proportional to the clarity of your
+
+
 
 This demo centers on using SelectorGroupChat to intelligently coordinate agent interactions, ensuring each task is routed to the agent best suited for its role and context. For a deeper dive into team-based chat strategies, feel free to explore the [Team GroupChat documentation](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/index.html).
 
@@ -149,6 +173,7 @@ class AgenticTeamInitializer:
 
 
 ```
+
 
 
 
