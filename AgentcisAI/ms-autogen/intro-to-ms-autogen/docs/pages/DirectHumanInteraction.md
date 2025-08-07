@@ -102,7 +102,7 @@ if __name__ == "__main__":
  python HumanAndAIAgent.py
 ```
 
-5. When prompted, type `What is Power BI?` and feel free to experiment with different prompts.
+5. When prompted, type `What is Power BI? Keep it very concise.` and feel free to experiment with different prompts.
 
 🧩 Explanation this piece of code
 
@@ -133,6 +133,7 @@ result = await model_client.create([
     </td>
   </tr>
 </table>
+
 
 
 
