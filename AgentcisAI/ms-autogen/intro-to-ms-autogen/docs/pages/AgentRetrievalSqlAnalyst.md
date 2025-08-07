@@ -363,7 +363,7 @@ Notice how we pass a plain text prompt and effortlessly query a SQL Server datab
 
 Natural Language Processing (NLP) in generative AI has unlocked a new era of interaction, where plain English can drive complex workflows that once required deep technical skills. You can explore insights, trigger data transformations, and visualize trends with conversation alone. Still, for those who know how to code, it’s like holding the master key—giving you the power to debug, customize, and optimize every layer of the experience, especially for production-grade pipelines and agentic orchestration.
 
-Let’s dive a little deeper by building an agent workflow that handles database development, data ingestion, and analysis—all initiated by clicking the **Next Page** button.
+Let’s dive a little deeper by building an agent workflow that handles database development, data ingestion, and analysis all initiated by clicking the **Next Page** button.
 
 <table width="100%">
   <tr>
