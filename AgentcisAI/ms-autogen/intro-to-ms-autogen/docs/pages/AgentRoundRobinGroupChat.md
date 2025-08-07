@@ -168,8 +168,8 @@ When using `run_stream()`, make sure to import `TaskResult` with `from autogen_a
 
 🔧 In this version, we made three key changes:
 
-- 1️⃣ Replaced the blocking run() call with the streaming run_stream() to observe the conversation step by step and capture real-time outputs. 
-- 2️⃣ TaskResult indicates why the chat stopped (e.g. max_turns, tool_use_limit) and optionally includes final results for post-processing. 
+- 1️⃣ Replaced the blocking `run()` call with the streaming `run_stream()` to observe the conversation step by step and capture real-time outputs. 
+- 2️⃣ `TaskResult` indicates why the chat stopped (e.g. max_turns, tool_use_limit) and optionally includes final results for post-processing. 
 - 3️⃣ 🧹 Removed the looped conversation logic to focus on a single, streamable interaction for clarity and experimentation.
 
 ```python
@@ -180,7 +180,7 @@ for message in res.messages:
     print(f"{message.source}: {message.content}")
 `````
 
-### ✅ New approach using run_stream
+### ✅ New approach using `run_stream`
 ```python
 async for res in team.run_stream(task=user_message):
     print('='*100)
@@ -192,7 +192,7 @@ async for res in team.run_stream(task=user_message):
 >
 🚀 To experience real-time agent interactions with `run_stream()`, replace your existing Python script entirely with the code snippet below, save and run it. This version enables step-by-step observation of agent responses as the conversation unfolds.
 
-Make sure you close your previous conversation by pressing Ctrl+C, then proceed with the tasks below.
+Make sure to close your previous conversation by typing `done` and pressing **Enter**, or by pressing **Ctrl+C**. Then proceed with the tasks below.
 
 ````python
 import os
@@ -271,6 +271,10 @@ if __name__ == "__main__":
     if user_message.lower() != 'done':
         asyncio.run(run_ai_agent_debate(user_message))
 ````
+
+🔁 Re-run the Python script.  
+📥 When prompted, type `Data Cleansing`, then press **Enter** to proceed.
+
 
 ### 👀 Observation During `run_stream()` Execution
 
@@ -608,6 +612,7 @@ After the script finishes running, a screen like the one below will appear.
     </td>
   </tr>
 </table>
+
 
 
 
