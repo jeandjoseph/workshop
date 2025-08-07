@@ -47,7 +47,7 @@ from autogen_agentchat.conditions import TextMentionTermination, MaxMessageTermi
 from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
 
 
-class AgenticTeamInitializer:
+class CodeDeveloperTeamBuilder:
     """
     Encapsulates the initialization logic for a team of assistant and executor agents
     using Azure OpenAI and AutoGen AgentChat SDK.
@@ -173,6 +173,7 @@ class AgenticTeamInitializer:
 
 
 ```
+
 
 
 
