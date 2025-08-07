@@ -24,7 +24,7 @@ A Python virtual environment is like a sandbox for your Python project. It isola
    - Open your terminal (PowerShell).
    - Paste the copied path directly into the terminal to activate the environment:
      ```powershell
-     & "F:/DevDemos/DataAnalysis/autogenv5/Scripts/Activate.ps1"
+     & "./autogenv5/Scripts/Activate.ps1"
    - You should see a screen similar to the one shown below.
 
      ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/ps_script_activate_py_env.png)
