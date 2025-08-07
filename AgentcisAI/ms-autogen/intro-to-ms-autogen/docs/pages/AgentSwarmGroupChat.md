@@ -25,8 +25,8 @@ In Microsoft AutoGen 0.4+, a [`Swarm`](https://microsoft.github.io/autogen/stabl
 
 Great, now that you’ve got a solid grasp of `Swarm` and how it differs from `SelectOneGroupChat` and `RoundRobinGroupChat`, let’s dive into the hands-on setup.
 
-#### ✅ Steps to follow:
-1. Activate your Python virtual environment. Make sure it's up and running without issues.
+### ✅ Steps to complete this demo:
+1. 🛠️ Before you begin, make sure your [Python virtual environment](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/pages/GettingEnvReady.md) is activated, all dependencies are installed, and your `.env` file is properly configured. Everything should be running smoothly before you proceed.
 2. **Copy** and **Paste** the code below into a text editor. You can use something simple like Notepad.
 
 ```python
@@ -158,14 +158,13 @@ if __name__ == "__main__":
             break
         asyncio.run(run_swarm_team(user_message))
 ```
-
-3. Save it as `SwarmGroupChatagent.py`
-4. Execute it by running the following command:
+3. Save the file as `SwarmGroupChatagent.py`. Choose a folder where your virtual environment can easily access it.
+4. Execute it by running the following command using the terminal: Observe how the agents communicate in a multi-turn conversation with deterministic sequencing.
 ```python
 python SwarmGroupChatagent.py
 ```
 
-5. When prompted, Copy and paste this text into your terminal rhen press **Enter**:
+5. When prompted, **Copy and Paste** this text into your terminal then press **Enter**:
 
 ```text
 Before starting, list the available agents and explicitly assign one to each of the following roles: data ingestion, cleaning, saving, pattern/trend/insight discovery, and reporting. Then, outline the plan using short, numbered steps that summarize each agent’s intended actions. Once all assigned tasks are completed, confirm that the dataset is fully prepared for analysis and reporting. This prompt structure promotes clarity, modularity, and consistent handoff behavior in agentic workflows.
@@ -176,7 +175,20 @@ image
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/Swarm_script1_img_1.png)
 
+7. Now let’s try a different prompt. Copy & Paste below in your Terminal then press Enter
 
+```text
+There is a need to analyze the refined data to extract insights, define metrics, and validate logic; however, this depends on proper data ingestion and cleansing to ensure accuracy and consistency. Once analyzed, use the validated inputs to build clear, actionable reports. Assign tasks based on domain expertise to ensure full ownership and seamless collaboration.
+```
+
+8. Wait until all outputs are received, then observe how AutoGen’s team swarm communication unfolds: agents `DataEngineer`, `DataAnalyst`, and `ReportBuilder` collaborate via a `GroupChat`, dynamically **handing off tasks** based on **domain expertise** using `FunctionCall` and `FunctionExecutionResult`.
+   
+   The `DataAnalyst` interprets the user’s intent and **delegates data ingestion to the DataEngineer and reporting to the ReportBuilder** through role transfers. While AutoGen executes only the first handoff unless parallel tool calls are enabled, both transfers are logged, demonstrating flexible role adoption.
+   
+   Agents recursively switch roles to complete tasks and return control, enabling **modular ownership**, **seamless collaboration**, and **clearly scoped responsibilities** across the workflow.
+
+
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/Swarm_script1_img_2.png)
 ✅ At this point, you’ve built a solid understanding of the `Swarm`, along with the conversation flows of both `RoundRobinGroupChat` and `SelectorGroupChat`.
 
 🚀 Now let’s shift gears and explore `Tool` by clicking on **Next Page**.
