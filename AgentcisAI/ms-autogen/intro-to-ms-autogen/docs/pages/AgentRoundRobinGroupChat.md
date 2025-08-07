@@ -130,13 +130,13 @@ if __name__ == "__main__":
 ````
 
 3. Save the file as `autogen_fixed_turn_demo_run.py`. Choose a folder where your virtual environment can easily access it.
-5. Run the script using the terminal: Observe how the agents communicate in a multi-turn conversation with deterministic sequencing.
+4. Run the script using the terminal: Observe how the agents communicate in a multi-turn conversation with deterministic sequencing.
 ```python
 python autogen_fixed_turn_demo_run.py
 ```
-6. When prompted, type **Data Cleansing** as shown below, then press **Enter**.
+5. When prompted, type **Data Cleansing** as shown below, then press **Enter**.
    ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_1.png)
-8. Wait until the execution is complete, then you will see a screen similar to the one shown below.
+6. Wait until the execution is complete, then you will see a screen similar to the one shown below.
    ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_2.png)
 
 
@@ -612,6 +612,7 @@ After the script finishes running, a screen like the one below will appear.
     </td>
   </tr>
 </table>
+
 
 
 
