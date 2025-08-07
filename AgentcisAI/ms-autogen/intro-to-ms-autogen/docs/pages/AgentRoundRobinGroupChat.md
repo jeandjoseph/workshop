@@ -9,7 +9,7 @@ To demonstrate `AssistantMessage`, we use [RoundRobinGroupChat](https://microsof
 - **How it works**: Agents take turns in a fixed, circular order.
 - **Behavior**: Every agent gets a chance to respond in sequence, and each response is broadcast to all other agents.
 - **Use case**: Ideal for structured collaboration where each agent contributes equally and context is shared.
-- **Key trait**: Deterministic — the order of agent turns is predictable and repeatable.
+- **Key trait**: Deterministic - the order of agent turns is predictable and repeatable.
 - **Example**: Agent A → Agent B → Agent C → Agent A...
 
 This is useful when you want fairness and transparency in agent participation.
@@ -18,14 +18,14 @@ it's important to differentiate between post-hoc analysis and real-time visibili
 
 In `asyncio`, we distinguish between `run()` and `run_stream()`:
 - `run()` executes the full conversation and returns a final [TaskResult](https://microsoft.github.io/autogen/stable/reference/python/autogen_agentchat.base.html#autogen_agentchat.base.TaskResult), which includes the complete set of messages (including AssistantMessage) after the interaction concludes.
-- `run_stream()` is an asynchronous generator that yields each intermediate message—such as AssistantMessage, tool calls, and events—in real time, followed by the final TaskResult.
+- `run_stream()` is an asynchronous generator that yields each intermediate message such as AssistantMessage, tool calls, and events in real time, followed by the final TaskResult.
 
 This distinction is crucial when deciding between post-hoc analysis and real-time visibility. Use run() for batch-style workflows, and run_stream() when you need granular insight, live monitoring, or reactive UI integration.
 
 
 ### 👉 Let’s Proceed with the Demo: Agent Dialogue via `RoundRobinGroupChat`
 
-This part of the workshop demonstrates how two AI agents—**Jean** and **Daniel**—engage in a structured, turn-based dialogue using AutoGen’s **deterministic** `RoundRobinGroupChat` strategy.
+This part of the workshop demonstrates how two AI agents **Jean** and **Daniel** engage in a structured, turn-based dialogue using AutoGen’s **deterministic** `RoundRobinGroupChat` strategy.
 
 Each agent responds in sequence, and every reply is encapsulated in an `AssistantMessage` object. These messages preserve not only the content but also the agent’s reasoning and context, making the conversation traceable and reproducible.
 
@@ -150,7 +150,7 @@ team = RoundRobinGroupChat(
     max_turns=3,
 )
 ```
-With the small change above, `participants=[Jean, Daniel]`, we can clearly see that it affects the sequence flow of the conversation—Jean now speaks first, followed by Daniel, as shown below.
+With the small change above, `participants=[Jean, Daniel]`, we can clearly see that it affects the sequence flow of the conversation **Jean** now speaks first, followed by **Daniel**, as shown below.
   ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/RoundRobinGroupChat_script1_img_3.png)
 
 
@@ -422,7 +422,7 @@ After running the script, you'll get a screen that looks like the one shown belo
 This shows the moderator isn’t just a passive agent, it’s a conversation architect with built-in judgment.
 
 🎯 **Moderator**'s Key Roles in the Example
-- 👋 **Welcoming Participants**: Clearly introduces all agents—Jean and Daniel—setting a professional, inclusive tone.
+- 👋 **Welcoming Participants**: Clearly introduces all agents **Jean** and **Daniel** setting a professional, inclusive tone.
 - 📚 **Structuring the Debate**: Splits the interaction into defined rounds: Opening Statements, Key Challenges, and Final Statements, creating a focused, time-boxed flow.
 - 🧮 **Managing Turn Count**: Although max_turns is set to 15, the moderator enforces semantic rules (like termination triggers) to stop earlier, keeping things efficient.
 - 🛑 **Early Termination Control**: Uses smart condition matching (e.g. message contains "TERMINATE") to override the default turn limit for graceful, content-aware shutdowns.
@@ -602,4 +602,5 @@ After the script finishes running, a screen like the one below will appear.
     </td>
   </tr>
 </table>
+
 
