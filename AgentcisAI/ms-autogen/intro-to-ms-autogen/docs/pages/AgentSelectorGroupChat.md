@@ -29,9 +29,9 @@ This mode is ideal when:
 
 Great, now that you’ve got a solid grasp of `SelectOneGroupChat` and how it differs from `RoundRobinGroupChat`, let’s dive into the hands-on setup.
 
-#### ✅ Steps to follow:
-1. Activate your Python virtual environment. Make sure it's up and running without issues.
-2. **Copy** and **Paste** the code below into a text editor. You can use something simple like Notepad.
+### ✅ Steps to complete this demo:
+1. 🛠️ Before you begin, make sure your [Python virtual environment](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/pages/GettingEnvReady.md) is activated, all dependencies are installed, and your `.env` file is properly configured. Everything should be running smoothly before you proceed.
+2. **Copy & Paste** the code below into a text editor. You can use something simple like Notepad.
 
 ```python
 import os
@@ -151,7 +151,7 @@ if __name__ == "__main__":
             break
         asyncio.run(run_ai_agent_debate_stream(user_message))
 ```
-3. Save it as `SelectorGroupChatagent.py`
+3. Save the file as `SelectorGroupChatagent.py`. Choose a folder where your virtual environment can easily access it.
 4. Execute it by running the following command:
 ```python
 python SelectorGroupChatagent.py
@@ -243,5 +243,6 @@ Feel free to bring any kind of custom prompt to test `selector_prompt`.
     </td>
   </tr>
 </table>
+
 
 
