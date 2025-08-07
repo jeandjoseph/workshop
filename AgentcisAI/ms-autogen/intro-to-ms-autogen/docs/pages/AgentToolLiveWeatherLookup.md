@@ -81,10 +81,9 @@ weather_tool = FunctionTool(
 Now, let’s dive into the Agentic RAG-Based Demo: Get Current Weather demo!  
 This walkthrough assumes you’re already comfortable with the general script flow, it should feel familiar by now.
 
-✅ Steps to Run the Demo:
-1. 🛠️ Ensure your Python virtual environment is activated.
-2. 📋 Copy the provided code snippet into your preferred text editor (e.g., Notepad).
-
+### ✅ Steps to complete this demo:
+1. 🛠️ Before you begin, make sure your [Python virtual environment](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/pages/GettingEnvReady.md) is activated, all dependencies are installed, and your `.env` file is properly configured. Everything should be running smoothly before you proceed.
+2. 📋 **Copy & Paste** the code below into a text editor. You can use something simple like Notepad.
 ```python
 # -------------------------------
 # 📦 Standard Library
@@ -264,10 +263,14 @@ if __name__ == "__main__":
 
 3. 💾 Save the file as `get_current_weather.py`.
 4. 🚀 In your terminal, execute the script:
-   ```bash
-   python get_current_weather.py
-   ```
-⏳ Wait for the output and notice from below screenshot, how the agent uses its LLM-powered semantic understanding to detect **Irvington, NJ** as a location entity from a natural language query. It then calls the function `get_weather_details(location)` using this extracted value, triggering a structured weather retrieval flow. This shows how the agent relies on dynamic LLM inference, not rigid parsing to extract meaningful inputs for tooling. The response gets formatted and returned by a responder agent, with clear separation between understanding, execution, and presentation.
+```bash
+python get_current_weather.py
+```
+5. When prompted, **copy and paste** the text below into your terminal, then press **Enter**.
+```text
+Hey, what's the weather like in Irvington, NJ today?
+```
+6. ⏳ Wait for the output and notice from below screenshot, how the agent uses its LLM-powered semantic understanding to detect **Irvington, NJ** as a location entity from a natural language query. It then calls the function `get_weather_details(location)` using this extracted value, triggering a structured weather retrieval flow. This shows how the agent relies on dynamic LLM inference, not rigid parsing to extract meaningful inputs for tooling. The response gets formatted and returned by a responder agent, with clear separation between understanding, execution, and presentation.
 
 ![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/tool_get_weather_img_1.png)
 
