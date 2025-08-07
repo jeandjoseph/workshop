@@ -2,10 +2,9 @@
 <h2 style="color:white; text-align:center;">
 Coordinating SQL Creation, Execution, and Reporting with AutoGen 0.4+
 </h2>
-This demo showcases how to build an end-to-end data engineering workflow using Microsoft AutoGen’s multi-agent framework. By assigning distinct roles to specialized agents such as SQL script generation, saving, execution, and status reporting we demonstrate how complex tasks can be modularized and automated through intelligent agent coordination.
+In traditional data engineering and analytics, success hinges not just on technical execution but on the clarity of business expectations. When knowledge transfer is fragmented, when project goals, schema definitions, or operational constraints are siloed, human teams struggle to deliver as expected. Agentic AI flips this paradigm: by embedding business logic directly into system messages and orchestrating agents with clear roles, we can simulate the precision of a well-informed human team.
 
-
-The goal is to highlight practical use of AutoGen 0.4+ features like SelectorGroupChat and MagneticOneGroupChat to manage task delegation and execution flow. This setup not only improves scalability and maintainability but also illustrates how multi-agent systems can streamline data operations in real-world scenarios.
+This demo shows how AutoGen’s AgentChat framework enables a round-robin group of agents to collaboratively perform end-to-end database development from schema interpretation to SQL generation, Python packaging, and file execution and all within a Microsoft Autogen Teams style chat loop.
 
 <br>
 
@@ -150,6 +149,7 @@ class AgenticTeamInitializer:
 
 
 ```
+
 
 
 
