@@ -12,7 +12,7 @@ In AutoGen, an agent is anything that can send, receive, and act on messages. In
 
 - **You** are the initiating agent  
 - **The model** is the responding agent  
-- **The script** is the bridge—using AutoGen’s building blocks to make the exchange seamless
+- **The script** is the bridge using AutoGen’s building blocks to make the exchange seamless
 
 ### 🛠️ How It Works
 
@@ -133,5 +133,6 @@ result = await model_client.create([
     </td>
   </tr>
 </table>
+
 
 
