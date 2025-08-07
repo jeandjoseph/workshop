@@ -1,6 +1,6 @@
 ## 🧠 Understanding `SelectorGroupChat` in Microsoft AutoGen
 
-[`SelectOneGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html) is a dynamic agent orchestration pattern in Microsoft AutoGen 0.4+ that lets a language model choose which agent should speak next based on the conversation context. It’s like having a smart moderator that reads the room and picks the best contributor for each moment.
+[`SelectorGroupChat`](https://microsoft.github.io/autogen/stable/user-guide/agentchat-user-guide/selector-group-chat.html) is a dynamic agent orchestration pattern in Microsoft AutoGen 0.4+ that lets a language model choose which agent should speak next based on the conversation context. It’s like having a smart moderator that reads the room and picks the best contributor for each moment.
 
 🧠 How `SelectorGroupChat` Works
 - **Model-Based Selection**: Instead of round-robin turns, a language model analyzes the conversation history and agent descriptions to choose the next speaker.
@@ -243,3 +243,4 @@ Feel free to bring any kind of custom prompt to test `selector_prompt`.
     </td>
   </tr>
 </table>
+
