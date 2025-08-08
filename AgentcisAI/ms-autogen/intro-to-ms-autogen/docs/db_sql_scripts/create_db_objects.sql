@@ -23,17 +23,17 @@ GO
 
 -- Create a table to store bicycle sales data with product and transaction details
 CREATE TABLE [sales].[BicycleSales](
-    [ProductId] [tinyint] NOT NULL,               -- Unique product identifier
-    [ProductName]  NOT NULL,        -- Name of the product
-    [ProductType]  NOT NULL,        -- Type/category of product
-    [Color]  NOT NULL,              -- Product color
-    [OrderQuantity] [tinyint] NOT NULL,           -- Quantity ordered
-    [Size]  NOT NULL,               -- Product size
-    [Category]  NOT NULL,           -- Sales category
-    [Country]  NOT NULL,            -- Country of sale
-    [Date] [date] NOT NULL,                       -- Date of transaction
-    [PurchasePrice] [decimal](18, 2) NOT NULL,    -- Cost to acquire product
-    [SellingPrice] [decimal](18, 2) NOT NULL      -- Price sold to customer
+	[ProductId] [tinyint] NOT NULL,
+	[ProductName] [nvarchar](50) NOT NULL,
+	[ProductType] [nvarchar](50) NOT NULL,
+	[Color] [nvarchar](50) NOT NULL,
+	[OrderQuantity] [tinyint] NOT NULL,
+	[Size] [nvarchar](50) NOT NULL,
+	[Category] [nvarchar](50) NOT NULL,
+	[Country] [nvarchar](50) NOT NULL,
+	[Date] [date] NOT NULL,
+	[PurchasePrice] [decimal](18, 2) NOT NULL,
+	[SellingPrice] [decimal](18, 2) NOT NULL
 ) ON [PRIMARY]
 GO
 
@@ -57,4 +57,5 @@ BEGIN
     GROUP BY [ProductName], [Country]
 END
 GO
+
 
