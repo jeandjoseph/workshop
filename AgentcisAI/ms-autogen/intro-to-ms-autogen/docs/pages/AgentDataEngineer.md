@@ -324,11 +324,13 @@ class AgenticTeamInitializer:
 ```
 5. Save the file as `AgentSqlCdeGeneratorPrompt.py`. Choose a folder where your virtual environment can easily access it.
 
-6. Run the command below, wait for it to finish, and you’ll see the T-SQL script files appear in your working directory.:
+6. Run the command below:
 ```python
 python AgentSqlCdeGeneratorPrompt.py
 ```
 
+7. Wait for it to finish, and you’ll see the T-SQL script files appear in your working directory, **as shown below**:
+![](/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/images/data_eng_script1_img_1.png)
 
 
 
