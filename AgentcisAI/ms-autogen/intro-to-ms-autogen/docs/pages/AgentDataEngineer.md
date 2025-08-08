@@ -323,10 +323,12 @@ class AgenticTeamInitializer:
         return team, CodeSavor
 ```
 5. Save the file as `AgentSqlCdeGeneratorPrompt.py`. Choose a folder where your virtual environment can easily access it.
+
 6. Run the command below, wait for it to finish, and you’ll see the T-SQL script files appear in your working directory.:
 ```python
 python AgentSqlCdeGeneratorPrompt.py
 ```
+
 
 
 
