@@ -170,9 +170,214 @@ class CodeDeveloperTeamBuilder:
 
         return team, CodeSavor
 
+import os
+import pyodbc
+import asyncio
+import logging
+import re
+from typing import List, Any
+from dotenv import load_dotenv
 
+from autogen_ext.models.openai import AzureOpenAIChatCompletionClient
+from autogen_agentchat.agents import AssistantAgent, CodeExecutorAgent
+from autogen_agentchat.teams import RoundRobinGroupChat
+from autogen_agentchat.conditions import TextMentionTermination, MaxMessageTermination
+from autogen_ext.code_executors.local import LocalCommandLineCodeExecutor
+from autogen_agentchat.base import TaskResult
+from autogen_agentchat.messages import TextMessage
+from autogen_core.tools import FunctionTool
 
+logging.basicConfig(level=logging.WARNING)
+
+class CodeDeveloperTeamExecutor:
+    """
+    Encapsulates the initialization logic for a team of assistant and executor agents
+    using Azure OpenAI and AutoGen AgentChat SDK.
+    """
+
+    def __init__(self):
+        try:
+            # Load environment variables from .env
+            load_dotenv()
+
+            # Required environment variables
+            required_vars = [
+                "MODEL", "API_KEY", "BASE_URL", "API_VERSION",
+                "sql_svr_name", "sql_db_name", "sql_stage_table_name",
+                "csv_file_dir", "csv_file_error_dir", "authentication_mode", "sql_script_dir"
+            ]
+            for var in required_vars:
+                if not os.getenv(var):
+                    raise ValueError(f"Missing required environment variable: {var}")
+
+            # Azure OpenAI configuration
+            self.azure_openai_model_name = os.getenv("MODEL")
+            self.azure_openai_api_key = os.getenv("API_KEY")
+            self.azure_openai_endpoint = os.getenv("BASE_URL")
+            self.azure_openai_api_version = os.getenv("API_VERSION")
+            self.sql_svr_name = os.getenv("sql_svr_name")
+            self.sql_db_name = os.getenv("sql_db_name") 
+            self.sql_stage_table_name = os.getenv("sql_stage_table_name")  
+            self.csv_file_dir = os.getenv("csv_file_dir")
+            self.csv_file_error_dir = os.getenv("csv_file_error_dir")
+            self.authentication_mode = os.getenv("authentication_mode")
+            self.sql_script_dir = os.getenv("sql_script_dir")    
+
+            # Initialize chat completion client
+            self.model_client = AzureOpenAIChatCompletionClient(
+                azure_deployment=self.azure_openai_model_name,
+                azure_endpoint=self.azure_openai_endpoint,
+                model=self.azure_openai_model_name,
+                api_version=self.azure_openai_api_version,
+                api_key=self.azure_openai_api_key
+            )
+
+            # Register the SQL execution tool
+            self.run_tsql_scripts = FunctionTool(
+                func=self.execute_tsql_from_path_or_text,
+                name="run_sql_folder_tool",
+                description=(
+                    "Executes SQL scripts from a folder, a single .sql file, or a raw SQL string "
+                    "on the specified SQL Server and database using Windows Authentication. "
+                    "Handles 'GO' batch separators and returns results from each script or query."
+                ),
+                strict=True
+            )
+
+        except Exception as e:
+            logging.error(f"Initialization failed: {e}")
+            raise
+
+    def execute_tsql_from_path_or_text(self, input_path: str, server: str, database: str) -> List[dict]:
+        """
+        Runs SQL scripts from a file or folder on a SQL Server database.
+        Supports 'GO' batch separators and returns results per script.
+
+        Args:
+            input_path: Path to a .sql file or folder containing .sql files.
+            server: SQL Server name.
+            database: Target database name.
+
+        Returns:
+            List of dictionaries with script path and execution results.
+        """
+        conn_str = (
+            r'DRIVER={ODBC Driver 17 for SQL Server};'
+            fr'SERVER={server};'
+            fr'DATABASE={database};'
+            r'Trusted_Connection=yes;'
+        )
+
+        def run_batches(sql_text: str) -> List[Any]:
+            conn = pyodbc.connect(conn_str)
+            cursor = conn.cursor()
+            batches = re.split(r'^\s*GO\s*$', sql_text, flags=re.IGNORECASE | re.MULTILINE)
+            results = []
+
+            for batch in batches:
+                batch = batch.strip()
+                if not batch:
+                    continue
+                try:
+                    cursor.execute(batch)
+                    try:
+                        results.extend(cursor.fetchall())
+                    except pyodbc.ProgrammingError:
+                        pass  # No results to fetch
+                    conn.commit()
+                except Exception as e:
+                    results.append(f"Error: {str(e)}")
+
+            conn.close()
+            return results
+
+        def collect_sql_files(path: str) -> List[str]:
+            if os.path.isfile(path) and path.lower().endswith('.sql'):
+                return [path]
+            elif os.path.isdir(path):
+                return [
+                    os.path.join(root, file)
+                    for root, _, files in os.walk(path)
+                    for file in files if file.lower().endswith('.sql')
+                ]
+            return []
+
+        all_results = []
+
+        if input_path.lower().endswith('.sql') or os.path.isdir(input_path):
+            for file_path in collect_sql_files(input_path):
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    sql = f.read()
+                    result = run_batches(sql)
+                    all_results.append({file_path: result})
+        else:
+            result = run_batches(input_path)
+            all_results.append({"raw_sql": result})
+
+        return all_results
+
+    async def build_code_executor_team(self, user_message: str):
+        """
+        Constructs and runs a RoundRobinGroupChat team and executor agent.
+        """
+
+        DbScriptExecutor = AssistantAgent(
+            name="DbScriptExecutor",
+            description="Generates Python code that uses the registered AutoGen tool to prepare SQL Server script execution.",
+            model_client=self.model_client,
+            tools=[self.run_tsql_scripts],
+            system_message="""
+            You are a Python Developer collaborating with 'code_executor_agent'.
+
+            Your responsibilities are:
+            1. Generate a Python script that:
+                - Uses the registered AutoGen tool `run_tsql_scripts` to prepare execution of SQL Server scripts.
+                - Accepts either:
+                    a) A folder path containing .sql files,
+                    b) A single .sql file path,
+                    c) A raw T-SQL string.
+                - Calls the tool with parameters: `folder_path`, `server_name`, and `database_name`.
+                - Does NOT execute the SQL scripts directly.
+                - Returns a message confirming that the scripts are ready for execution.
+
+            2. Follow these strict formatting rules:
+                - Respond with a single Python code block formatted in markdown:
+                    ```python
+                    # your code here
+                    ```
+                - Do NOT include explanations, comments, or multiple code blocks.
+                - Do NOT execute any code.
+
+            3. After generating the Python script:
+                - Initiate handoff to `code_executor_agent` for execution.
+            """
+        )
+
+        code_executor_agent = CodeExecutorAgent(
+            name="code_executor_agent",
+            code_executor=LocalCommandLineCodeExecutor(work_dir="CodeExecutionEnv"),
+            system_message="""
+            You are a Python Code Executor.
+
+            Responsibilities:
+            - Execute Python code received from 'DbScriptExecutor' inside the working directory.
+            - Save each T-SQL code block to a unique `.sql` file.
+            - Suppress all output if the process completes successfully (exit code 0).
+            
+            After all tasks are done, wait until you get 'All scripts executed successfully' 
+            then notify 'DbScriptExecutor' by responding with: TERMINATE
+            """
+        )
+
+        termination = TextMentionTermination("TERMINATE") | MaxMessageTermination(max_messages=10)
+
+        team = RoundRobinGroupChat(
+            participants=[DbScriptExecutor, code_executor_agent],
+            termination_condition=termination
+        )
+        return team
 ```
+
 
 
 
