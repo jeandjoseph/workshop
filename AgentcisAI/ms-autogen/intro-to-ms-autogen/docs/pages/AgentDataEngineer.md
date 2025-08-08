@@ -45,6 +45,7 @@ This demo shows how to **separate the process of writing code from running it**,
 - 
 #### ✅ Steps to complete this demo:
 1. 🛠️ Before you begin, make sure your [Python virtual environment](https://github.com/jeandjoseph/workshop/blob/main/AgentcisAI/ms-autogen/intro-to-ms-autogen/docs/pages/GettingEnvReady.md) is activated, all dependencies are installed, and your `.env` file is properly configured. Everything should be running smoothly before you proceed.
+    - Make sure to create a folder named `CodeExecutionEnv` inside your Python virtual environment. This folder will be used to store and access execution-related objects. 
 2. **Copy & Paste** the code below into a text editor. You can use something simple like Notepad.
 
 ```python
@@ -322,6 +323,10 @@ class AgenticTeamInitializer:
         return team, CodeSavor
 ```
 5. Save the file as `AgentSqlCdeGeneratorPrompt.py`. Choose a folder where your virtual environment can easily access it.
+6. Run the command below, wait for it to finish, and you’ll see the T-SQL script files appear in your working directory.:
+```python
+python AgentSqlCdeGeneratorPrompt.py
+```
 
 
 
