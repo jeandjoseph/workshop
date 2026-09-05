@@ -1,0 +1,12 @@
+# PROMPT EXAMPLE
+# good for video calls
+
+# works really well for video calls
+
+# webcam performs nicely in meetings
+
+# excellent camera for teams meetings
+
+# great webcam quality for zoom
+
+# all should start converging toward a semantic cache hit
