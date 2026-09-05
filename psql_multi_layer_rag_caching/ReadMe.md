@@ -62,6 +62,21 @@ flowchart LR
 
 The workshop is organized into four major components that progressively build the complete multi-layer RAG caching solution.
 
+```text
+psql_multi_layer_rag_caching
+│
+├── az_resource_deployment.sh
+├── semantic_caching.sh
+├── semantic_delete_cache.sh
+│
+└── redis_cache
+    ├── app.py
+    ├── l1_cache.py
+    ├── l2_cache.py
+    └── requirements.txt
+```
+
+
 ### 1. Azure Resource Deployment
 
 **Script:** `az_resource_deployment.sh`
@@ -159,6 +174,24 @@ L2 PostgreSQL Semantic Cache
 - Observe cost-saving opportunities in RAG workloads
 
 ---
+
+
+## Python Application (`redis_cache`)
+ - The **`redis_cache`** folder contains a standalone Python implementation of the multi-layer RAG caching architecture demonstrated throughout the workshop.
+ - While the shell scripts show how to provision resources and implement the caching workflow using Azure CLI and PostgreSQL commands, the Python application demonstrates how the same architecture can be integrated into a real-world application.
+ - Make sure to create a python virtual environment and install the required dependencies listed in `requirements.txt` before running the application.
+
+```python
+python -m venv venv
+```
+
+```python
+source venv/bin/activate
+```
+
+```python
+python app.py
+``` 
 
 ### 3. Cache Cleanup
 
