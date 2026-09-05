@@ -18,19 +18,20 @@ The architecture uses a layered approach to query processing, where PostgreSQL s
 
 This design mirrors real-world enterprise AI systems where minimizing repeated embedding generation and vector searches can significantly improve response times and reduce operational costs.
 
+```mermaid
 flowchart LR
 
     U[User Query]
 
-    R["(Azure Managed Redis<br/>L1 Exact Cache)"]
+    R[(Azure Managed Redis<br/>L1 Exact Cache)]
 
-    AO["Azure OpenAI<br/>Embedding Model"]
+    AO[Azure OpenAI<br/>Embedding Model]
 
-    SC["(semantic_cache<br/>L2 Semantic Cache)"]
+    SC[(semantic_cache<br/>L2 Semantic Cache)]
 
-    RE["(review_embeddings)"]
+    RE[(review_embeddings)]
 
-    PR["(product_reviews)"]
+    PR[(product_reviews)]
 
     RESP[Response]
 
@@ -51,4 +52,6 @@ flowchart LR
     PR -->|Top Reviews| RESP
 
     RESP -. Save Result .-> R
+
     RESP -. Save Query + Embedding + Response .-> SC
+```
